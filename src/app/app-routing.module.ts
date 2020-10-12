@@ -9,7 +9,19 @@ const routes: Routes = [
   },
   {
     path: 'municipality',
-    loadChildren: () => import('./pages/municipality/municipality.module').then( m => m.MunicipalityPageModule)
+    loadChildren: () => import('./pages/municipalities/municipality/municipality.module').then( m => m.MunicipalityPageModule)
+  },
+  {
+    path: 'municipality-menu',
+    loadChildren: () => import('./pages/municipalities/municipality-menu/municipality-menu.module').then( m => m.MunicipalityMenuPageModule)
+  },
+  {
+    path: 'site',
+    loadChildren: () => import('./pages/municipalities/site/site.module').then( m => m.SitePageModule)
+  },
+  {
+    path: 'celebration',
+    loadChildren: () => import('./pages/municipalities/celebration/celebration.module').then( m => m.CelebrationPageModule)
   },
 ];
 
