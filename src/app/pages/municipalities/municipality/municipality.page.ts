@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { MunicipalityService } from 'src/app/services/municipality.service';
 
 @Component({
@@ -10,7 +11,11 @@ import { MunicipalityService } from 'src/app/services/municipality.service';
 export class MunicipalityPage implements OnInit {
   listMun = [];
 
-  constructor(private munService: MunicipalityService, private activatedroute: ActivatedRoute) { }
+  constructor(
+    private munService: MunicipalityService,
+    private activatedroute: ActivatedRoute,
+    public navCtrl: NavController,
+  ) { }
 
   ngOnInit() {
     this.munService.getMunicipios(this.activatedroute.snapshot.paramMap.get('region')).valueChanges().subscribe(ans => this.listMun = ans);

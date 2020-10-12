@@ -14,6 +14,13 @@ const routes: Routes = [
           { path: '', component: HomePage }
         ]
       },
+      {
+        path: 'home/municipality/:region',
+        children: [
+          { path: '',
+          loadChildren: () => import('../municipalities/municipality/municipality.module').then( m => m.MunicipalityPageModule) }
+        ]
+      },
       { path: '', redirectTo: '/tabs/home' }
     ]
   },

@@ -1,5 +1,11 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-button color="light"
+        (click)="navCtrl.navigateBack('/tabs/home')">
+        <ion-icon name="chevron-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title class="header">Municipios</ion-title>
   </ion-toolbar>
 </ion-header>
