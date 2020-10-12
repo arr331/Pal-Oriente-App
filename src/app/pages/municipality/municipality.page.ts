@@ -12,7 +12,6 @@ export class MunicipalityPage implements OnInit {
   constructor(private munService: MunicipalityService) { }
 
   ngOnInit() {
-    this.munService.getMunicipios().
-    subscribe(ans => this.listMun = ans);
+    this.munService.getMunicipios().valueChanges().subscribe(ans => this.listMun = ans);
   }
 }
