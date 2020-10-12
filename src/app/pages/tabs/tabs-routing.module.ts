@@ -15,7 +15,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'home/municipality/:region',
+        path: 'home/:region',
         children: [
           { path: '',
           loadChildren: () => import('../municipalities/municipality/municipality.module').then( m => m.MunicipalityPageModule) }
