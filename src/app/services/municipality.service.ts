@@ -7,9 +7,9 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class MunicipalityService {
   municipalities: any;
 
-  constructor(private fireBase: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase) { }
 
-  getMunicipios() {
-    return this.fireBase.list('ALTIPLANO/MUNICIPALITIES');
+  getMunicipios(region: string) {
+    return this.db.list(`${region}/MUNICIPALITIES`);
   }
 }

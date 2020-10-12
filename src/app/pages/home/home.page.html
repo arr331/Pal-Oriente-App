@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div class="container" *ngFor="let i of list">
+  <div class="container" *ngFor="let i of list" [routerLink]="['/municipality', 'ALTIPLANO']">
     <img src={{i}} height="200px" width="100%" style="margin-bottom: -4px;">
     <div class="text-img">
       <h4 class="text">ALTIPLANO</h4>

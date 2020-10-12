@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule} from 'angularfire2';
 import { AngularFireStorageModule } from 'angularfire2/storage';
-
+import { IonicStorageModule } from '@ionic/storage';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -21,7 +21,8 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    IonicStorageModule.forRoot()
   ],
   providers: [
     StatusBar,
