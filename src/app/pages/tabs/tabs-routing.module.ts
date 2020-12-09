@@ -21,6 +21,13 @@ const routes: Routes = [
           loadChildren: () => import('../municipalities/municipality/municipality.module').then( m => m.MunicipalityPageModule) }
         ]
       },
+      {
+        path: 'home/menu/:name',
+        children: [
+          { path: '',
+          loadChildren: () => import('../municipalities/municipality-menu/municipality-menu.module').then( m => m.MunicipalityMenuPageModule) }
+        ]
+      },
       { path: '', redirectTo: '/tabs/home' }
     ]
   },

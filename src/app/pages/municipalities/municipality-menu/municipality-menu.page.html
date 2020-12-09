@@ -1,6 +1,12 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>municipality-menu</ion-title>
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-button
+        (click)="navCtrl.navigateBack('/tabs/home')">
+        <ion-icon name="chevron-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{activatedroute.snapshot.paramMap.get('name')}}</ion-title>
   </ion-toolbar>
 </ion-header>
 

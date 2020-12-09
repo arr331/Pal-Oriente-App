@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-municipality-menu',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MunicipalityMenuPage implements OnInit {
 
-  constructor() { }
+  constructor(public activatedroute: ActivatedRoute, public navCtrl: NavController) { }
 
   ngOnInit() {
   }
