@@ -7,6 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { CelebrationPageRoutingModule } from './celebration-routing.module';
 
 import { CelebrationPage } from './celebration.page';
+import { DescriptionComponent } from './components/description/description.component';
+import { CommentsComponent } from './components/comments/comments.component';
+import { ActivitiesComponent } from './components/activities/activities.component';
 
 @NgModule({
   imports: [
@@ -15,6 +18,6 @@ import { CelebrationPage } from './celebration.page';
     IonicModule,
     CelebrationPageRoutingModule
   ],
-  declarations: [CelebrationPage]
+  declarations: [CelebrationPage, DescriptionComponent, CommentsComponent, ActivitiesComponent]
 })
 export class CelebrationPageModule {}

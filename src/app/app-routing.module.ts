@@ -21,7 +21,15 @@ const routes: Routes = [
   {
     path: 'information',
     loadChildren: () => import('./pages/municipalities/information/information.module').then( m => m.InformationPageModule)
+  },  {
+    path: 'site-menu',
+    loadChildren: () => import('./pages/municipalities/site-menu/site-menu.module').then( m => m.SiteMenuPageModule)
   },
+  {
+    path: 'celebration-menu',
+    loadChildren: () => import('./pages/municipalities/celebration-menu/celebration-menu.module').then( m => m.CelebrationMenuPageModule)
+  },
+
 
 ];
 
