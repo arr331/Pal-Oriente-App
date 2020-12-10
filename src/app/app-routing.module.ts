@@ -17,7 +17,8 @@ const routes: Routes = [
   {
     path: 'celebration',
     loadChildren: () => import('./pages/municipalities/celebration/celebration.module').then( m => m.CelebrationPageModule)
-  },  {
+  },
+  {
     path: 'information',
     loadChildren: () => import('./pages/municipalities/information/information.module').then( m => m.InformationPageModule)
   },

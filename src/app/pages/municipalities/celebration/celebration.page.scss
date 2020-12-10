@@ -1,0 +1,21 @@
+.text-img {
+    position: absolute;
+    bottom: 0;
+    height: 23%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.58);
+    color: white;
+}
+.text {
+    font-size: 20px;
+    margin: auto;
+    padding: 9px;
+}
+
+.container {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    color: white;
+    width: 100%;
+}

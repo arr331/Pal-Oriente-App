@@ -7,6 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { SitePageRoutingModule } from './site-routing.module';
 
 import { SitePage } from './site.page';
+import { DescriptionComponent } from './components/description/description.component';
+import { LocatedComponent } from './components/located/located.component';
+import { CommentsComponent } from './components/comments/comments.component';
 
 @NgModule({
   imports: [
@@ -15,6 +18,6 @@ import { SitePage } from './site.page';
     IonicModule,
     SitePageRoutingModule
   ],
-  declarations: [SitePage]
+  declarations: [SitePage, DescriptionComponent, LocatedComponent, CommentsComponent]
 })
 export class SitePageModule {}
