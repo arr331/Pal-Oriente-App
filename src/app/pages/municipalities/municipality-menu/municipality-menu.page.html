@@ -1,32 +1,43 @@
 <ion-header mode="ios">
   <ion-toolbar mode="ios" color="primary">
     <ion-buttons slot="start">
-      <ion-button
-        (click)="navCtrl.navigateBack('/tabs/home')">
+      <ion-button color="light" (click)="navCtrl.navigateBack('/tabs/home/ALTIPLANO')">
         <ion-icon name="chevron-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>{{activatedroute.snapshot.paramMap.get('name')}}</ion-title>
+    <ion-title class="header">{{activatedroute.snapshot.paramMap.get('name')}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card style="background: #3D707B;">
-    <img src="https://firebasestorage.googleapis.com/v0/b/palasquesea-e32c0.appspot.com/o/home%2Fbosques.jpg?alt=media&token=e9ce0639-be52-44f2-b40e-8ab6886acc10" />
-    <ion-card-header style="padding: 10px;">
-      <ion-card-title style="color: white;">Celebraciones</ion-card-title>
-    </ion-card-header>
-  </ion-card>
-  <ion-card style="background: #3D707B;">
-    <img src="https://firebasestorage.googleapis.com/v0/b/palasquesea-e32c0.appspot.com/o/home%2Fbosques.jpg?alt=media&token=e9ce0639-be52-44f2-b40e-8ab6886acc10" />
-    <ion-card-header style="padding: 10px;">
-      <ion-card-title style="color: white;">Celebraciones</ion-card-title>
-    </ion-card-header>
-  </ion-card>
-  <ion-card style="background: #3D707B;">
-    <img src="https://firebasestorage.googleapis.com/v0/b/palasquesea-e32c0.appspot.com/o/home%2Fbosques.jpg?alt=media&token=e9ce0639-be52-44f2-b40e-8ab6886acc10" />
-    <ion-card-header style="padding: 10px;">
-      <ion-card-title style="color: white;">Celebraciones</ion-card-title>
-    </ion-card-header>
-  </ion-card>
+  <ion-card-content style="margin: 10px 5px -20px; max-width: 40rem;">
+    <div class="container">
+      <div class="text-img border">
+        <h3 class="text">Sitios</h3>
+      </div>
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/palasquesea-e32c0.appspot.com/o/menu%2Fsites.jpg?alt=media&token=09203db5-61c1-4d59-b286-109285be42a0"
+        height="200px" width="100%" class="border">
+    </div>
+  </ion-card-content>
+  <ion-card-content style="margin: 10px 5px -20px; max-width: 40rem;">
+    <div class="container">
+      <div class="text-img border">
+        <h3 class="text">Celebraciones</h3>
+      </div>
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/palasquesea-e32c0.appspot.com/o/menu%2Fcelebration.jpg?alt=media&token=0a555ccd-856d-4382-b16f-a0f360e720eb"
+        height="200px" width="100%" class="border">
+    </div>
+  </ion-card-content>
+  <ion-card-content style="margin: 10px 5px -20px; max-width: 40rem;">
+    <div class="container">
+      <div class="text-img border">
+        <h3 class="text">Información</h3>
+      </div>
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/palasquesea-e32c0.appspot.com/o/menu%2Finformation.jpg?alt=media&token=89b405dc-54f4-4dba-a9c3-73decf86d538"
+        height="200px" width="100%" class="border">
+    </div>
+  </ion-card-content>
 </ion-content>

@@ -12,4 +12,8 @@ export class MunicipalityService {
   getMunicipios(region: string) {
     return this.db.list(`${region}/MUNICIPALITIES`);
   }
+
+  getMunicipalitiesById(idMun) {
+    // return this.municipalities.filter(mun => mun);
+  }
 }
