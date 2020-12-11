@@ -5,12 +5,12 @@
         <ion-icon name="chevron-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title class="header">{{activatedroute.snapshot.paramMap.get('name')}}</ion-title>
+    <ion-title class="header">{{idMun}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card-content style="margin: 10px 5px -20px; max-width: 40rem;">
+  <ion-card-content style="margin: 10px 5px -20px; max-width: 40rem;" [routerLink]="['/tabs/home/menu/sites', idMun]">
     <div class="container">
       <div class="text-img border">
         <h3 class="text">Sitios</h3>
@@ -20,7 +20,7 @@
         height="200px" width="100%" class="border">
     </div>
   </ion-card-content>
-  <ion-card-content style="margin: 10px 5px -20px; max-width: 40rem;">
+  <ion-card-content style="margin: 10px 5px -20px; max-width: 40rem;" [routerLink]="['/tabs/home/menu/celebrations', idMun]">
     <div class="container">
       <div class="text-img border">
         <h3 class="text">Celebraciones</h3>
@@ -30,7 +30,7 @@
         height="200px" width="100%" class="border">
     </div>
   </ion-card-content>
-  <ion-card-content style="margin: 10px 5px -20px; max-width: 40rem;">
+  <ion-card-content style="margin: 10px 5px -20px; max-width: 40rem;" [routerLink]="['/tabs/home/menu/information', idMun]">
     <div class="container">
       <div class="text-img border">
         <h3 class="text">Información</h3>

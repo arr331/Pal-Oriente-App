@@ -22,10 +22,31 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'home/menu/:name',
+        path: 'home/menu/:idMun',
         children: [
           { path: '',
           loadChildren: () => import('../municipalities/municipality-menu/municipality-menu.module').then( m => m.MunicipalityMenuPageModule) }
+        ]
+      },
+      {
+        path: 'home/menu/sites/:idMun',
+        children: [
+          { path: '',
+          loadChildren: () => import('../municipalities/site/site.module').then( m => m.SitePageModule) }
+        ]
+      },
+      {
+        path: 'home/menu/celebrations/:idMun',
+        children: [
+          { path: '',
+          loadChildren: () => import('../municipalities/celebration/celebration.module').then( m => m.CelebrationPageModule) }
+        ]
+      },
+      {
+        path: 'home/menu/information/:idMun',
+        children: [
+          { path: '',
+          loadChildren: () => import('../municipalities/information/information.module').then( m => m.InformationPageModule) }
         ]
       },
       { path: '', redirectTo: '/tabs/home' }
