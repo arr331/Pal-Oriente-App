@@ -32,14 +32,14 @@ const routes: Routes = [
         path: 'home/menu/sites/:idMun',
         children: [
           { path: '',
-          loadChildren: () => import('../municipalities/site/site.module').then( m => m.SitePageModule) }
+          loadChildren: () => import('../municipalities/site-menu/site-menu.module').then( m => m.SiteMenuPageModule)}
         ]
       },
       {
         path: 'home/menu/celebrations/:idMun',
         children: [
           { path: '',
-          loadChildren: () => import('../municipalities/celebration/celebration.module').then( m => m.CelebrationPageModule) }
+          loadChildren: () => import('../municipalities/celebration-menu/celebration-menu.module').then( m => m.CelebrationMenuPageModule) }
         ]
       },
       {

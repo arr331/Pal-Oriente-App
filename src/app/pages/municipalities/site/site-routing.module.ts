@@ -30,7 +30,12 @@ const routes: Routes = [
         ]
       },
     ]
-  }
+  },
+ /* {
+    path: '',
+    redirectTo: '/site/description',
+    pathMatch: 'full'
+  }*/
 ];
 
 @NgModule({

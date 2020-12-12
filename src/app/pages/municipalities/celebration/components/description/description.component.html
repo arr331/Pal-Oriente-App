@@ -1,26 +1,28 @@
-<ion-card>
-  <ion-slides scrollbar= "true" pager="true" [options]="slideOpts" #mySlider>
-    <ion-slide>
-      <img src="https://blog.redbus.co/wp-content/uploads/2019/10/Salto-del-Buey-12-1-compressor.jpg" />
-    </ion-slide>
-    <ion-slide>
-      <img src="https://orientemap.com/wp-content/uploads/Santuario_Administraci%C3%B3nMunicipalElSantuario_1.jpg" />
-    </ion-slide>
-    <ion-slide>
-      <img src="https://mapio.net/images-p/83867253.jpg" />
-    </ion-slide>
-  </ion-slides>
-  <div class="slideButtons">
-    <ion-button (click)="goToBack()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
-    <ion-button (click)="goToNext()"><ion-icon name="chevron-forward-outline"></ion-icon></ion-button>
-  </div>
-  <ion-card-header>
-    <ion-card-subtitle>Descripción</ion-card-subtitle>
-    <ion-card-title>Celebración 1</ion-card-title>
-  </ion-card-header>
+<ion-content>
+  <ion-card>
+    <ion-slides scrollbar= "true" pager="true" [options]="slideOpts" #mySlider>
+      <ion-slide>
+        <img src="https://blog.redbus.co/wp-content/uploads/2019/10/Salto-del-Buey-12-1-compressor.jpg" />
+      </ion-slide>
+      <ion-slide>
+        <img src="https://orientemap.com/wp-content/uploads/Santuario_Administraci%C3%B3nMunicipalElSantuario_1.jpg" />
+      </ion-slide>
+      <ion-slide>
+        <img src="https://mapio.net/images-p/83867253.jpg" />
+      </ion-slide>
+    </ion-slides>
+    <div class="slideButtons">
+      <ion-button (click)="goToBack()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
+      <ion-button (click)="goToNext()"><ion-icon name="chevron-forward-outline"></ion-icon></ion-button>
+    </div>
+    <ion-card-header>
+      <ion-card-subtitle>Descripción</ion-card-subtitle>
+      <ion-card-title>Celebración 1</ion-card-title>
+    </ion-card-header>
 
-  <ion-card-content>
-    Keep close to Nature's heart... and break clear away, once in awhile,
-    and climb a mountain or spend a week in the woods. Wash your spirit clean.
-  </ion-card-content>
-</ion-card>
+    <ion-card-content>
+      Keep close to Nature's heart... and break clear away, once in awhile,
+      and climb a mountain or spend a week in the woods. Wash your spirit clean.
+    </ion-card-content>
+  </ion-card>
+</ion-content>
