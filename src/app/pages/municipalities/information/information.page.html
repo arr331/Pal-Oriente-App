@@ -5,16 +5,15 @@
         <ion-icon name="chevron-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title class="header">Información del Santuario</ion-title>
+    <ion-title class="header">Información de {{municipality.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card style="border-radius: 10px;">
-    <img
-      src="https://firebasestorage.googleapis.com/v0/b/palasquesea-e32c0.appspot.com/o/ALTIPLANO%2FMUNICIPALITIES%2F-KJSDJKFHDF%2Fportada?alt=media&token=14c939ad-2ed4-4511-9647-0e57fdfed649" />
+    <img class="image" height="250px" width="100%" [src]="municipality.image" alt="No se cargó la imagen">
     <ion-card-header>
-      <ion-card-title class="name">El Santuario</ion-card-title>
+      <ion-card-title class="name">{{municipality.name}}</ion-card-title>
       <div class="showMe">
         <img class="handswipe" src="https://layerjs.org/img/swipeleft.svg"/>
       </div>
@@ -22,43 +21,21 @@
     <ion-card-content>
       <ion-slides>
         <ion-slide>
-          <div class="slide" style="text-align: justify; padding: 0 10px;">
-            <div>El Santuario es un municipio del oriente antioqueño que se caracteriza por ser un pueblo muy católico y
-              por su gente que es muy carismatica, negociante y amable</div>
+          <div class="slide information">
+            <div>{{municipality.description}}</div>
             <br>
-            <div><strong><ion-icon name="sunny"></ion-icon> Clima:</strong> Promedio 16°C, máxima 24°C</div>
+            <div><strong><ion-icon name="sunny"></ion-icon> Clima:</strong> {{municipality.weather}}</div>
             <br>
-            <div><strong><ion-icon name="people-sharp"></ion-icon> Habitantes:</strong> 27076</div>
+            <div><strong><ion-icon name="people-sharp"></ion-icon> Habitantes:</strong> {{municipality.habitants}}</div>
             <br>
-            <div><strong><ion-icon name="cash"></ion-icon> Economía:</strong> El Santuario tiene una vocación económica claramente definida al sector
-              primario y en particular, hacia la actividad agrícola de la producción de hortalizas ya tradicionales como
-              zanahoria, papa, remolacha, repollo, arveja, habichuela y fríjol principalmente, incrementándose
-              nuevamente el cultivo de maíz por ser menos costosa su producción y un poco más rentable su venta.\n\nEl
-              segundo renglón de la economía del Municipio de El Santuario es el sector de las confecciones el cual
-              genera más de 1200 empleos directos, destacándose la empresa cooperativa de El Santuario ECOELSA empresa
-              modelo en el Municipio y de la región siendo una de las grandes generadoras de empleo. También se destacan
-              sectores a pequeña escala en la economía del Municipio como es el área financiera a través de bancos,
-              transportadores y servicios varios que se ofrecen en el Municipio.</div>
+            <div><strong><ion-icon name="cash"></ion-icon> Economía:</strong> {{municipality.economy}}</div>
           </div>
         </ion-slide>
-
         <ion-slide>
-          <div class="slide" style="text-align: justify; padding: 0 10px;">
-            <div><strong><ion-icon name="hourglass-sharp"></ion-icon> Historia:</strong> Cuenta la tradición que en el lugar donde se fundó el municipio existía un
-              sitio sagrado dedicado a una deidad indígena. Durante la época española, se levantó en el lugar un
-              santuario
-              a la Virgen de Chiquinquirá, que se convertiría en lugar de peregrinación. En 1765, el capitán español
-              Antonio Gómez estableció en su hacienda una capilla dedicada a Nuestra Señora de Chiquinquirá y esto
-              atrajo
-              a nuevos vecinos con casa y cultivos. La capilla de El Santuario fue heredada por Ignacio Gómez, su hijo,
-              quien en 1792 construyó otra capilla alrededor de la cual se formó el caserío. El municipio estuvo bajo la
-              jurisdicción de Marinilla hasta 1838. En 1829 se desarrolló una batalla entre el ejército grancolombiano
-              (dirigido por Daniel Florencio O'Leary, Carlos Luis Castelli y Henry Lutzow) contra el ejército de la
-              Libertad (dirigido por José María Córdova, Salvador Córdova más Braulio Henao) el cual perdió y murió José
-              María Cordova.</div>
+          <div class="slide information">
+            <div><strong><ion-icon name="hourglass-sharp"></ion-icon> Historia:</strong> {{municipality.history}}</div>
           </div>
         </ion-slide>
-
       </ion-slides>
     </ion-card-content>
   </ion-card>

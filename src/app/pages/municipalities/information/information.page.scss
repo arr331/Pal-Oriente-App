@@ -3,7 +3,15 @@
     font-weight: bold;
     font-size: 25px;
 }
-
+.information {
+    text-align: justify;
+    padding: 0 10px;
+}
+.image {
+    max-width: 40rem;
+    display: block;
+    margin: auto;
+}
 ion-slides {
     height: 100%;
   }
