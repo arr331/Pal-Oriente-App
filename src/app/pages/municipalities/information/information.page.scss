@@ -35,10 +35,19 @@ strong {
 }
 .handswipe {
     animation: swipe .8s alternate infinite;
-    animation-timing-function: ease;
+    animation-timing-function: 0s 3s;
     position: absolute;
     bottom: 95px;
     width: 65px;
     right: 5%;
     top:0%;
 }
+
+.showMe {
+    animation: cssAnimation 0s 3.8s forwards;
+    visibility: visible;
+  }
+  
+  @keyframes cssAnimation {
+    to   { visibility: hidden; }
+  }

@@ -1,6 +1,11 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title class="header">Información de El Santuario</ion-title>
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-button color="light" (click)="navCtrl.back()">
+        <ion-icon name="chevron-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="header">Información del Santuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,8 +15,8 @@
       src="https://firebasestorage.googleapis.com/v0/b/palasquesea-e32c0.appspot.com/o/ALTIPLANO%2FMUNICIPALITIES%2F-KJSDJKFHDF%2Fportada?alt=media&token=14c939ad-2ed4-4511-9647-0e57fdfed649" />
     <ion-card-header>
       <ion-card-title class="name">El Santuario</ion-card-title>
-      <div class="handswipe">
-        <img src="https://layerjs.org/img/swipeleft.svg"/>
+      <div class="showMe">
+        <img class="handswipe" src="https://layerjs.org/img/swipeleft.svg"/>
       </div>
     </ion-card-header>
     <ion-card-content>
