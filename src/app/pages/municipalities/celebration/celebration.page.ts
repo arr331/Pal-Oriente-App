@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-celebration',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CelebrationPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    // objeto celebracio
+    console.log(this.router.getCurrentNavigation().extras.state);
   }
 
 }

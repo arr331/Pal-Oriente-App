@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -8,9 +9,11 @@ import { NavController } from '@ionic/angular';
 })
 export class InformationPage implements OnInit {
 
-  constructor(public navCtrl: NavController) { }
+  constructor(public navCtrl: NavController, private router: Router) { }
 
   ngOnInit() {
+    // objeto de municipio
+    console.log(this.router.getCurrentNavigation().extras.state);
   }
 
 }

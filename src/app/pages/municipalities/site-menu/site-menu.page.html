@@ -9,9 +9,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="sites">
 
-  <div class="container">
+  <div class="container" *ngFor="let site of sites" routerLink="/tabs/sitio" [state] = "site">
     <img
       src="https://resizer.codigounico.com/resizer/resizer.php?imagen=https://www.codigounico.com/wp-content/uploads/sites/2/2018/12/las-celebraciones-de-ano-nuevo-mas-espectaculares-del-mundo-11.jpg&nuevoancho=750&crop=0"
       height="220px" width="100%" style="margin-bottom: -4px;">

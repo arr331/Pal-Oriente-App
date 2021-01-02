@@ -36,10 +36,24 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'sitio',
+        children: [
+          { path: '',
+          loadChildren: () => import('../municipalities/site/site.module').then( m => m.SitePageModule)}
+        ]
+      },
+      {
         path: 'celebraciones',
         children: [
           { path: '',
           loadChildren: () => import('../municipalities/celebration-menu/celebration-menu.module').then( m => m.CelebrationMenuPageModule) }
+        ]
+      },
+      {
+        path: 'celebracion',
+        children: [
+          { path: '',
+          loadChildren: () => import('../municipalities/celebration/celebration.module').then( m => m.CelebrationPageModule) }
         ]
       },
       {
