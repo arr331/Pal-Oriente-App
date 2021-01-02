@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { CelebrationMenuPageRoutingModule } from './celebration-menu-routing.module';
 
 import { CelebrationMenuPage } from './celebration-menu.page';
+import { MasterMenuComponent } from 'src/app/components/master-menu/master-menu.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { CelebrationMenuPage } from './celebration-menu.page';
     IonicModule,
     CelebrationMenuPageRoutingModule
   ],
-  declarations: [CelebrationMenuPage]
+  declarations: [CelebrationMenuPage, MasterMenuComponent]
 })
 export class CelebrationMenuPageModule {}

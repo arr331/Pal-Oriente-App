@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-celebration',
@@ -8,11 +9,11 @@ import { Router } from '@angular/router';
 })
 export class CelebrationPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, public navCtrl: NavController) { }
 
   ngOnInit() {
     // objeto celebracio
-    console.log(this.router.getCurrentNavigation().extras.state);
+    console.log(this.router.getCurrentNavigation().extras.state, 'celebration');
   }
 
 }

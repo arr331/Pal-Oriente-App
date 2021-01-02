@@ -1,14 +1,14 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Menu celebración</ion-title>
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-button color="light" (click)="navCtrl.back()">
+        <ion-icon name="chevron-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="header">Menú de celebraciones</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="celebrations">
-  <div class="container" *ngFor="let celebration of celebrations" routerLink="/tabs/celebracion" [state] = "celebration">
-    <img clas ="image" src="https://resizer.codigounico.com/resizer/resizer.php?imagen=https://www.codigounico.com/wp-content/uploads/sites/2/2018/12/las-celebraciones-de-ano-nuevo-mas-espectaculares-del-mundo-11.jpg&nuevoancho=750&crop=0">
-    <div class="text-img">
-      <h4 class="text">Lugar 1</h4>
-    </div>
-  </div>
+<ion-content>
+  <app-master-menu [route]="route"></app-master-menu>
 </ion-content>

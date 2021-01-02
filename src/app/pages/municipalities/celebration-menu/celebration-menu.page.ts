@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-celebration-menu',
@@ -7,14 +7,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./celebration-menu.page.scss'],
 })
 export class CelebrationMenuPage implements OnInit {
+  route = 'celebracion';
 
-  celebrations;
+  constructor(public navCtrl: NavController) { }
 
-  constructor(private router: Router) { }
-
-  ngOnInit() {
-    // lista de celebraciones
-    this.celebrations = this.router.getCurrentNavigation().extras.state;
-  }
+  ngOnInit() { }
 
 }

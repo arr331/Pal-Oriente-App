@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { SiteMenuPageRoutingModule } from './site-menu-routing.module';
 
 import { SiteMenuPage } from './site-menu.page';
+import { MasterMenuComponent } from 'src/app/components/master-menu/master-menu.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { SiteMenuPage } from './site-menu.page';
     IonicModule,
     SiteMenuPageRoutingModule
   ],
-  declarations: [SiteMenuPage]
+  declarations: [SiteMenuPage, MasterMenuComponent]
 })
 export class SiteMenuPageModule {}

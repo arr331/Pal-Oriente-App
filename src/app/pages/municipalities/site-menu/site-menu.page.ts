@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -8,13 +7,10 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./site-menu.page.scss'],
 })
 export class SiteMenuPage implements OnInit {
+  route = 'sitio';
 
-  constructor(public navCtrl: NavController, private router: Router) { }
+  constructor(public navCtrl: NavController) { }
 
-  sites;
-  ngOnInit() {
-    // lista de sitios
-    this.sites = this.router.getCurrentNavigation().extras.state;
-  }
+  ngOnInit() { }
 
 }
