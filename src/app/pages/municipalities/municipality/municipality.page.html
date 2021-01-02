@@ -10,7 +10,7 @@
 </ion-header>
 <ion-content>
   <ng-container *ngFor="let mun of municipalityList" >
-    <ion-grid [routerLink]="['/tabs/home/menu', mun.idMun]">
+    <ion-grid routerLink="/tabs/municipio/menu" [state] = "mun">
       <ion-row>
         <ion-col size="5" >
           <div style="display: block; margin: auto; max-width: 14rem;">

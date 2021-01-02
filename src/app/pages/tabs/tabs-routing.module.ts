@@ -22,28 +22,28 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'home/menu/:idMun',
+        path: 'municipio/menu',
         children: [
           { path: '',
           loadChildren: () => import('../municipalities/municipality-menu/municipality-menu.module').then( m => m.MunicipalityMenuPageModule) }
         ]
       },
       {
-        path: 'home/menu/sites/:idMun',
+        path: 'sitios',
         children: [
           { path: '',
           loadChildren: () => import('../municipalities/site-menu/site-menu.module').then( m => m.SiteMenuPageModule)}
         ]
       },
       {
-        path: 'home/menu/celebrations/:idMun',
+        path: 'celebraciones',
         children: [
           { path: '',
           loadChildren: () => import('../municipalities/celebration-menu/celebration-menu.module').then( m => m.CelebrationMenuPageModule) }
         ]
       },
       {
-        path: 'home/menu/information/:idMun',
+        path: 'informacion',
         children: [
           { path: '',
           loadChildren: () => import('../municipalities/information/information.module').then( m => m.InformationPageModule) }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { MunicipalityService } from 'src/app/services/municipality.service';
 
@@ -9,12 +9,14 @@ import { MunicipalityService } from 'src/app/services/municipality.service';
   styleUrls: ['./municipality-menu.page.scss'],
 })
 export class MunicipalityMenuPage implements OnInit {
-  idMun;
+  mpio;
 
-  constructor(public activatedroute: ActivatedRoute, public navCtrl: NavController, private munService: MunicipalityService) { }
+  constructor(private router: Router, public activatedroute: ActivatedRoute, public navCtrl: NavController, private munService: MunicipalityService) { }
 
   ngOnInit() {
-    this.idMun = this.activatedroute.snapshot.paramMap.get('idMun');
+    console.log(this.router.getCurrentNavigation().extras.state);
+    //this.idMun = this.activatedroute.snapshot.paramMap.get('idMun');
+    this.mpio = this.router.getCurrentNavigation().extras.state;
   }
 
 }

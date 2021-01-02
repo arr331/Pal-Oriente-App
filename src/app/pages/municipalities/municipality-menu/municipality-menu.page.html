@@ -5,12 +5,12 @@
         <ion-icon name="chevron-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title class="header">{{idMun}}</ion-title>
+    <ion-title class="header">{{mpio.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card-content class="item-menu" [routerLink]="['/tabs/home/menu/sites', idMun]">
+  <ion-card-content class="item-menu" routerLink="/tabs/sitios" [state] = "mpio.sites">
     <div class="container">
       <div class="text-img border">
         <h3 class="text">Sitios</h3>
@@ -20,7 +20,7 @@
         height="230px" width="100%" class="border">
     </div>
   </ion-card-content>
-  <ion-card-content class="item-menu" [routerLink]="['/tabs/home/menu/celebrations', idMun]">
+  <ion-card-content class="item-menu" routerLink="/tabs/celebraciones" [state] = "mpio.celebrations">
     <div class="container">
       <div class="text-img border">
         <h3 class="text">Celebraciones</h3>
@@ -30,7 +30,7 @@
         height="230px" width="100%" class="border">
     </div>
   </ion-card-content>
-  <ion-card-content class="item-menu" [routerLink]="['/tabs/home/menu/information', idMun]">
+  <ion-card-content class="item-menu" routerLink="/tabs/informacion" [state] = "mpio">
     <div class="container">
       <div class="text-img border">
         <h3 class="text">Información</h3>
