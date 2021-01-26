@@ -12,23 +12,29 @@
 
 <ion-content>
 
-  <ion-tabs >
+  <ion-tabs style="display: contents;">
     <ion-tab-bar slot="top">
-      <ion-tab-button tab="description">
+      <ion-tab-button (click)="item='description'">
         <ion-icon name="reader"></ion-icon>
         <ion-label>Descripción</ion-label>
       </ion-tab-button>
-  
-      <ion-tab-button tab="map">
+
+      <ion-tab-button (click)="item='map'">
         <ion-icon name="location-sharp"></ion-icon>
         <ion-label>Ubicación</ion-label>
       </ion-tab-button>
-  
-      <ion-tab-button tab="comments">
+
+      <ion-tab-button (click)="item='comments'">
         <ion-icon name="star"></ion-icon>
         <ion-label>Valoración</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
+
+  <ng-container [ngSwitch]="item">
+    <app-description *ngSwitchCase="'description'" [sitio]="sitio"></app-description>
+    <app-located *ngSwitchCase="'map'"></app-located>
+    <app-comments *ngSwitchCase="'comments'" [comentarios]="comentarios"></app-comments>
+  </ng-container>
 
 </ion-content>

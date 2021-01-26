@@ -10,22 +10,28 @@
 </ion-header>
 
 <ion-content>
-  <ion-tabs >
+  <ion-tabs style="display: contents;">
     <ion-tab-bar slot="top">
-      <ion-tab-button tab="description">
+      <ion-tab-button (click)="item='description'">
         <ion-icon name="reader"></ion-icon>
         <ion-label>Descripción</ion-label>
       </ion-tab-button>
-  
-      <ion-tab-button tab="activities">
+
+      <ion-tab-button (click)="item='activities'">
         <ion-icon name="location-sharp"></ion-icon>
-        <ion-label>Actividades</ion-label>
+        <ion-label>Ubicación</ion-label>
       </ion-tab-button>
-  
-      <ion-tab-button tab="comments">
+
+      <ion-tab-button (click)="item='comments'">
         <ion-icon name="star"></ion-icon>
         <ion-label>Valoración</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
+
+  <ng-container [ngSwitch]="item">
+    <app-description *ngSwitchCase="'description'" [celebration]="celebration"></app-description>
+    <app-activities *ngSwitchCase="'activities'"></app-activities>
+    <app-comments *ngSwitchCase="'comments'"></app-comments>
+  </ng-container>
 </ion-content>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 
 @Component({
@@ -9,6 +9,8 @@ import { IonSlides } from '@ionic/angular';
 export class DescriptionComponent implements OnInit {
 
   @ViewChild('mySlider')  slides: IonSlides;
+
+  @Input() sitio : any;
 
   slideOpts = {
     initialSlide: 1,

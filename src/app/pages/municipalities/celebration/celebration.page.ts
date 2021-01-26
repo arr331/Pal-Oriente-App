@@ -9,11 +9,15 @@ import { NavController } from '@ionic/angular';
 })
 export class CelebrationPage implements OnInit {
 
+  celebration: any;
+  item = 'description'
+
   constructor(private router: Router, public navCtrl: NavController) { }
 
   ngOnInit() {
     // objeto celebracio
-    console.log(this.router.getCurrentNavigation().extras.state, 'celebration');
+    this.celebration = this.router.getCurrentNavigation().extras.state;
+    console.log(this.router.getCurrentNavigation().extras.state);
   }
 
 }

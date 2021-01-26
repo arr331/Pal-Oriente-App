@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { MunicipalityService } from '../../../services/municipality.service';
 
 @Component({
   selector: 'app-site',
@@ -9,10 +10,19 @@ import { NavController } from '@ionic/angular';
 })
 export class SitePage implements OnInit {
 
-  constructor(public navCtrl: NavController, private router: Router) { }
+  item: string = 'description';
+  sitio: any;
+  comentarios: any[];
+
+  constructor(private munService: MunicipalityService, private activatedroute: ActivatedRoute,public navCtrl: NavController, private router: Router) { }
 
   ngOnInit() {
     // objeto de sitio
+    this.sitio= this.router.getCurrentNavigation().extras.state;
+    this.munService.getComentarios(this.sitio.idSite,'-KJSDJKFHDF').then(answer => {
+      this.comentarios = answer
+      console.log(this.comentarios);
+    });
     console.log(this.router.getCurrentNavigation().extras.state);
   }
 
