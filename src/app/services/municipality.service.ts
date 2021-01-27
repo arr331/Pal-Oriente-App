@@ -11,15 +11,19 @@ export class MunicipalityService {
 
   constructor(private db: AngularFireDatabase) { }
   
-  async getMunicipios(region: string) {
+  async getMunicipalitiesInfo(region: string) {
     this.region = region;
     if (!this.municipalityList[region]) {
       this.municipalityList = {... this.municipalityList, [region] : []}
-      await this.db.list(`${region}/MUNICIPALITIES`).query.once('value').then(data => {
+      await this.db.list(`${region}/MUNICIPALITIESINFO`).query.once('value').then(data => {
         data.forEach(mun => { this.municipalityList[region].push(mun.val()) });
       });
     }
     return this.municipalityList[region];
+  }
+
+  getMunicipality(path: string) {
+    return this.db.object(path);
   }
 
   getMunicipalitiesById(idMun, region) {

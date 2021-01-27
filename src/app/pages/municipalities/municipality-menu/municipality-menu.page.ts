@@ -14,9 +14,8 @@ export class MunicipalityMenuPage implements OnInit {
   constructor(private router: Router, public activatedroute: ActivatedRoute, public navCtrl: NavController, private munService: MunicipalityService) { }
 
   ngOnInit() {
-    console.log(this.router.getCurrentNavigation().extras.state);
-    //this.idMun = this.activatedroute.snapshot.paramMap.get('idMun');
-    this.mpio = this.router.getCurrentNavigation().extras.state;
+    const path = this.router.getCurrentNavigation().extras.state.path;
+    this.munService.getMunicipality(path).valueChanges().subscribe(answer => this.mpio = answer);
   }
 
 }
