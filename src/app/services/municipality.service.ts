@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
+import { Municipality } from '../interfaces/municipality';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,11 @@ export class MunicipalityService {
   region: any;
 
   constructor(private db: AngularFireDatabase) { }
-  
+
   async getMunicipalitiesInfo(region: string) {
     this.region = region;
     if (!this.municipalityList[region]) {
-      this.municipalityList = {... this.municipalityList, [region] : []}
+      this.municipalityList = { ... this.municipalityList, [region]: [] }
       await this.db.list(`${region}/MUNICIPALITIESINFO`).query.once('value').then(data => {
         data.forEach(mun => { this.municipalityList[region].push(mun.val()) });
       });
@@ -22,7 +23,7 @@ export class MunicipalityService {
     return this.municipalityList[region];
   }
 
-  getMunicipality(path: string) {
+  getMunicipality(path: string): AngularFireObject<Municipality> {
     return this.db.object(path);
   }
 
@@ -32,12 +33,13 @@ export class MunicipalityService {
 
   async getComentarios(sitio: string, municipio: string) {
     if (!this.comentarios[sitio]) {
-      this.comentarios = {... this.comentarios, [sitio] : []}
+      this.comentarios = { ... this.comentarios, [sitio]: [] }
       await this.db.list(`${this.region}/COMMENTS/${municipio}/${sitio}`).query.once('value').then(data => {
-        data.forEach(com => { this.comentarios[sitio].push(com.val());
+        data.forEach(com => {
+          this.comentarios[sitio].push(com.val());
         });
       });
-   }
+    }
     return this.comentarios[sitio];
   }
 

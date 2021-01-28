@@ -15,6 +15,6 @@ export class MasterMenuComponent implements OnInit {
 
   ngOnInit() {
     const items = this.router.getCurrentNavigation().extras.state;
-    this.itemList = items ? Object.keys(items).map(celeb => items[celeb]) : [];
+    this.itemList = items ? Object.keys(items).map(item => items[item]) : [];
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { Municipality } from 'src/app/interfaces/municipality';
 import { MunicipalityService } from 'src/app/services/municipality.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { MunicipalityService } from 'src/app/services/municipality.service';
   styleUrls: ['./municipality.page.scss'],
 })
 export class MunicipalityPage implements OnInit {
-  municipalityList: any = [];
+  municipalityList: Array<Municipality> = [];
   region: string;
 
   constructor(private munService: MunicipalityService, private activatedroute: ActivatedRoute,
