@@ -37,4 +37,7 @@ export class MunicipalityService {
     return this.comentarios[sitio];
   }
 
+  getCom(sitio: string, municipio: string) {
+    return this.db.list(`${this.region}/COMMENTS/${municipio}/${sitio}`);
+  }
 }

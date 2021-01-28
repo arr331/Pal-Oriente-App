@@ -10,11 +10,14 @@ import { NavController } from '@ionic/angular';
 export class MasterMenuComponent implements OnInit {
   itemList = [];
   @Input() route: any;
+  assx: any;
 
   constructor(private router: Router, public navCtrl: NavController) { }
 
   ngOnInit() {
     const items = this.router.getCurrentNavigation().extras.state;
     this.itemList = items ? Object.keys(items).map(celeb => items[celeb]) : [];
+    this.assx = this.itemList;
   }
+
 }

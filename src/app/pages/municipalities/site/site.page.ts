@@ -19,8 +19,9 @@ export class SitePage implements OnInit {
   ngOnInit() {
     // objeto de sitio
     this.sitio= this.router.getCurrentNavigation().extras.state;
+    console.log(this.sitio);
     this.munService.getComentarios(this.sitio.idSite,'-KJSDJKFHDF').then(answer => {
-      this.comentarios = answer
+      this.comentarios = answer;
       console.log(this.comentarios);
     });
     console.log(this.router.getCurrentNavigation().extras.state);
