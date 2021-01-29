@@ -34,7 +34,7 @@
   <ng-container [ngSwitch]="item">
     <app-description *ngSwitchCase="'description'" [sitio]="sitio"></app-description>
     <app-located *ngSwitchCase="'map'"></app-located>
-    <app-comments *ngSwitchCase="'comments'" [comentarios]="comentarios"></app-comments>
+    <app-comments *ngSwitchCase="'comments'" [sitio]="sitio"></app-comments>
   </ng-container>
 
 </ion-content>

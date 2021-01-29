@@ -7,12 +7,12 @@ import { AngularFireDatabase } from 'angularfire2/database';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  list;
+  regionList;
 
   constructor(private db: AngularFireDatabase) { }
 
   ngOnInit() {
-    this.db.list(`HOME`).valueChanges().subscribe(ans => this.list = ans);
+    this.db.list(`HOME`).valueChanges().subscribe(ans => this.regionList = ans);
   }
 
 }

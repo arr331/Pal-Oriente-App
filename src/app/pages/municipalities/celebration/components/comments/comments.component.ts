@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Celebration } from '../../../../../interfaces/celebration';
+import { Storage } from '@ionic/storage';
+import { MunicipalityService } from '../../../../../services/municipality.service';
 
 @Component({
   selector: 'app-comments',
@@ -7,8 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommentsComponent implements OnInit {
 
-  constructor() { }
+  @Input() celebration: Celebration;
+  idMun: string
+  comentarios: any[];
 
-  ngOnInit() {}
+  constructor(private storage: Storage, private munService: MunicipalityService) { }
+
+  ngOnInit() {
+    this.storage.get('ids').then(ids => {
+      this.idMun = ids.idMun;
+      this.munService.getCom(this.celebration.idCelebration,this.idMun).valueChanges().subscribe( res =>{
+        this.comentarios= res;
+        console.log(res);
+      });
+    });
+  }
 
 }

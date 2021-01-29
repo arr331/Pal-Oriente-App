@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+import { Municipality } from 'src/app/interfaces/municipality';
 import { MunicipalityService } from 'src/app/services/municipality.service';
 
 @Component({
@@ -9,14 +10,13 @@ import { MunicipalityService } from 'src/app/services/municipality.service';
   styleUrls: ['./municipality-menu.page.scss'],
 })
 export class MunicipalityMenuPage implements OnInit {
-  mpio;
+  municipality: Municipality;
 
-  constructor(private router: Router, public activatedroute: ActivatedRoute, public navCtrl: NavController, private munService: MunicipalityService) { }
+  constructor(public navCtrl: NavController, private munService: MunicipalityService, private storage: Storage) { }
 
   ngOnInit() {
-    console.log(this.router.getCurrentNavigation().extras.state);
-    //this.idMun = this.activatedroute.snapshot.paramMap.get('idMun');
-    this.mpio = this.router.getCurrentNavigation().extras.state;
+    this.storage.get('ids').then(ids =>
+      this.munService.getMunicipality(ids.region, ids.idMun).valueChanges().subscribe(answer => this.municipality = answer)
+    );
   }
-
 }
