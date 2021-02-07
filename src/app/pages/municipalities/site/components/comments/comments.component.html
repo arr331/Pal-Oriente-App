@@ -3,10 +3,10 @@
     <ion-avatar slot="start">
       <img src="{{comentario.imageUser}}">
     </ion-avatar>
-    <ion-label>
-      <h3>{{comentario.nameUser}}</h3>
-      <p>{{comentario.commentary}}</p>
-    </ion-label>
+    <div class="comentario-contenido">
+    <h3>{{comentario.nameUser}}</h3>
+    <p>{{comentario.commentary}}</p>
+  </div>
   </ion-item>
 </ion-list>
 
@@ -16,8 +16,16 @@
   </ion-fab-button>
 </ion-fab>
 
+<link rel="stylesheet" href="../node_modules/ngx-bar-rating/themes/br-default-theme.css"/>
+
 <form>
   <ion-item>
-    <ion-textarea placeholder="Enter more information here..."></ion-textarea>
+    <ion-textarea [(ngModel)] = "comentario" placeholder="Enter more information here..."></ion-textarea>
   </ion-item>
+
+  <bar-rating [(rate)]="rate" [max]="4" [theme]="'default'" [showText]="true"
+ [titles]="['Bad', 'Mediocre' , 'Good', 'Awesome']"></bar-rating>
+
 </form>
+
+

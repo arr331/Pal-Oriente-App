@@ -29,7 +29,11 @@ const routes: Routes = [
   {
     path: 'celebration-menu',
     loadChildren: () => import('./pages/municipalities/celebration-menu/celebration-menu.module').then( m => m.CelebrationMenuPageModule)
+  },  {
+    path: 'menu-new',
+    loadChildren: () => import('./pages/notices/menu-new/menu-new.module').then( m => m.MenuNewPageModule)
   },
+
 
 
 ];

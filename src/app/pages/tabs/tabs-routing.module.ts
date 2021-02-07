@@ -22,6 +22,13 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'news',
+        children: [
+          { path: '',
+          loadChildren: () => import('../notices/menu-new/menu-new.module').then( m => m.MenuNewPageModule) }
+        ]
+      },
+      {
         path: 'municipio/menu',
         children: [
           { path: '',
