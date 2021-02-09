@@ -1,19 +1,19 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>menu-new</ion-title>
+    <ion-title>Noticia</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   
-    <ion-card *ngFor="let item of list" [routerLink]="['tabs/news/notice']" [state] = item>
-      <img src="{{item.image}}"/>
+    <ion-card >
+      <img src="{{notice.image}}"/>
       <ion-card-content>
         <ion-card-title>
-          {{item.title}}
+          {{notice.title}}
           </ion-card-title>
         <p>
-          {{item.outline}}
+         {{notice.text}}
         </p>
       </ion-card-content>
     </ion-card>

@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { MenuNewPageRoutingModule } from './menu-new-routing.module';
 
 import { MenuNewPage } from './menu-new.page';
+import { NoticeComponent } from '../components/notice/notice.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { MenuNewPage } from './menu-new.page';
     IonicModule,
     MenuNewPageRoutingModule
   ],
-  declarations: [MenuNewPage]
+  declarations: [MenuNewPage, NoticeComponent]
 })
 export class MenuNewPageModule {}

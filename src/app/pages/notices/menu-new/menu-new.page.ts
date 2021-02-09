@@ -17,8 +17,6 @@ export class MenuNewPage implements OnInit {
        this.list = res;
        console.log(res);
      });
-
-
   }
 
 }
