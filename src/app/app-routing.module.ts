@@ -33,6 +33,10 @@ const routes: Routes = [
     path: 'menu-new',
     loadChildren: () => import('./pages/notices/menu-new/menu-new.module').then( m => m.MenuNewPageModule)
   },
+  {
+    path: 'shared',
+    loadChildren: () => import('./pages/municipalities/shared/shared.module').then( m => m.SharedPageModule)
+  },
 
 
 
