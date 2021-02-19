@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
 import { Municipality } from '../interfaces/municipality';
+import { Commentary } from '../interfaces/comment';
 
 @Injectable({
   providedIn: 'root'
@@ -43,7 +44,7 @@ export class MunicipalityService {
     return this.comentarios[sitio];
   } 
 
-  getCom(sitio: string, municipio: string): AngularFireList<Comment> {
+  getCom(sitio: string, municipio: string): AngularFireList<Commentary> {
     return this.db.list(`${this.region}/COMMENTS/${municipio}/${sitio}`);
   }
 

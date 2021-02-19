@@ -1,6 +1,6 @@
 export interface Notice {
-    image: string;
-    outline: string;
-    text: string;
-    title: string;
+    image: string,
+    outline: string,
+    text: string,
+    title: string
 }

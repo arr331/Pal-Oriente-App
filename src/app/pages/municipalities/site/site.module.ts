@@ -11,7 +11,6 @@ import { DescriptionComponent } from './components/description/description.compo
 import { LocatedComponent } from './components/located/located.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { SharedPageModule } from '../shared/shared.module';
-import { ModalComponent } from '../shared/components/modal/modal.component';
 
 @NgModule({
   imports: [

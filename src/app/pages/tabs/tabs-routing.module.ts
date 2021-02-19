@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomePage } from '../home/home.page';
 
 import { TabsPage } from './tabs.page';
+import { MapPageModule } from '../map/map.module';
 
 const routes: Routes = [
   {
@@ -26,6 +27,13 @@ const routes: Routes = [
         children: [
           { path: '',
           loadChildren: () => import('../notices/menu-new/menu-new.module').then( m => m.MenuNewPageModule) }
+        ]
+      },
+      {
+        path: 'map',
+        children: [
+          { path: '',
+          loadChildren: () => import('../map/map.module').then( m => m.MapPageModule) }
         ]
       },
       {

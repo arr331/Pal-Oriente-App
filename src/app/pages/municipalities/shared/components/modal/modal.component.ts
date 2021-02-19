@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -8,26 +9,42 @@ import { ModalController } from '@ionic/angular';
 })
 export class ModalComponent implements OnInit {
   stars = ['-outline', '-outline', '-outline', '-outline', '-outline'];
-  @Input() firstName: string;
-  @Input() lastName: string;
-  @Input() middleInitial: string;
+  comentarioForm: FormGroup;
 
-  constructor(private modalCtrl: ModalController) { }
+  numStars: number;
+
+  constructor(private modalCtrl: ModalController, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    alert(this.firstName);
+
+    this.buildForm();
+  }
+
+  buildForm() {
+    this.comentarioForm = this.formBuilder.group({
+      comentario: ['', Validators.required],
+    });
   }
 
   dismiss() {
-    // using the injected ModalController this page
-    // can "dismiss" itself and optionally pass back data
     this.modalCtrl.dismiss({
       'dismissed': true
     });
   }
 
+  guardar(){
+    if(this.comentarioForm.valid && this.numStars>0 && this.numStars<=5){
+      let coment= {coment: this.comentarioForm.value['comentario'], num: this.numStars}
+      this.modalCtrl.dismiss(coment);
+    }
+  }
+
   qualify(index) {
     console.log('puntaje = ', index + 1);
-    this.stars = this.stars.map((s, i) => index >= i ? '' : '-outline')
+    this.numStars = index+1;
+    this.stars = this.stars.map((s, i) => index >= i ? '' : '-outline');
+   
   }
+
+
 }
