@@ -7,7 +7,7 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
-
+  stars = ['-outline', '-outline', '-outline', '-outline', '-outline'];
   @Input() firstName: string;
   @Input() lastName: string;
   @Input() middleInitial: string;
@@ -26,4 +26,8 @@ export class ModalComponent implements OnInit {
     });
   }
 
+  qualify(index) {
+    console.log('puntaje = ', index + 1);
+    this.stars = this.stars.map((s, i) => index >= i ? '' : '-outline')
+  }
 }
