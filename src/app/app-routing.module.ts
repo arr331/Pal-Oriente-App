@@ -33,6 +33,10 @@ const routes: Routes = [
     path: 'menu-new',
     loadChildren: () => import('./pages/notices/menu-new/menu-new.module').then( m => m.MenuNewPageModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
 
 
 
