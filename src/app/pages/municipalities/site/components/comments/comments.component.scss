@@ -13,17 +13,3 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
   
-  /* Works - pass "my-custom-class" in cssClass to increase specificity */
-  .my-custom-class .alert-wrapper .ion-overlay-wrapper .sc-ion-alert-md{
-    --background: black;
-    --height: 90%;
-    --max-width: 85%;
-      height: 90%;
-  }
-
-  .my-custom-class{
-      width: 90%;
-      height: 90%;
-      --width: 90%;
-      --height: 90%;
-  }

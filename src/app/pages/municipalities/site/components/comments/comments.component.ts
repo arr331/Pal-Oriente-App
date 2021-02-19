@@ -31,6 +31,7 @@ export class CommentsComponent implements OnInit {
 
   ngOnInit() {
 
+
     this.storage.get('ids').then(ids => {
       this.idMun = ids.idMun;
       this.munService.getCom(this.sitio.idSite,this.idMun).valueChanges().subscribe( res =>{
@@ -57,6 +58,7 @@ export class CommentsComponent implements OnInit {
    await alert.present(); 
 }
 
+
   async presentPrompt() {
     let alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
@@ -68,14 +70,22 @@ export class CommentsComponent implements OnInit {
           type: 'textarea',
           placeholder: ''
         },
+        ,
         {
-          name: 'checkbox1',
-          type: 'checkbox',
-          label: 'Checkbox 1',
-          value: 'value1',
+          name: 'star1',
+          type: 'text',
+          placeholder: ''
+        },
+        {
+          name: 'radio2',
+          cssClass: 'radios',
+          type: 'radio',
+          label: 'Radio 2',
+          value: 'value2',
           checked: true
         },
       ],
+      
       buttons: [
         {
           text: 'Cancel',
@@ -87,6 +97,7 @@ export class CommentsComponent implements OnInit {
         {
           text: 'Guardar',
           role: 'guardar',
+          
           handler: data => {
             console.log('Guardar clicked');
           }
