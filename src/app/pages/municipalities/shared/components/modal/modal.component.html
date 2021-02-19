@@ -1,0 +1,17 @@
+<div class="contenedor">
+  <form>
+    <h3>Calificar</h3>
+    <ion-grid style="font-size: 2rem;">
+      <ion-row>
+        <ion-col *ngFor="let s of stars; let i = index">
+          <ion-icon name="star{{s}}" color="primary" (click)="qualify(i)"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-item>
+      <ion-textarea placeholder="Déjanos un comentario para saber que opinas del sitio actual"></ion-textarea>
+    </ion-item>
+    <ion-button>Guardar</ion-button>
+    <ion-button>Cancelar</ion-button>
+  </form>
+</div>

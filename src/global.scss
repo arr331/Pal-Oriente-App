@@ -34,3 +34,16 @@ hr{
     border-top: 2px solid rgb(168, 168, 168);
     margin: 7px 0;
  }
+
+ .my-custom-class .modal-wrapper {
+     --max-width: 80%;
+      --height: 60% ;
+  }
+
+  .my-custom-class .modal-wrapper textarea{
+      min-height: 200px;
+  }
+
+  .my-custom-class .modal-wrapper .radios{
+    display: flex;
+}

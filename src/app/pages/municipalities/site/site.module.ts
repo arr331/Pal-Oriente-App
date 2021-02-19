@@ -10,8 +10,8 @@ import { SitePage } from './site.page';
 import { DescriptionComponent } from './components/description/description.component';
 import { LocatedComponent } from './components/located/located.component';
 import { CommentsComponent } from './components/comments/comments.component';
-import { BarRating, BarRatingModule } from 'ngx-bar-rating';
-import { AppRate } from '@ionic-native/app-rate';
+import { SharedPageModule } from '../shared/shared.module';
+import { ModalComponent } from '../shared/components/modal/modal.component';
 
 @NgModule({
   imports: [
@@ -19,7 +19,7 @@ import { AppRate } from '@ionic-native/app-rate';
     FormsModule,
     IonicModule,
     SitePageRoutingModule,
-    BarRatingModule,
+    SharedPageModule
   ],
   declarations: [SitePage, DescriptionComponent, LocatedComponent, CommentsComponent]
 })

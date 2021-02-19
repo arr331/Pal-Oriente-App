@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { Site } from '../../../../../interfaces/site';
 import { Comment } from '../../../../../interfaces/comment';
 import { AlertController, ModalController, NavParams } from '@ionic/angular';
+import { ModalComponent } from '../../../shared/components/modal/modal.component';
 
 
 @Component({
@@ -27,9 +28,11 @@ export class CommentsComponent implements OnInit {
   stars: 4;
   nameUser: 'Yesid Orrego';
 
-  constructor(private alertCtrl: AlertController, private munService: MunicipalityService, private storage: Storage) { }
+  constructor(private alertCtrl: AlertController, private munService: MunicipalityService, private storage: Storage,
+              private modalController: ModalController) { }
 
   ngOnInit() {
+
 
     this.storage.get('ids').then(ids => {
       this.idMun = ids.idMun;
@@ -48,53 +51,77 @@ export class CommentsComponent implements OnInit {
     this.munService.saveCom("-MSAlTABuH6K-85lvcqj", this.comment);
   }
 
-  async presentAlert() {
-    const alert = await this.alertCtrl.create({
-    message: 'Low battery',
-    subHeader: '10% of battery remaining',
-    buttons: ['Dismiss']
-   });
-   await alert.present(); 
-}
-
-  async presentPrompt() {
-    let alert = await this.alertCtrl.create({
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ModalComponent,
       cssClass: 'my-custom-class',
-      header: 'Comentario',
-      message: 'Dejanos saber lo que piensas de este sitio',
-      inputs: [
-        {
-          name: 'comentario',
-          type: 'textarea',
-          placeholder: ''
-        },
-        {
-          name: 'checkbox1',
-          type: 'checkbox',
-          label: 'Checkbox 1',
-          value: 'value1',
-          checked: true
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Guardar',
-          role: 'guardar',
-          handler: data => {
-            console.log('Guardar clicked');
-          }
-        },
-      ]
+      componentProps: {
+        'firstName': 'Douglas',
+        'lastName': 'Adams',
+        'middleInitial': 'N'
+      }
     });
-    await alert.present();
+    return await modal.present();
   }
+
+
+//   async presentAlert() {
+//     const alert = await this.alertCtrl.create({
+//     message: 'Low battery',
+//     subHeader: '10% of battery remaining',
+//     buttons: ['Dismiss']
+//    });
+//    await alert.present(); 
+// }
+
+
+//   async presentPrompt() {
+//     let alert = await this.alertCtrl.create({
+//       cssClass: 'my-custom-class',
+//       header: 'Comentario',
+//       message: 'Dejanos saber lo que piensas de este sitio',
+//       inputs: [
+//         {
+//           name: 'comentario',
+//           type: 'textarea',
+//           placeholder: ''
+//         },
+//         ,
+//         {
+//           name: 'star1',
+//           type: 'text',
+//           placeholder: ''
+//         },
+//         {
+//           name: 'radio2',
+//           cssClass: 'radios',
+//           type: 'radio',
+//           label: 'Radio 2',
+//           value: 'value2',
+//           checked: true
+//         },
+//       ],
+      
+//       buttons: [
+//         {
+//           text: 'Cancel',
+//           role: 'cancel',
+//           handler: data => {
+//             console.log('Cancel clicked');
+//           }
+//         },
+//         {
+//           text: 'Guardar',
+//           role: 'guardar',
+          
+//           handler: data => {
+//             console.log('Guardar clicked');
+//           }
+//         },
+//       ]
+//     });
+//     await alert.present();
+//   }
 
 
 }

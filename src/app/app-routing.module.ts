@@ -29,7 +29,8 @@ const routes: Routes = [
   {
     path: 'celebration-menu',
     loadChildren: () => import('./pages/municipalities/celebration-menu/celebration-menu.module').then( m => m.CelebrationMenuPageModule)
-  },  {
+  },
+  {
     path: 'menu-new',
     loadChildren: () => import('./pages/notices/menu-new/menu-new.module').then( m => m.MenuNewPageModule)
   },
@@ -37,9 +38,10 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
-
-
-
+  {
+    path: 'shared',
+    loadChildren: () => import('./pages/municipalities/shared/shared.module').then( m => m.SharedPageModule)
+  },
 ];
 
 @NgModule({
