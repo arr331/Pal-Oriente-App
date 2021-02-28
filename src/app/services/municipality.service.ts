@@ -9,7 +9,8 @@ import { Commentary } from '../interfaces/comment';
 export class MunicipalityService {
   municipalityList = {};
   comentarios = {};
-  region: any;
+  region: string;
+  idMun: string;
 
   constructor(private db: AngularFireDatabase) { }
 
@@ -48,9 +49,11 @@ export class MunicipalityService {
     return this.db.list(`${this.region}/COMMENTS/${municipio}/${sitio}`);
   }
 
-  saveCom(id: string, com) {
+  saveCom(id: string, com, idSitio: string, region: string, idMun: string) {
     id = id ? id : this.db.createPushId();
     com.id = id;
-    return this.db.list('ALGO/OTRA/COMMENTS').update(id, com);
+
+    console.log(`${region}/COMMENTS/${idMun}/${idSitio}`);
+    return this.db.list(`${region}/COMMENTS/${idMun}/${idSitio}`).update(id, com);
   }
 }

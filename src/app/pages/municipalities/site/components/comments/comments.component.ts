@@ -19,37 +19,42 @@ export class CommentsComponent implements OnInit {
   idMun: string
   comentarios = [];
   rate: number = 2;
-  comentario: string;
-  comment: Commentary;
+  com : Commentary;
+  region: string;
+
 
   //datos prueba
   uid = 'vsKnoMzL37eUcQwfC3NOCtGvMPJ3';
   imageUser = 'https://lh3.googleusercontent.com/a-/AOh14GgXKO2ENx6r-QIy-h1qF7_9kIj2-88WUDtBAVrMVQ=s96-c';
-  nameUser: 'Yesid Orrego';
+  nameUser = 'Yesid Orrego';
 
   constructor(private alertCtrl: AlertController, private munService: MunicipalityService, private storage: Storage,
               private modalController: ModalController) { }
 
   ngOnInit() {
-
-
     this.storage.get('ids').then(ids => {
       this.idMun = ids.idMun;
+      this.region = ids.region;
       this.munService.getCom(this.sitio.idSite,this.idMun).valueChanges().subscribe( res =>{
         this.comentarios= res;
         console.log(res);
       });
     });
+    console.log(localStorage.getItem('user'));
   }
 
   createUpdate(comentario){
-    this.uid = 'vsKnoMzL37eUcQwfC3NOCtGvMPJ3';
-    this.comment.imageUser = 'https://lh3.googleusercontent.com/a-/AOh14GgXKO2ENx6r-QIy-h1qF7_9kIj2-88WUDtBAVrMVQ=s96-c';
-    this.comment.uid = this.uid;
-    this.comment.nameUser = this.nameUser;
-    this.comment.numStars = comentario.num;
-    this.comment.commentary = comentario.coment;
-    this.munService.saveCom('',this.comment).then(res =>{
+    //this.uid = 'vsKnoMzL37eUcQwfC3NOCtGvMPJ3';
+    this.com = {
+      uid: this.uid,
+      imageUser: this.imageUser,
+      commentary: comentario.coment,
+      idOpinion: '',
+      nameUser: this.nameUser,
+      numStars: comentario.num
+    }
+    console.log(this.com);
+    this.munService.saveCom('',this.com, this.sitio.idSite, this.region, this.idMun).then(res =>{
         console.log(res);
     }), err=>{
       console.log(err);
