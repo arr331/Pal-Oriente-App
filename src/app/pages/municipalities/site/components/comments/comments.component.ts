@@ -21,12 +21,7 @@ export class CommentsComponent implements OnInit {
   rate: number = 2;
   com : Commentary;
   region: string;
-
-
-  //datos prueba
-  uid = 'vsKnoMzL37eUcQwfC3NOCtGvMPJ3';
-  imageUser = 'https://lh3.googleusercontent.com/a-/AOh14GgXKO2ENx6r-QIy-h1qF7_9kIj2-88WUDtBAVrMVQ=s96-c';
-  nameUser = 'Yesid Orrego';
+  user: any;
 
   constructor(private alertCtrl: AlertController, private munService: MunicipalityService, private storage: Storage,
               private modalController: ModalController) { }
@@ -40,39 +35,49 @@ export class CommentsComponent implements OnInit {
         console.log(res);
       });
     });
-    console.log(localStorage.getItem('user'));
+    this.user = JSON.parse(localStorage.getItem('user'));
+    console.log(this.user);
   }
 
   createUpdate(comentario){
-    //this.uid = 'vsKnoMzL37eUcQwfC3NOCtGvMPJ3';
     this.com = {
-      uid: this.uid,
-      imageUser: this.imageUser,
+      uid: this.user.uid,
+      imageUser: this.user.photoURL,
       commentary: comentario.coment,
-      idOpinion: '',
-      nameUser: this.nameUser,
+      idOpinion: comentario.id,
+      nameUser: this.user.displayName,
       numStars: comentario.num
     }
     console.log(this.com);
-    this.munService.saveCom('',this.com, this.sitio.idSite, this.region, this.idMun).then(res =>{
+    this.munService.saveCom(this.com.idOpinion,this.com, this.sitio.idSite, this.region, this.idMun).then(res =>{
         console.log(res);
     }), err=>{
       console.log(err);
     };
   }
 
-  async presentModal() {
+  update(comentario: any){
+    if(comentario.uid === this.user.uid){
+      this.presentModal(comentario);
+    }
+  }
+
+  async presentModal(comentarioInput?:any) {
     const modal = await this.modalController.create({
       component: ModalComponent,
       cssClass: 'my-custom-class',
       componentProps: {
+        comentario: comentarioInput
       }
     });
     modal.onDidDismiss()
       .then((data) => {
-      let comentario = data['data']; // Here's your selected user!
-      console.log(comentario);
-      this.createUpdate(comentario);
+      if(data['data']){
+        let comentario = data['data']; // Here's your selected user!
+        comentario.id = comentarioInput ? comentarioInput.idOpinion : '';
+        console.log(comentario);
+        this.createUpdate(comentario);
+      }
     });
     return await modal.present();
   }

@@ -49,11 +49,11 @@ export class MunicipalityService {
     return this.db.list(`${this.region}/COMMENTS/${municipio}/${sitio}`);
   }
 
-  saveCom(id: string, com, idSitio: string, region: string, idMun: string) {
-    id = id ? id : this.db.createPushId();
-    com.id = id;
+  saveCom(idOpinion: string, com: Commentary, idSitio: string, region: string, idMun: string) {
+    idOpinion = idOpinion ? idOpinion : this.db.createPushId();
+    com.idOpinion = idOpinion;
 
     console.log(`${region}/COMMENTS/${idMun}/${idSitio}`);
-    return this.db.list(`${region}/COMMENTS/${idMun}/${idSitio}`).update(id, com);
+    return this.db.list(`${region}/COMMENTS/${idMun}/${idSitio}`).update(idOpinion, com);
   }
 }

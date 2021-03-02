@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { Commentary } from '../../../../../interfaces/comment';
 
 @Component({
   selector: 'app-modal',
@@ -10,6 +11,8 @@ import { ModalController } from '@ionic/angular';
 export class ModalComponent implements OnInit {
   stars = ['-outline', '-outline', '-outline', '-outline', '-outline'];
   comentarioForm: FormGroup;
+
+  @Input() comentario: Commentary;
 
   numStars: number;
 
@@ -21,8 +24,11 @@ export class ModalComponent implements OnInit {
   }
 
   buildForm() {
+    
+    let comentDefault = this.comentario ? this.comentario.commentary : '';
+
     this.comentarioForm = this.formBuilder.group({
-      comentario: ['', Validators.required],
+      comentario: [comentDefault, Validators.required],
     });
   }
 
@@ -43,7 +49,6 @@ export class ModalComponent implements OnInit {
     console.log('puntaje = ', index + 1);
     this.numStars = index+1;
     this.stars = this.stars.map((s, i) => index >= i ? '' : '-outline');
-   
   }
 
 
