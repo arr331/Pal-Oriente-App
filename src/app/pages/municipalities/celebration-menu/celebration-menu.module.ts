@@ -7,15 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { CelebrationMenuPageRoutingModule } from './celebration-menu-routing.module';
 
 import { CelebrationMenuPage } from './celebration-menu.page';
-import { MasterMenuComponent } from 'src/app/components/master-menu/master-menu.component';
+import { MasterMenuModule } from 'src/app/components/master-menu/master-menu.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CelebrationMenuPageRoutingModule
+    CelebrationMenuPageRoutingModule,
+    MasterMenuModule
   ],
-  declarations: [CelebrationMenuPage, MasterMenuComponent]
+  declarations: [CelebrationMenuPage]
 })
 export class CelebrationMenuPageModule {}

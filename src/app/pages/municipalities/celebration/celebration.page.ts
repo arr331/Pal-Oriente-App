@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Celebration } from 'src/app/interfaces/celebration';
 
@@ -12,10 +12,13 @@ export class CelebrationPage implements OnInit {
   celebration: Celebration;
   item = 'description';
 
-  constructor(private router: Router, public navCtrl: NavController) { }
+  constructor(private router: Router, public navCtrl: NavController, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.celebration = this.router.getCurrentNavigation().extras.state as Celebration;
+    this.route.queryParams.subscribe(() => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.celebration = this.router.getCurrentNavigation().extras.state as Celebration;
+      }
+    });
   }
-
 }

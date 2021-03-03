@@ -11,35 +11,35 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./site.page.scss'],
 })
 export class SitePage implements OnInit {
-
   item: string = 'description';
   sitio: Site;
   idMun: string;
-  comentarios: Array<Comment>;
+  comentarios: Comment[];
 
-  constructor(private munService: MunicipalityService, private activatedroute: ActivatedRoute,
-              public navCtrl: NavController, private router: Router, private storage: Storage) { }
+  constructor(private munService: MunicipalityService, private routeRoute: ActivatedRoute,
+    public navCtrl: NavController, private router: Router, private storage: Storage) { }
 
   ngOnInit() {
-    // objeto de sitio
-    this.sitio= this.router.getCurrentNavigation().extras.state as Site;
-    
-    /*this.munService.getComentarios(this.sitio.idSite,'-KJSDJKFHDF').then(answer => {
-      this.comentarios = answer;
-      console.log(this.comentarios);
-    });*/
-
-    // this.storage.get('ids').then(ids=>{
-    //   this.idMun = ids.idMun;
-    // });
-
-    // this.munService.getCom(this.sitio.idSite,'-KJSDJKFHDF').valueChanges().subscribe( res =>{
-    //   this.comentarios= res;
-    //   console.log(res);
-    // });
-
-  
-    console.log(this.router.getCurrentNavigation().extras.state);
+    this.routeRoute.queryParams.subscribe(() => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.sitio = this.router.getCurrentNavigation().extras.state as Site;
+      }
+    });
   }
+  // objeto de sitio
+
+  /*this.munService.getComentarios(this.sitio.idSite,'-KJSDJKFHDF').then(answer => {
+    this.comentarios = answer;
+    console.log(this.comentarios);
+  });*/
+
+  // this.storage.get('ids').then(ids=>{
+  //   this.idMun = ids.idMun;
+  // });
+
+  // this.munService.getCom(this.sitio.idSite,'-KJSDJKFHDF').valueChanges().subscribe( res =>{
+  //   this.comentarios= res;
+  //   console.log(res);
+  // });
 
 }

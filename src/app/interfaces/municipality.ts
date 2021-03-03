@@ -2,7 +2,7 @@ import { Celebration } from "./celebration";
 import { Site } from "./site";
 
 export interface Municipality {
-    celebrations: Array<Celebration>,
+    celebrations: Celebration[],
     description: string,
     economy: string,
     habitants: string,
@@ -10,7 +10,7 @@ export interface Municipality {
     idMun: string,
     image: string,
     name: string,
-    sites: Array<Site>,
+    sites: Site[],
     state: boolean,
     weather: string
 }

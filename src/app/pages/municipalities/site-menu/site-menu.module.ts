@@ -7,15 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { SiteMenuPageRoutingModule } from './site-menu-routing.module';
 
 import { SiteMenuPage } from './site-menu.page';
-import { MasterMenuComponent } from 'src/app/components/master-menu/master-menu.component';
+import { MasterMenuModule } from 'src/app/components/master-menu/master-menu.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SiteMenuPageRoutingModule
+    SiteMenuPageRoutingModule,
+    MasterMenuModule
   ],
-  declarations: [SiteMenuPage, MasterMenuComponent]
+  declarations: [SiteMenuPage]
 })
 export class SiteMenuPageModule {}

@@ -9,12 +9,12 @@ import { MunicipalityService } from 'src/app/services/municipality.service';
   templateUrl: './municipality-menu.page.html',
   styleUrls: ['./municipality-menu.page.scss'],
 })
-export class MunicipalityMenuPage implements OnInit {
+export class MunicipalityMenuPage {
   municipality: Municipality;
 
   constructor(public navCtrl: NavController, private munService: MunicipalityService, private storage: Storage) { }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.storage.get('ids').then(ids =>
       this.munService.getMunicipality(ids.region, ids.idMun).valueChanges().subscribe(answer => this.municipality = answer)
     );
