@@ -10,13 +10,15 @@ import { CelebrationPage } from './celebration.page';
 import { DescriptionComponent } from './components/description/description.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { ActivitiesComponent } from './components/activities/activities.component';
+import { SharedPageModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CelebrationPageRoutingModule
+    CelebrationPageRoutingModule,
+    SharedPageModule
   ],
   declarations: [CelebrationPage, DescriptionComponent, CommentsComponent, ActivitiesComponent]
 })

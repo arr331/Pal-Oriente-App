@@ -75,8 +75,10 @@ export class CommentsComponent implements OnInit {
       if(data['data']){
         let comentario = data['data']; // Here's your selected user!
         comentario.id = comentarioInput ? comentarioInput.idOpinion : '';
-        console.log(comentario);
-        this.createUpdate(comentario);
+        if(comentario.coment){
+          console.log(comentario);
+          this.createUpdate(comentario);
+        }
       }
     });
     return await modal.present();

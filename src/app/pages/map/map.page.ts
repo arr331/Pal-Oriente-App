@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
+import { MapService } from '../../services/map.service';
 
 declare var google;
 
@@ -11,11 +12,16 @@ declare var google;
 export class MapPage implements OnInit {
 
   mapRef = null;
+  cordinatesList = [];
 
-  constructor(private loadingCtrl: LoadingController) { }
+  constructor(private loadingCtrl: LoadingController, private mapService: MapService) { }
 
   ngOnInit() {
     this.loadMap();
+    this.mapService.getCordinates().then((data) => {
+      this.cordinatesList = data;
+      console.log(this.cordinatesList);
+    });
   }
 
   async loadMap(){
@@ -23,20 +29,21 @@ export class MapPage implements OnInit {
     const mapEle: HTMLElement = document.getElementById('map');
     this.mapRef = new google.maps.Map(mapEle, {
       center: {lat:6.1383542, lng: -75.2729218 },
-      zoom: 12
+      zoom: 10
     });
     google.maps.event
     .addListenerOnce(this.mapRef, 'idle', () => {
       loading.dismiss();
-      this.addMaker(6.1383542, -75.2729218);
+      for (var item of this.cordinatesList)
+        this.addMaker(parseFloat(item.x), parseFloat(item.y),item.nombre);
     });
   }
 
-  private addMaker(lat: number, lng: number) {
+  private addMaker(lat: number, lng: number, title: string) {
     const marker = new google.maps.Marker({
       position: { lat, lng },
       map: this.mapRef,
-      title: 'Hello World!'
+      title: title
     });
   }
 

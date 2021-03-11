@@ -7,25 +7,18 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class MapService {
 
-  municipalityList = {};
-  comentarios = {};
-  region: any;
+  cordinatesList = [];
 
   constructor(private db: AngularFireDatabase) { }
 
   
-  async getMunicipalitiesInfo(region: string) {
-    this.region = region;
-    if (!this.municipalityList[region]) {
-      this.municipalityList = { ... this.municipalityList, [region]: [] }
-      await this.db.list(`${region}/MUNICIPALITIES`).query.once('value').then(data => {
-        data.forEach(mun => { this.municipalityList[region].push(mun.val()) });
+  async getCordinates() {
+    await this.db.list(`CORDINATES`).query.once('value').then(data => {
+      data.forEach(com => {
+        this.cordinatesList.push(com.val());
       });
-    }
-    return this.municipalityList[region];
+   });
+   return this.cordinatesList;
   }
 
-  descomponer(){
-    this.municipalityList
-  }
 }

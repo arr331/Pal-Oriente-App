@@ -1,13 +1,18 @@
 <ion-list>
-  <ion-item *ngFor="let comentario of comentarios">
+  <ion-item *ngFor="let comentario of comentarios" (click)="update(comentario)">
     <ion-avatar slot="start">
       <img src="{{comentario.imageUser}}">
     </ion-avatar>
-    <ion-label>
-      <h3>{{comentario.nameUser}}</h3>
-      <p>{{comentario.commentary}}</p>
-    </ion-label>
+    <div class="comentario-contenido">
+    <h3>{{comentario.nameUser}}</h3>
+    <p>{{comentario.commentary}}</p>
+  </div>
   </ion-item>
 </ion-list>
 
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)='presentModal()'>
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
 
