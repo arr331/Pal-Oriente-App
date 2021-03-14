@@ -52,8 +52,11 @@ export class MunicipalityService {
   saveCom(idOpinion: string, com: Commentary, idSitio: string, region: string, idMun: string) {
     idOpinion = idOpinion ? idOpinion : this.db.createPushId();
     com.idOpinion = idOpinion;
-
-    console.log(`${region}/COMMENTS/${idMun}/${idSitio}`);
     return this.db.list(`${region}/COMMENTS/${idMun}/${idSitio}`).update(idOpinion, com);
+  }
+
+  deleteCom(idOpinion: string, idSitio: string, region: string, idMun: string){
+    console.log(`${region}/COMMENTS/${idMun}/${idSitio}`+idOpinion);
+    return this.db.list(`${region}/COMMENTS/${idMun}/${idSitio}`).remove(idOpinion);
   }
 }

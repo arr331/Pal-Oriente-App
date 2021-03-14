@@ -62,6 +62,14 @@ export class CommentsComponent implements OnInit {
     }
   }
 
+  delete(idOpinion:string){
+    this.munService.deleteCom(idOpinion, this.sitio.idSite, this.region, this.idMun).then(res =>{
+      console.log(res);
+    }), err=>{
+      console.log(err);
+    };
+  }
+
   async presentModal(comentarioInput?:any) {
     const modal = await this.modalController.create({
       component: ModalComponent,
@@ -79,6 +87,9 @@ export class CommentsComponent implements OnInit {
           console.log(comentario);
           this.createUpdate(comentario);
         }
+      }else{
+        this.delete(comentarioInput.idOpinion);
+        console.log('eliminar' + comentarioInput.idOpinion);
       }
     });
     return await modal.present();

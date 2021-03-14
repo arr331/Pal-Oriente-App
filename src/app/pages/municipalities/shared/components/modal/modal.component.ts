@@ -45,6 +45,10 @@ export class ModalComponent implements OnInit {
     }
   }
 
+  delete(){
+    this.modalCtrl.dismiss(null);
+  }
+
   qualify(index) {
     console.log('puntaje = ', index + 1);
     this.numStars = index+1;
