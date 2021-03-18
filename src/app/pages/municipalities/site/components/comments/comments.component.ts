@@ -16,12 +16,15 @@ import { ModalComponent } from '../../../shared/components/modal/modal.component
 export class CommentsComponent implements OnInit {
 
   @Input() sitio: Site;
+
+  stars = ['-outline', '-outline', '-outline', '-outline', '-outline'];
   idMun: string
   comentarios = [];
   rate: number = 2;
   com : Commentary;
   region: string;
   user: any;
+  activeAdd : boolean;
 
   constructor(private alertCtrl: AlertController, private munService: MunicipalityService, private storage: Storage,
               private modalController: ModalController) { }
@@ -33,10 +36,14 @@ export class CommentsComponent implements OnInit {
       this.munService.getCom(this.sitio.idSite,this.idMun).valueChanges().subscribe( res =>{
         this.comentarios= res;
         console.log(res);
+        this.user = JSON.parse(localStorage.getItem('user'));
+        this.existCommentary();
       });
     });
-    this.user = JSON.parse(localStorage.getItem('user'));
+    //this.stars = this.stars.map((s, i) =>  >= i ? '' : '-outline');
+    /*this.user = JSON.parse(localStorage.getItem('user'));
     console.log(this.user);
+    this.existCommentary();*/
   }
 
   createUpdate(comentario){
@@ -68,6 +75,19 @@ export class CommentsComponent implements OnInit {
     }), err=>{
       console.log(err);
     };
+  }
+
+  existCommentary(){
+    for (let com of this.comentarios){
+      if(com.uid === this.user.uid){
+        this.activeAdd = false;
+        console.log('igual');
+        break;
+      }
+      else{
+        this.activeAdd = true;
+      }
+    }
   }
 
   async presentModal(comentarioInput?:any) {

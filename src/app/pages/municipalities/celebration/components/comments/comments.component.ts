@@ -20,6 +20,7 @@ export class CommentsComponent implements OnInit {
   com : Commentary;
   region: string;
   user: any;
+  activeAdd : boolean;
 
   constructor(private alertCtrl: AlertController, private munService: MunicipalityService, private storage: Storage,
               private modalController: ModalController) { }
@@ -27,6 +28,7 @@ export class CommentsComponent implements OnInit {
   ngOnInit() {
     this.storage.get('ids').then(ids => {
       this.idMun = ids.idMun;
+      this.region = ids.region;
       this.munService.getCom(this.celebration.idCelebration,this.idMun).valueChanges().subscribe( res =>{
         this.comentarios= res;
         console.log(res);
@@ -60,6 +62,27 @@ export class CommentsComponent implements OnInit {
     }
   }
 
+  delete(idOpinion:string){
+    this.munService.deleteCom(idOpinion, this.celebration.idCelebration, this.region, this.idMun).then(res =>{
+      console.log(res);
+    }), err=>{
+      console.log(err);
+    };
+  }
+
+  existCommentary(){
+    for (let com of this.comentarios){
+      if(com.uid === this.user.uid){
+        this.activeAdd = false;
+        console.log('igual');
+        break;
+      }
+      else{
+        this.activeAdd = true;
+      }
+    }
+  }
+
   async presentModal(comentarioInput?:any) {
     const modal = await this.modalController.create({
       component: ModalComponent,
@@ -73,8 +96,13 @@ export class CommentsComponent implements OnInit {
       if(data['data']){
         let comentario = data['data']; // Here's your selected user!
         comentario.id = comentarioInput ? comentarioInput.idOpinion : '';
-        console.log(comentario);
-        this.createUpdate(comentario);
+        if(comentario.coment){
+          console.log(comentario);
+          this.createUpdate(comentario);
+        }
+      }else{
+        this.delete(comentarioInput.idOpinion);
+        console.log('eliminar' + comentarioInput.idOpinion);
       }
     });
     return await modal.present();
