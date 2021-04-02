@@ -4,12 +4,12 @@
       <img src="{{comentario.imageUser}}">
     </ion-avatar>
     <div class="comentario-contenido">
-    <h3>{{comentario.nameUser}}</h3>
-    <ion-col *ngFor="let s of stars; let i = index">-->
-      <ion-icon name="star{{5}}" color="primary"></ion-icon>
-    </ion-col>
-    <p>{{comentario.commentary}}</p>
-  </div>
+      <h3>{{comentario.nameUser}}</h3>
+      <ion-col *ngFor="let s of [1,2,3,4,5]">
+        <ion-icon  style="font-size: 2rem;" name="star{{s > comentario.numStars ? '-outline' : ''}}" color="primary"></ion-icon>
+      </ion-col>
+      <p>{{comentario.commentary}}</p>
+    </div>
   </ion-item>
 </ion-list>
 
@@ -18,5 +18,3 @@
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>
-
-
