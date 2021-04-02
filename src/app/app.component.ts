@@ -15,7 +15,7 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private fcm: FCM
+    // private fcm: FCM
   ) {
     this.initializeApp();
   }
@@ -25,35 +25,35 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      this.fcm.getToken().then(token => {
-        //backend.registerToken(token);
-        console.log('Este es el token para el dispositivo' + token);
-      }).catch(error =>{
-        console.log(error);
-      });
+      // this.fcm.getToken().then(token => {
+      //   //backend.registerToken(token);
+      //   console.log('Este es el token para el dispositivo' + token);
+      // }).catch(error =>{
+      //   console.log(error);
+      // });
 
-      this.fcm.onNotification().subscribe(data => {
-        if(data.wasTapped){
-          console.log("Received in background");
-        } else {
-          console.log("Received in foreground");
-        };
-      });
+      // this.fcm.onNotification().subscribe(data => {
+      //   if(data.wasTapped){
+      //     console.log("Received in background");
+      //   } else {
+      //     console.log("Received in foreground");
+      //   };
+      // });
       
-      this.fcm.onTokenRefresh().subscribe(token => {
-        //backend.registerToken(token);
-        console.log("actualizacion tockend"+ token);
-      });
+      // this.fcm.onTokenRefresh().subscribe(token => {
+      //   //backend.registerToken(token);
+      //   console.log("actualizacion tockend"+ token);
+      // });
       
-      this.fcm.hasPermission().then(hasPermission => {
-        if (hasPermission) {
-          console.log("Has permission!");
-        }
-      })
+      // this.fcm.hasPermission().then(hasPermission => {
+      //   if (hasPermission) {
+      //     console.log("Has permission!");
+      //   }
+      // })
       
-      this.fcm.clearAllNotifications();
+      // this.fcm.clearAllNotifications();
       
-      this.fcm.unsubscribeFromTopic('marketing');
+      // this.fcm.unsubscribeFromTopic('marketing');
       
     });
   }
