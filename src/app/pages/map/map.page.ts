@@ -17,11 +17,11 @@ export class MapPage implements OnInit {
   constructor(private loadingCtrl: LoadingController, private mapService: MapService) { }
 
   ngOnInit() {
-    this.loadMap();
     this.mapService.getCordinates().then((data) => {
       this.cordinatesList = data;
       console.log(this.cordinatesList);
     });
+    this.loadMap();
   }
 
   async loadMap(){

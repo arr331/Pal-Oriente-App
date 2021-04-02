@@ -13,7 +13,7 @@ export class MapService {
 
   
   async getCordinates() {
-    await this.db.list(`CORDINATES`).query.once('value').then(data => {
+    await this.db.list(`COORDINATES`).query.once('value').then(data => {
       data.forEach(com => {
         this.cordinatesList.push(com.val());
       });

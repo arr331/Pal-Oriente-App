@@ -39,13 +39,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'shared',
-    loadChildren: () => import('./pages/municipalities/shared/shared.module').then( m => m.SharedPageModule)
-  },
-  {
     path: 'map',
     loadChildren: () => import('./pages/map/map.module').then( m => m.MapPageModule)
   },
+
 
 ];
 
