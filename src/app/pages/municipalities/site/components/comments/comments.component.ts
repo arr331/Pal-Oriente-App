@@ -108,7 +108,7 @@ export class CommentsComponent implements OnInit {
             console.log(comentario);
             this.createUpdate(comentario);
           }
-        } else {
+        } else if(data['data'] ===null) {
           this.delete(comentarioInput.idOpinion);
           console.log('eliminar' + comentarioInput.idOpinion);
         }
