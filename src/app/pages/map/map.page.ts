@@ -34,8 +34,11 @@ export class MapPage implements OnInit {
     google.maps.event
     .addListenerOnce(this.mapRef, 'idle', () => {
       loading.dismiss();
-      for (var item of this.cordinatesList)
-        this.addMaker(parseFloat(item.x), parseFloat(item.y),item.nombre);
+      for (let mun of this.cordinatesList){
+        console.log(mun);
+        //mun.map(item => console.log(item));
+        //this.addMaker(parseFloat(item.x), parseFloat(item.y),item.nombre);
+      }
     });
   }
 
