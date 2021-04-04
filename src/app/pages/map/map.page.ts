@@ -21,9 +21,10 @@ export class MapPage implements OnInit {
       data.forEach(mun => {
         const coordinates = Object.keys(mun).map(coor => mun[coor]);
         this.coordinatesList.push(...coordinates); 
+        this.loadMap();
       });
     });
-    this.loadMap();
+    
   }
 
   async loadMap() {
@@ -35,19 +36,28 @@ export class MapPage implements OnInit {
     });
     google.maps.event.addListenerOnce(this.mapRef, 'idle', () => {
       loading.dismiss();
-      for (let mun of this.coordinatesList){
-        console.log(mun);
-        //mun.map(item => console.log(item));
-        //this.addMaker(parseFloat(item.x), parseFloat(item.y),item.nombre);
+      for (let item of this.coordinatesList){
+        this.addMaker(parseFloat(item.x), parseFloat(item.y),item.name);
       }
     });
   }
 
   private addMaker(lat: number, lng: number, title: string) {
+
+    const infoWindow = new google.maps.InfoWindow();
+
     const marker = new google.maps.Marker({
       position: { lat, lng },
       map: this.mapRef,
-      title: title
+      title: title,
+      
+    });
+
+    // Add a click listener for each marker, and set up the info window.
+    marker.addListener("click", () => {
+      infoWindow.close();
+      infoWindow.setContent(marker.getTitle());
+      infoWindow.open(marker.getMap(), marker);
     });
   }
 

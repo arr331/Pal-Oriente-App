@@ -30,16 +30,24 @@ export class LocatedComponent implements OnInit {
     google.maps.event
     .addListenerOnce(this.mapRef, 'idle', () => {
       loading.dismiss();
-      this.addMaker(Number.parseFloat(this.sitio.x), Number.parseFloat(this.sitio.y));
+      this.addMaker(Number.parseFloat(this.sitio.x), Number.parseFloat(this.sitio.y),this.sitio.name);
     });
   }
 
-  private addMaker(lat: number, lng: number) {
+  private addMaker(lat: number, lng: number, title: string) {
+    const infoWindow = new google.maps.InfoWindow();
+
     const marker = new google.maps.Marker({
       position: { lat, lng },
       map: this.mapRef,
-      title: 'Hello World!'
+      title: title
     });
+    
+      marker.addListener("click", () => {
+        infoWindow.close();
+        infoWindow.setContent(marker.getTitle());
+        infoWindow.open(marker.getMap(), marker);
+      });
   }
 
 }

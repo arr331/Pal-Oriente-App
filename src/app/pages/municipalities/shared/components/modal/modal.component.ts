@@ -9,7 +9,8 @@ import { Commentary } from '../../../../../interfaces/comment';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
-  stars = ['-outline', '-outline', '-outline', '-outline', '-outline'];
+  stars= ['-outline', '-outline', '-outline', '-outline', '-outline'];
+
   comentarioForm: FormGroup;
 
   @Input() comentario: Commentary;

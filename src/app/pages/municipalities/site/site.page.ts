@@ -26,20 +26,5 @@ export class SitePage implements OnInit {
       }
     });
   }
-  // objeto de sitio
-
-  /*this.munService.getComentarios(this.sitio.idSite,'-KJSDJKFHDF').then(answer => {
-    this.comentarios = answer;
-    console.log(this.comentarios);
-  });*/
-
-  // this.storage.get('ids').then(ids=>{
-  //   this.idMun = ids.idMun;
-  // });
-
-  // this.munService.getCom(this.sitio.idSite,'-KJSDJKFHDF').valueChanges().subscribe( res =>{
-  //   this.comentarios= res;
-  //   console.log(res);
-  // });
 
 }
