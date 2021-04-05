@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { User } from 'src/app/interfaces/user';
+import { Storage } from '@ionic/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -16,16 +17,15 @@ export class AuthService {
     public afStore: AngularFirestore,
     public ngFireAuth: AngularFireAuth,
     public router: Router,  
-    public ngZone: NgZone  
+    public ngZone: NgZone, 
+    private storage: Storage 
   ) {
-    this.ngFireAuth.authState.subscribe(user => {
+    this.ngFireAuth.authState.subscribe(async user => {
       if (user) {
         this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user'));
+        await this.storage.set('user', this.userData);
       } else {
-        localStorage.setItem('user', null);
-        JSON.parse(localStorage.getItem('user'));
+        await this.storage.set('user', null);
       }
     })
   }
@@ -59,14 +59,14 @@ export class AuthService {
   }
 
   // Returns true when user is looged in
-  get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
+  async isLoggedIn(): Promise<boolean> {
+    const user = await this.storage.get('user');
     return (user !== null && user.emailVerified !== false) ? true : false;
   }
 
   // Returns true when user's email is verified
-  get isEmailVerified(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
+  async isEmailVerified(): Promise<boolean> {
+    const user = await this.storage.get('user');
     return (user.emailVerified !== false) ? true : false;
   }
 
@@ -80,7 +80,7 @@ export class AuthService {
     return this.ngFireAuth.auth.signInWithPopup(provider)
     .then((result) => {
        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['home']);
         })
       this.SetUserData(result.user);
     }).catch((error) => {
@@ -105,8 +105,8 @@ export class AuthService {
 
   // Sign-out 
   SignOut() {
-    return this.ngFireAuth.auth.signOut().then(() => {
-      localStorage.removeItem('user');
+    return this.ngFireAuth.auth.signOut().then(async () => {
+      await this.storage.remove('user');
       this.router.navigate(['login']);
     })
   }
