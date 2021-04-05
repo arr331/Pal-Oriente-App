@@ -3,9 +3,9 @@ import { MunicipalityService } from '../../../../../services/municipality.servic
 import { Storage } from '@ionic/storage';
 import { Site } from '../../../../../interfaces/site';
 import { Commentary } from '../../../../../interfaces/comment';
-import { AlertController, ModalController, NavParams } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { ModalComponent } from '../../../shared/components/modal/modal.component';
-
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-comments',
@@ -14,107 +14,61 @@ import { ModalComponent } from '../../../shared/components/modal/modal.component
   ],
 })
 export class CommentsComponent implements OnInit {
-
-  @Input() sitio: Site;
-
+  region: string;
   idMun: string
   comentarios = [];
-  rate: number = 2;
-  com: Commentary;
-  region: string;
-  user: any;
+  comment: Commentary;
+  user: User;
   activeAdd: boolean;
+  @Input() sitio: Site;
 
-  constructor(private alertCtrl: AlertController, private munService: MunicipalityService, private storage: Storage,
-    private modalController: ModalController) { }
+  constructor(private munService: MunicipalityService, private storage: Storage, private modalController: ModalController) { }
 
   ngOnInit() {
     this.storage.get('ids').then(ids => {
-      this.idMun = ids.idMun;
       this.region = ids.region;
-      this.munService.getCom(this.sitio.idSite, this.idMun).valueChanges().subscribe(res => {
+      this.idMun = ids.idMun;
+      this.munService.getCom(this.sitio.idSite, this.idMun).valueChanges().subscribe(async res => {
         this.comentarios = res;
-        console.log(res);
-        this.user = JSON.parse(localStorage.getItem('user'));
-        this.existCommentary();
+        this.user = await this.storage.get('user');
+        this.activeAdd = !this.comentarios.some(com => com.uid === this.user.uid);
       });
     });
-    /*this.user = JSON.parse(localStorage.getItem('user'));
-    console.log(this.user);
-    this.existCommentary();*/
   }
 
-  createUpdate(comentario) {
-    this.com = {
+  save(commentary, id: string) {
+    this.comment = {
       uid: this.user.uid,
       imageUser: this.user.photoURL,
-      commentary: comentario.coment,
-      idOpinion: comentario.id,
+      commentary: commentary.commentary,
+      idOpinion: id,
       nameUser: this.user.displayName,
-      numStars: comentario.num
+      numStars: commentary.numStars
     }
-    console.log(this.com);
-    this.munService.saveCom(this.com.idOpinion, this.com, this.sitio.idSite, this.region, this.idMun).then(res => {
-      console.log(res);
-    }), err => {
-      console.log(err);
-    };
+    this.munService.saveCom(this.comment, this.sitio.idSite, this.region, this.idMun).then().catch(err => console.log(err));
   }
 
-  update(comentario: any) {
-    if (comentario.uid === this.user.uid) {
-      this.presentModal(comentario);
-    }
+  update(commentary: Commentary) {
+    if (commentary.uid === this.user.uid) { this.presentModal(commentary); }
   }
 
   delete(idOpinion: string) {
-    this.munService.deleteCom(idOpinion, this.sitio.idSite, this.region, this.idMun).then(res => {
-      console.log(res);
-    }), err => {
-      console.log(err);
-    };
+    this.munService.deleteCom(idOpinion, this.sitio.idSite, this.region, this.idMun).then().catch(err => console.log(err));
   }
 
-  existCommentary() {
-    // this.activeAdd = this.comentarios.some(com => com.uid != this.user.uid);
-    // console.log(this.activeAdd,  'hdfhdsbf');
-    for (let com of this.comentarios) {
-      if (com.uid === this.user.uid) {
-        this.activeAdd = false;
-        console.log('igual');
-        break;
-      }
-      else {
-        this.activeAdd = true;
-        console.log('igual =!');
-      }
-    }
-  }
-
-  async presentModal(comentarioInput?: any) {
+  async presentModal(input?: Commentary) {
     const modal = await this.modalController.create({
       component: ModalComponent,
       cssClass: 'my-custom-class',
-      componentProps: {
-        comentario: comentarioInput
+      componentProps: { comentario: input }
+    });
+    modal.onDidDismiss().then(answer => {
+      if (answer.data?.delete) {
+        this.delete(input.idOpinion);
+      } else if (answer.data?.commentary) {
+        this.save(answer.data, input ? input.idOpinion : '');
       }
     });
-    modal.onDidDismiss()
-      .then((data) => {
-        if (data['data']) {
-          let comentario = data['data']; // Here's your selected user!
-          comentario.id = comentarioInput ? comentarioInput.idOpinion : '';
-          if (comentario.coment) {
-            console.log(comentario);
-            this.createUpdate(comentario);
-          }
-        } else if(data['data'] ===null) {
-          this.delete(comentarioInput.idOpinion);
-          console.log('eliminar' + comentarioInput.idOpinion);
-        }
-      });
     return await modal.present();
   }
-
 }
-

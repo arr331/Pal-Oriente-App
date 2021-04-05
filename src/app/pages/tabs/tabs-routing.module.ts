@@ -1,81 +1,85 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomePage } from '../home/home.page';
-
 import { TabsPage } from './tabs.page';
-import { MapPageModule } from '../map/map.module';
 
 const routes: Routes = [
   {
     path: 'tabs', component: TabsPage,
     children: [
       {
-        path: 'home',
-        children: [
-          { path: '', component: HomePage }
-        ]
+        path: 'home', children: [{ path: '', component: HomePage }]
       },
       {
         path: 'home/:region',
         children: [
-          { path: '',
-          loadChildren: () => import('../municipalities/municipality/municipality.module').then( m => m.MunicipalityPageModule) }
+          {
+            path: '', loadChildren: () => import('../municipalities/municipality/municipality.module').then(m => m.MunicipalityPageModule)
+          }
         ]
       },
       {
         path: 'news',
         children: [
-          { path: '',
-          loadChildren: () => import('../notices/menu-new/menu-new.module').then( m => m.MenuNewPageModule) }
+          {
+            path: '', loadChildren: () => import('../notices/menu-new/menu-new.module').then(m => m.MenuNewPageModule)
+          }
         ]
       },
       {
         path: 'map',
         children: [
-          { path: '',
-          loadChildren: () => import('../map/map.module').then( m => m.MapPageModule) }
+          {
+            path: '', loadChildren: () => import('../map/map.module').then(m => m.MapPageModule)
+          }
         ]
       },
       {
         path: 'municipio/menu',
         children: [
-          { path: '',
-          loadChildren: () => import('../municipalities/municipality-menu/municipality-menu.module').then( m => m.MunicipalityMenuPageModule) }
+          {
+            path: '', loadChildren: () => import('../municipalities/municipality-menu/municipality-menu.module').then(m => m.MunicipalityMenuPageModule)
+          }
         ]
       },
       {
         path: 'sitios',
         children: [
-          { path: '',
-          loadChildren: () => import('../municipalities/site-menu/site-menu.module').then( m => m.SiteMenuPageModule)}
+          {
+            path: '', loadChildren: () => import('../municipalities/site-menu/site-menu.module').then(m => m.SiteMenuPageModule)
+          }
         ]
       },
       {
         path: 'sitio',
         children: [
-          { path: '',
-          loadChildren: () => import('../municipalities/site/site.module').then( m => m.SitePageModule)}
+          {
+            path: '', loadChildren: () => import('../municipalities/site/site.module').then(m => m.SitePageModule)
+          }
         ]
       },
       {
         path: 'celebraciones',
         children: [
-          { path: '',
-          loadChildren: () => import('../municipalities/celebration-menu/celebration-menu.module').then( m => m.CelebrationMenuPageModule) }
+          {
+            path: '', loadChildren: () => import('../municipalities/celebration-menu/celebration-menu.module').then(m => m.CelebrationMenuPageModule)
+          }
         ]
       },
       {
         path: 'celebracion',
         children: [
-          { path: '',
-          loadChildren: () => import('../municipalities/celebration/celebration.module').then( m => m.CelebrationPageModule) }
+          {
+            path: '', loadChildren: () => import('../municipalities/celebration/celebration.module').then(m => m.CelebrationPageModule)
+          }
         ]
       },
       {
         path: 'informacion',
         children: [
-          { path: '',
-          loadChildren: () => import('../municipalities/information/information.module').then( m => m.InformationPageModule) }
+          {
+            path: '', loadChildren: () => import('../municipalities/information/information.module').then(m => m.InformationPageModule)
+          }
         ]
       },
       { path: '', redirectTo: '/tabs/home' }
@@ -92,4 +96,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }

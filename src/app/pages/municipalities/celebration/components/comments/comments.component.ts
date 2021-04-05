@@ -15,22 +15,22 @@ export class CommentsComponent implements OnInit {
 
   @Input() celebration: Celebration;
   idMun: string
-  comentarios= [];
+  comentarios = [];
   rate: number = 2;
-  com : Commentary;
+  com: Commentary;
   region: string;
   user: any;
-  activeAdd : boolean;
+  activeAdd: boolean;
 
   constructor(private alertCtrl: AlertController, private munService: MunicipalityService, private storage: Storage,
-              private modalController: ModalController) { }
+    private modalController: ModalController) { }
 
   ngOnInit() {
     this.storage.get('ids').then(ids => {
       this.idMun = ids.idMun;
       this.region = ids.region;
-      this.munService.getCom(this.celebration.idCelebration,this.idMun).valueChanges().subscribe( res =>{
-        this.comentarios= res;
+      this.munService.getCom(this.celebration.idCelebration, this.idMun).valueChanges().subscribe(res => {
+        this.comentarios = res;
         console.log(res);
       });
     });
@@ -39,7 +39,7 @@ export class CommentsComponent implements OnInit {
     console.log(this.user);
   }
 
-  createUpdate(comentario){
+  createUpdate(comentario) {
     this.com = {
       uid: this.user.uid,
       imageUser: this.user.photoURL,
@@ -49,41 +49,41 @@ export class CommentsComponent implements OnInit {
       numStars: comentario.num
     }
     console.log(this.com);
-    this.munService.saveCom(this.com.idOpinion,this.com, this.celebration.idCelebration, this.region, this.idMun).then(res =>{
-        console.log(res);
-    }), err=>{
+    this.munService.saveCom(this.com, this.celebration.idCelebration, this.region, this.idMun).then(res => {
+      console.log(res);
+    }), err => {
       console.log(err);
     };
   }
 
-  update(comentario: Commentary){
-    if(comentario.uid === this.user.uid){
+  update(comentario: Commentary) {
+    if (comentario.uid === this.user.uid) {
       this.presentModal(comentario);
     }
   }
 
-  delete(idOpinion:string){
-    this.munService.deleteCom(idOpinion, this.celebration.idCelebration, this.region, this.idMun).then(res =>{
+  delete(idOpinion: string) {
+    this.munService.deleteCom(idOpinion, this.celebration.idCelebration, this.region, this.idMun).then(res => {
       console.log(res);
-    }), err=>{
+    }), err => {
       console.log(err);
     };
   }
 
-  existCommentary(){
-    for (let com of this.comentarios){
-      if(com.uid === this.user.uid){
+  existCommentary() {
+    for (let com of this.comentarios) {
+      if (com.uid === this.user.uid) {
         this.activeAdd = false;
         console.log('igual');
         break;
       }
-      else{
+      else {
         this.activeAdd = true;
       }
     }
   }
 
-  async presentModal(comentarioInput?:any) {
+  async presentModal(comentarioInput?: any) {
     const modal = await this.modalController.create({
       component: ModalComponent,
       cssClass: 'my-custom-class',
@@ -93,18 +93,18 @@ export class CommentsComponent implements OnInit {
     });
     modal.onDidDismiss()
       .then((data) => {
-      if(data['data']){
-        let comentario = data['data']; // Here's your selected user!
-        comentario.id = comentarioInput ? comentarioInput.idOpinion : '';
-        if(comentario.coment){
-          console.log(comentario);
-          this.createUpdate(comentario);
+        if (data['data']) {
+          let comentario = data['data']; // Here's your selected user!
+          comentario.id = comentarioInput ? comentarioInput.idOpinion : '';
+          if (comentario.coment) {
+            console.log(comentario);
+            this.createUpdate(comentario);
+          }
+        } else {
+          this.delete(comentarioInput.idOpinion);
+          console.log('eliminar' + comentarioInput.idOpinion);
         }
-      }else{
-        this.delete(comentarioInput.idOpinion);
-        console.log('eliminar' + comentarioInput.idOpinion);
-      }
-    });
+      });
     return await modal.present();
   }
 

@@ -1,5 +1,15 @@
-<h3 style="text-align: center;">Imágenes de {{sitio.name}}</h3>
+<ion-row class="message" *ngIf="imageList.length === 0; else aca">
+  <ion-col size="2">
+    <ion-icon style=" font-size: 3rem;" name="sad-outline"></ion-icon>
+  </ion-col>
+  <ion-col>
+    <span style=" font-size: 1.3rem;"> Lo sentimos, todavía no hay información disponible.</span>
+  </ion-col>
+</ion-row>
 
-<div *ngFor="let img of imageList" style="margin: 1rem; text-align: center;">
-  <img style="border-radius: 10px;" [src]="img">
-</div>
+<ng-template #aca>
+  <h3 style="text-align: center;">Imágenes de {{sitio.name}}</h3>
+  <div *ngFor="let img of imageList" style="margin: 1rem; text-align: center;">
+    <img style="border-radius: 10px;" [src]="img">
+  </div>
+</ng-template>
