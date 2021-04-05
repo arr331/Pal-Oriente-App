@@ -22,7 +22,14 @@ export class AuthService {
   ) {
     this.ngFireAuth.authState.subscribe(async user => {
       if (user) {
-        this.userData = user;
+        const userData: User = {
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          emailVerified: user.emailVerified
+        }
+        this.userData = userData;
         await this.storage.set('user', this.userData);
       } else {
         await this.storage.set('user', null);
@@ -78,11 +85,20 @@ export class AuthService {
   // Auth providers
   AuthLogin(provider) {
     return this.ngFireAuth.auth.signInWithPopup(provider)
-    .then((result) => {
+    .then(async (result) => {
+      const user: User = {
+        uid: result.user.uid,
+        email: result.user.email,
+        displayName: result.user.displayName,
+        photoURL: result.user.photoURL,
+        emailVerified: result.user.emailVerified
+      }
+      this.userData = user;
+      await this.storage.set('user', this.userData);
        this.ngZone.run(() => {
-          this.router.navigate(['home']);
+          this.router.navigate(['']);
         })
-      this.SetUserData(result.user);
+      this.SetUserData(this.userData);
     }).catch((error) => {
       window.alert(error)
     })
@@ -91,14 +107,7 @@ export class AuthService {
   // Store user in localStorage
   SetUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.afStore.doc(`users/${user.uid}`);
-    const userData: User = {
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL,
-      emailVerified: user.emailVerified
-    }
-    return userRef.set(userData, {
+    return userRef.set(user, {
       merge: true
     })
   }
