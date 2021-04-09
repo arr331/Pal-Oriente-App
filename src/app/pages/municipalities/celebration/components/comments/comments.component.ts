@@ -32,11 +32,10 @@ export class CommentsComponent implements OnInit {
       this.munService.getCom(this.celebration.idCelebration,this.idMun).valueChanges().subscribe( res =>{
         this.comentarios= res;
         console.log(res);
+        this.user = JSON.parse(localStorage.getItem('user'));
+        console.log(this.user);
       });
     });
-
-    this.user = JSON.parse(localStorage.getItem('user'));
-    console.log(this.user);
   }
 
   createUpdate(comentario){
@@ -100,7 +99,7 @@ export class CommentsComponent implements OnInit {
           console.log(comentario);
           this.createUpdate(comentario);
         }
-      }else{
+      }else if(data['data'] ===null) {
         this.delete(comentarioInput.idOpinion);
         console.log('eliminar' + comentarioInput.idOpinion);
       }

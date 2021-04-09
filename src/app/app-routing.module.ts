@@ -42,7 +42,10 @@ const routes: Routes = [
     path: 'map',
     loadChildren: () => import('./pages/map/map.module').then( m => m.MapPageModule)
   },
-
+  {
+    path: 'menu-information',
+    loadChildren: () => import('./pages/information/menu-information/menu-information.module').then( m => m.MenuInformationPageModule)
+  }
 
 ];
 

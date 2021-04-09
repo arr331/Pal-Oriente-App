@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomePage } from '../home/home.page';
 
 import { TabsPage } from './tabs.page';
-import { MapPageModule } from '../map/map.module';
 
 const routes: Routes = [
   {
@@ -76,6 +75,13 @@ const routes: Routes = [
         children: [
           { path: '',
           loadChildren: () => import('../municipalities/information/information.module').then( m => m.InformationPageModule) }
+        ]
+      },
+      {
+        path: 'information',
+        children: [
+          { path: '',
+          loadChildren: () => import('../information/menu-information/menu-information.module').then( m => m.MenuInformationPageModule) }
         ]
       },
       { path: '', redirectTo: '/tabs/home' }
