@@ -15,22 +15,22 @@ export class CommentsComponent implements OnInit {
 
   @Input() celebration: Celebration;
   idMun: string
-  comentarios= [];
+  comentarios = [];
   rate: number = 2;
-  com : Commentary;
+  com: Commentary;
   region: string;
   user: any;
-  activeAdd : boolean;
+  activeAdd: boolean;
 
   constructor(private alertCtrl: AlertController, private munService: MunicipalityService, private storage: Storage,
-              private modalController: ModalController) { }
+    private modalController: ModalController) { }
 
   ngOnInit() {
     this.storage.get('ids').then(ids => {
       this.idMun = ids.idMun;
       this.region = ids.region;
-      this.munService.getCom(this.celebration.idCelebration,this.idMun).valueChanges().subscribe( res =>{
-        this.comentarios= res;
+      this.munService.getCom(this.celebration.idCelebration, this.idMun).valueChanges().subscribe(res => {
+        this.comentarios = res;
         console.log(res);
         this.user = JSON.parse(localStorage.getItem('user'));
         console.log(this.user);
@@ -38,74 +38,66 @@ export class CommentsComponent implements OnInit {
     });
   }
 
-  createUpdate(comentario){
+  save(commentary, id: string) {
     this.com = {
       uid: this.user.uid,
       imageUser: this.user.photoURL,
-      commentary: comentario.coment,
-      idOpinion: comentario.id,
+      commentary: commentary.commentary,
+      idOpinion: id,
       nameUser: this.user.displayName,
-      numStars: comentario.num
+      numStars: commentary.numStars
     }
     console.log(this.com);
-    this.munService.saveCom(this.com.idOpinion,this.com, this.celebration.idCelebration, this.region, this.idMun).then(res =>{
-        console.log(res);
-    }), err=>{
+    this.munService.saveCom(this.com, this.celebration.idCelebration, this.region, this.idMun).then(res => {
+      console.log(res);
+    }), err => {
       console.log(err);
     };
   }
 
-  update(comentario: Commentary){
-    if(comentario.uid === this.user.uid){
+  update(comentario: Commentary) {
+    if (comentario.uid === this.user.uid) {
       this.presentModal(comentario);
     }
   }
 
-  delete(idOpinion:string){
-    this.munService.deleteCom(idOpinion, this.celebration.idCelebration, this.region, this.idMun).then(res =>{
+  delete(idOpinion: string) {
+    this.munService.deleteCom(idOpinion, this.celebration.idCelebration, this.region, this.idMun).then(res => {
       console.log(res);
-    }), err=>{
+    }), err => {
       console.log(err);
     };
   }
 
-  existCommentary(){
-    for (let com of this.comentarios){
-      if(com.uid === this.user.uid){
-        this.activeAdd = false;
-        console.log('igual');
-        break;
-      }
-      else{
-        this.activeAdd = true;
-      }
-    }
-  }
+  // existCommentary() {
+  //   for (let com of this.comentarios) {
+  //     if (com.uid === this.user.uid) {
+  //       this.activeAdd = false;
+  //       console.log('igual');
+  //       break;
+  //     }
+  //     else {
+  //       this.activeAdd = true;
+  //     }
+  //   }
+  // }
 
-  async presentModal(comentarioInput?:any) {
+  async presentModal(input?: any) {
     const modal = await this.modalController.create({
       component: ModalComponent,
       cssClass: 'my-custom-class',
       componentProps: {
-        comentario: comentarioInput
+        comentario: input
       }
     });
     modal.onDidDismiss()
-      .then((data) => {
-      if(data['data']){
-        let comentario = data['data']; // Here's your selected user!
-        comentario.id = comentarioInput ? comentarioInput.idOpinion : '';
-        if(comentario.coment){
-          console.log(comentario);
-          this.createUpdate(comentario);
+      .then((answer) => {
+        if (answer.data?.delete) {
+          this.delete(input.idOpinion);
+        } else if (answer.data?.commentary) {
+          this.save(answer.data, input ? input.idOpinion : '');
         }
-      }else if(data['data'] ===null) {
-        this.delete(comentarioInput.idOpinion);
-        console.log('eliminar' + comentarioInput.idOpinion);
-      }
-    });
+      });
     return await modal.present();
   }
-
-
 }

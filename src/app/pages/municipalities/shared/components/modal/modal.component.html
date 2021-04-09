@@ -1,18 +1,22 @@
 <div class="contenedor">
-  <form [formGroup]= "comentarioForm">
+  <form [formGroup]="commentForm">
     <h3>Calificar</h3>
     <ion-grid style="font-size: 2rem;">
       <ion-row>
-        <ion-col *ngFor="let s of stars; let i = index">
-          <ion-icon name="star{{s}}" color="primary" (click)="qualify(i)"></ion-icon>
+        <ion-col *ngFor="let s of [1,2,3,4,5]">
+          <ion-icon name="star{{s > numStarField ? '-outline' : ''}}" color="primary" (click)="numStarField = s">
+          </ion-icon>
         </ion-col>
       </ion-row>
     </ion-grid>
     <ion-item>
-      <ion-textarea formControlName="comentario" placeholder="Dejanos un comentario para saber como te parecio el lugar"></ion-textarea>
+      <ion-textarea formControlName="commentary"
+        placeholder="Déjanos un comentario para saber como te pareció el lugar"></ion-textarea>
     </ion-item>
-    <ion-button (click)="guardar()" >Guardar</ion-button>
-    <ion-button (click)="dismiss()">Cancelar</ion-button>
-    <ion-button (click)="delete()" color="danger"><ion-icon name="trash-sharp"></ion-icon></ion-button>
+    <ion-button (click)="save()">Guardar</ion-button>
+    <ion-button (click)="close('cancel')">Cancelar</ion-button>
+    <ion-button (click)="close('delete')" color="danger">
+      <ion-icon name="trash-sharp"></ion-icon>
+    </ion-button>
   </form>
 </div>

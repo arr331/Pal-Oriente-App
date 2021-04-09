@@ -49,10 +49,9 @@ export class MunicipalityService {
     return this.db.list(`${this.region}/COMMENTS/${municipio}/${sitio}`);
   }
 
-  saveCom(idOpinion: string, com: Commentary, idSitio: string, region: string, idMun: string) {
-    idOpinion = idOpinion ? idOpinion : this.db.createPushId();
-    com.idOpinion = idOpinion;
-    return this.db.list(`${region}/COMMENTS/${idMun}/${idSitio}`).update(idOpinion, com);
+  saveCom(com: Commentary, idSitio: string, region: string, idMun: string) {
+    com.idOpinion = com.idOpinion || this.db.createPushId();
+    return this.db.list(`${region}/COMMENTS/${idMun}/${idSitio}`).update(com.idOpinion, com);
   }
 
   deleteCom(idOpinion: string, idSitio: string, region: string, idMun: string){
