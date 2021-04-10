@@ -26,6 +26,11 @@
         <ion-icon name="star"></ion-icon>
         <ion-label>Valoración</ion-label>
       </ion-tab-button>
+
+      <ion-tab-button (click)="item='gallery'">
+        <ion-icon name="images"></ion-icon>
+        <ion-label>Galería</ion-label>
+      </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
 
@@ -33,5 +38,6 @@
     <app-description *ngSwitchCase="'description'" [celebration]="celebration"></app-description>
     <app-activities *ngSwitchCase="'activities'"></app-activities>
     <app-comments *ngSwitchCase="'comments'" [celebration]="celebration"></app-comments>
+    <app-gallery *ngSwitchCase="'gallery'" [celebration]="celebration"></app-gallery>
   </ng-container>
 </ion-content>

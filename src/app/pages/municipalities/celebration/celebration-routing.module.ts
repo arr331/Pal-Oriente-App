@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { GalleryComponent } from 'src/app/components/gallery/gallery.component';
 
 import { CelebrationPage } from './celebration.page';
 import { ActivitiesComponent } from './components/activities/activities.component';
@@ -27,6 +28,12 @@ const routes: Routes = [
         path: 'comments',
         children: [
           { path: '', component: CommentsComponent}
+        ]
+      },
+      {
+        path: 'gallery',
+        children: [
+          { path: '', component: GalleryComponent}
         ]
       },
     ]

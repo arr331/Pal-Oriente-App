@@ -11,6 +11,7 @@ import { DescriptionComponent } from './components/description/description.compo
 import { CommentsComponent } from './components/comments/comments.component';
 import { ActivitiesComponent } from './components/activities/activities.component';
 import { SharedPageModule } from '../shared/shared.module';
+import { GalleryModule } from '../../../components/gallery/gallery.module';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { SharedPageModule } from '../shared/shared.module';
     FormsModule,
     IonicModule,
     CelebrationPageRoutingModule,
-    SharedPageModule
+    SharedPageModule,
+    GalleryModule
   ],
   declarations: [CelebrationPage, DescriptionComponent, CommentsComponent, ActivitiesComponent]
 })
