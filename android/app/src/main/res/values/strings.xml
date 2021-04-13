@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Pal\'Oriente</string>
+    <string name="title_activity_main">Pal\'Oriente</string>
+    <string name="package_name">co.com.paloriente</string>
+    <string name="custom_url_scheme">co.com.paloriente</string>
+    <string name="server_client_id">1033282119550-700peoacmq91tv2dq62peopa2ts7malf.apps.googleusercontent.com</string>
+</resources>

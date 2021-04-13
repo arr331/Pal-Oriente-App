@@ -5,12 +5,16 @@
 
     <ion-row>
       <ion-col> 
+        <ion-text color="light">
+          <h1 class="title">!Bienvenido!</h1>
+        </ion-text>
+        <p style="color: aliceblue;">Dejanos darte una experiencia personalizada</p>
         <ion-button 
          type="submit" 
          color="danger"
-         (click)="authService.GoogleAuth()" 
+         (click)="googleSignup()" 
          expand="block" mode= "ios" style="font-weight: 700;">
-         <i class="fa fa-google" style="margin-right: 10px;" aria-hidden="true"></i> Entra con Google
+         <i class="fa fa-google" style="margin-right: 10px;" aria-hidden="true"></i> Ingresa con Google
         </ion-button>
       </ion-col>
     </ion-row>

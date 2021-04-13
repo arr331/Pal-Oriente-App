@@ -1,0 +1,159 @@
+{
+  "project_info": {
+    "project_number": "1033282119550",
+    "firebase_url": "https://palasquesea-e32c0.firebaseio.com",
+    "project_id": "palasquesea-e32c0",
+    "storage_bucket": "palasquesea-e32c0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1033282119550:android:f5020eaf1a175c1019f52f",
+        "android_client_info": {
+          "package_name": "capacitor.android.plugins"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1033282119550-700peoacmq91tv2dq62peopa2ts7malf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRA9h2r1d_EGrwlZkmf8wOCHedxpUmZ_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1033282119550-700peoacmq91tv2dq62peopa2ts7malf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1033282119550:android:0f8b100e3578a18e19f52f",
+        "android_client_info": {
+          "package_name": "co.com.paloriente"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1033282119550-f0rn3ded0a939ko1upakt2ikdq9uhpu4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.com.paloriente",
+            "certificate_hash": "de2c6aa04cd18ee45c1c5b30938d0f5ec1f41114"
+          }
+        },
+        {
+          "client_id": "1033282119550-700peoacmq91tv2dq62peopa2ts7malf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRA9h2r1d_EGrwlZkmf8wOCHedxpUmZ_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1033282119550-700peoacmq91tv2dq62peopa2ts7malf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1033282119550:android:d45ff7568e1bea7719f52f",
+        "android_client_info": {
+          "package_name": "com.co.k4soft.palasquesea"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1033282119550-1m07a9098ahgthrhhmkah6f96l51uin7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.co.k4soft.palasquesea",
+            "certificate_hash": "766920b2e55a144021989b1aef6eeda073e4806e"
+          }
+        },
+        {
+          "client_id": "1033282119550-4f8oefjocqskiat93amr95ibqlajrjd6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.co.k4soft.palasquesea",
+            "certificate_hash": "1af5e0e3033f98c83fc637b934f1c7fc6009f704"
+          }
+        },
+        {
+          "client_id": "1033282119550-q15lfjpe8grp97m0348coi6i06kemraf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.co.k4soft.palasquesea",
+            "certificate_hash": "64e1c1aec515467d7912d9078298271fba027c44"
+          }
+        },
+        {
+          "client_id": "1033282119550-700peoacmq91tv2dq62peopa2ts7malf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRA9h2r1d_EGrwlZkmf8wOCHedxpUmZ_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1033282119550-700peoacmq91tv2dq62peopa2ts7malf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1033282119550:android:7488a22a3d47193319f52f",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1033282119550-700peoacmq91tv2dq62peopa2ts7malf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRA9h2r1d_EGrwlZkmf8wOCHedxpUmZ_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1033282119550-700peoacmq91tv2dq62peopa2ts7malf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

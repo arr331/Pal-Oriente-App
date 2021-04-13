@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Satisfy&display=swap');
 .small-text {
     text-decoration: none;
     display: block;
@@ -43,4 +44,12 @@
   background-color: #244256;
   background: url(../../../assets/background.png);
   background-size: cover;
+}
+
+.title {
+  text-align: center;
+  font-size: xxx-large;
+  font-weight: 700;
+  font-family: 'Righteous', cursive;
+  margin-top: -60px;
 }
