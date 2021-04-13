@@ -19,10 +19,10 @@ export class GalleryComponent implements OnChanges {
   ngOnChanges(): void {
     this.imageList = []
     this.storage.get('ids').then(ids => {
-      this.galleryService.getGallery(ids.region, ids.idMun, this.sitio?this.sitio.idSite:this.celebration.idCelebration).then(result => {
+      const itemPath = this.sitio ? 'SITES' : 'CELEBRATIONS';
+      this.galleryService.getGallery(ids.region, ids.idMun, this.sitio?.idSite || this.celebration?.idCelebration, itemPath).then(result => {
         result.items.forEach(itemRef => itemRef.getDownloadURL().then(url => this.imageList.push(url)));
       });
     });
   }
-
 }
