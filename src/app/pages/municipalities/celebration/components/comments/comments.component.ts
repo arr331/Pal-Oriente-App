@@ -29,11 +29,11 @@ export class CommentsComponent implements OnInit {
     this.storage.get('ids').then(ids => {
       this.idMun = ids.idMun;
       this.region = ids.region;
-      this.munService.getCom(this.celebration.idCelebration, this.idMun).valueChanges().subscribe(res => {
+      this.munService.getCom(this.celebration.idCelebration, this.idMun).valueChanges().subscribe(async res => {
         this.comentarios = res;
-        console.log(res);
-        this.user = JSON.parse(localStorage.getItem('user'));
-        console.log(this.user);
+        this.user = await this.storage.get('user');
+        this.activeAdd = !this.comentarios.some(com => com.uid === this.user.uid);
+        alert('uid '+this.user.uid+'name :'+this.user.name);
       });
     });
   }

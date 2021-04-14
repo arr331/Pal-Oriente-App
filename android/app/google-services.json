@@ -52,6 +52,14 @@
           }
         },
         {
+          "client_id": "1033282119550-f9dmm7kb2mibjhh2jn7t5sh5k4helna2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.com.paloriente",
+            "certificate_hash": "16214c2d36446572d2c9b20c19217c8f45d9d4c6"
+          }
+        },
+        {
           "client_id": "1033282119550-700peoacmq91tv2dq62peopa2ts7malf.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -133,6 +141,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1033282119550-meloq5lmcusmf485vavrcaqcpq48o48d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.starter",
+            "certificate_hash": "16214c2d36446572d2c9b20c19217c8f45d9d4c6"
+          }
+        },
         {
           "client_id": "1033282119550-700peoacmq91tv2dq62peopa2ts7malf.apps.googleusercontent.com",
           "client_type": 3
