@@ -79,13 +79,13 @@ export class AuthService {
   }
 
   // Sign in with Gmail
-  GoogleAuth() {
-    return this.AuthLogin(new auth.GoogleAuthProvider());
+  GoogleAuth(token) {
+    return this.AuthLogin(auth.GoogleAuthProvider.credential(null, token));
   }
 
   // Auth providers
   AuthLogin(provider) {
-    return this.ngFireAuth.auth.signInWithPopup(provider)
+    return this.ngFireAuth.auth.signInWithCredential(provider)
     .then(async (result) => {
       const user: User = {
         uid: result.user.uid,
