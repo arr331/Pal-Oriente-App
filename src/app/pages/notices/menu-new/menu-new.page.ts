@@ -15,7 +15,6 @@ export class MenuNewPage implements OnInit {
   ngOnInit() {
      this.noticeService.getNotices().then( res =>{
        this.list = res;
-       console.log(res);
      });
   }
 

@@ -47,12 +47,7 @@ export class CommentsComponent implements OnInit {
       nameUser: this.user.displayName,
       numStars: commentary.numStars
     }
-    console.log(this.com);
-    this.munService.saveCom(this.com, this.celebration.idCelebration, this.region, this.idMun).then(res => {
-      console.log(res);
-    }), err => {
-      console.log(err);
-    };
+    this.munService.saveCom(this.com, this.celebration.idCelebration, this.region, this.idMun).then().catch(err => console.error(err));
   }
 
   update(comentario: Commentary) {
@@ -62,25 +57,8 @@ export class CommentsComponent implements OnInit {
   }
 
   delete(idOpinion: string) {
-    this.munService.deleteCom(idOpinion, this.celebration.idCelebration, this.region, this.idMun).then(res => {
-      console.log(res);
-    }), err => {
-      console.log(err);
-    };
+    this.munService.deleteCom(idOpinion, this.celebration.idCelebration, this.region, this.idMun).then().catch(err => console.error(err));
   }
-
-  // existCommentary() {
-  //   for (let com of this.comentarios) {
-  //     if (com.uid === this.user.uid) {
-  //       this.activeAdd = false;
-  //       console.log('igual');
-  //       break;
-  //     }
-  //     else {
-  //       this.activeAdd = true;
-  //     }
-  //   }
-  // }
 
   async presentModal(input?: any) {
     const modal = await this.modalController.create({

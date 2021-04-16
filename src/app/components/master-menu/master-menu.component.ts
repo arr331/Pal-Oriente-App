@@ -14,8 +14,6 @@ export class MasterMenuComponent implements OnChanges {
   constructor(private router: Router, public navCtrl: NavController, private routeRoute: ActivatedRoute) { }
 
   ngOnChanges() {
-    console.log('entre a master');
-    
     this.itemList = [];
     this.routeRoute.queryParams.subscribe(() => {
       if (this.router.getCurrentNavigation().extras.state) {

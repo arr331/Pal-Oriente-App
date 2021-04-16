@@ -18,7 +18,6 @@ export class AuthGuard implements CanActivate {
       return new Promise(
         res => {
           this.storage.get('user').then(async resp => {
-            console.log(resp)
             if (resp != null) {
               res(true);
             } else {

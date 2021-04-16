@@ -18,7 +18,6 @@ export class ItemInformationComponent implements OnInit {
 
   ngOnInit() {
     this.itemInfo= this.router.getCurrentNavigation().extras.state as InfoItem;
-    console.log(this.itemInfo);
   }
 
 }

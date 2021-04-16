@@ -29,7 +29,6 @@ export class AuthService {
           photoURL: user.photoURL,
           emailVerified: user.emailVerified
         }
-        console.log(userData);
         this.userData = userData;
         await this.storage.set('user', this.userData);
       } else {

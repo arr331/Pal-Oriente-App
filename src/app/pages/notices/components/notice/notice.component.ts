@@ -17,7 +17,6 @@ export class NoticeComponent implements OnInit {
 
   ngOnInit() {
     this.notice= this.router.getCurrentNavigation().extras.state as Notice;
-    console.log(this.notice);
   }
 
 }

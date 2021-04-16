@@ -45,7 +45,7 @@ export class CommentsComponent implements OnInit {
       nameUser: this.user.displayName,
       numStars: commentary.numStars
     }
-    this.munService.saveCom(this.comment, this.sitio.idSite, this.region, this.idMun).then().catch(err => console.log(err));
+    this.munService.saveCom(this.comment, this.sitio.idSite, this.region, this.idMun).then().catch(err => console.error(err));
   }
 
   update(commentary: Commentary) {
@@ -53,7 +53,7 @@ export class CommentsComponent implements OnInit {
   }
 
   delete(idOpinion: string) {
-    this.munService.deleteCom(idOpinion, this.sitio.idSite, this.region, this.idMun).then().catch(err => console.log(err));
+    this.munService.deleteCom(idOpinion, this.sitio.idSite, this.region, this.idMun).then().catch(err => console.error(err));
   }
 
   async presentModal(input?: Commentary) {

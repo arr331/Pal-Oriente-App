@@ -55,7 +55,6 @@ export class MunicipalityService {
   }
 
   deleteCom(idOpinion: string, idSitio: string, region: string, idMun: string){
-    console.log(`${region}/COMMENTS/${idMun}/${idSitio}`+idOpinion);
     return this.db.list(`${region}/COMMENTS/${idMun}/${idSitio}`).remove(idOpinion);
   }
 }

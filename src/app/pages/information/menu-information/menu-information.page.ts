@@ -13,12 +13,9 @@ export class MenuInformationPage implements OnInit {
   constructor(private informationService: InformationService) { }
 
   ngOnInit() {
-    this.informationService.getInformation().then((res) =>{
+    this.informationService.getInformation().then(res => {
       this.list = res;
-      console.log(res);
-    }, err =>{
-      console.log('Error data');
-    });
+    }, err => console.error(err));
   }
 
 }
