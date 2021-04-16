@@ -80,7 +80,7 @@ export class AuthService {
 
   // Sign in with Gmail
   GoogleAuth(token) {
-    return this.AuthLogin(auth.GoogleAuthProvider.credential(null, token));
+    return this.AuthLogin(auth.GoogleAuthProvider.credential(token, null));
   }
 
   // Auth providers

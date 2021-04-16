@@ -7,4 +7,5 @@ export interface Celebration {
     image: string,
     name: string,
     state: boolean
+    reference: string;
 }

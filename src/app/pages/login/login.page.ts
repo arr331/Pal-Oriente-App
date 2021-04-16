@@ -24,10 +24,7 @@ export class LoginPage implements OnInit {
   async googleSignup() {
     const googleUser = await Plugins.GoogleAuth.signIn(null) as any;
     console.log('my user: ', googleUser);
-    this.authService.GoogleAuth(googleUser.accessToken)
-    alert(JSON.stringify(googleUser));
-    alert("id"+ googleUser.id);
-
+    this.authService.GoogleAuth(googleUser.authentication.idToken);
   }
 
 }
