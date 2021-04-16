@@ -6,6 +6,7 @@ export interface Municipality {
     description: string,
     economy: string,
     habitants: string,
+    reference: string;
     history: string,
     idMun: string,
     image: string,
