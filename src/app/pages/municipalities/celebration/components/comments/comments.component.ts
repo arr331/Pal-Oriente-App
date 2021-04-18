@@ -33,7 +33,6 @@ export class CommentsComponent implements OnInit {
         this.comentarios = res;
         this.user = await this.storage.get('user');
         this.activeAdd = !this.comentarios.some(com => com.uid === this.user.uid);
-        alert('uid '+this.user.uid+'name :'+this.user.name);
       });
     });
   }
