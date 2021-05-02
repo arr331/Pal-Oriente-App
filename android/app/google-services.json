@@ -8,35 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1033282119550:android:f5020eaf1a175c1019f52f",
-        "android_client_info": {
-          "package_name": "capacitor.android.plugins"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "1033282119550-700peoacmq91tv2dq62peopa2ts7malf.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCRA9h2r1d_EGrwlZkmf8wOCHedxpUmZ_M"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1033282119550-700peoacmq91tv2dq62peopa2ts7malf.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:1033282119550:android:0f8b100e3578a18e19f52f",
         "android_client_info": {
           "package_name": "co.com.paloriente"

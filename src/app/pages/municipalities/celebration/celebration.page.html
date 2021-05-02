@@ -36,7 +36,7 @@
 
   <ng-container [ngSwitch]="item">
     <app-description *ngSwitchCase="'description'" [celebration]="celebration"></app-description>
-    <app-activities *ngSwitchCase="'activities'"></app-activities>
+    <app-activities *ngSwitchCase="'activities'"  [celebration]="celebration"></app-activities>
     <app-comments *ngSwitchCase="'comments'" [celebration]="celebration"></app-comments>
     <app-gallery *ngSwitchCase="'gallery'" [celebration]="celebration"></app-gallery>
   </ng-container>

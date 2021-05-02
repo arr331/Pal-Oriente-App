@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { Celebration } from '../../../../../interfaces/celebration';
+import { Activity } from '../../../../../interfaces/activity';
 
 @Component({
   selector: 'app-activities',
@@ -7,8 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActivitiesComponent implements OnInit {
 
+  @Input() celebration: Celebration;
+
+  activities : Activity[];
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.activities= Object.values(this.celebration.activities);
+  }
 
 }

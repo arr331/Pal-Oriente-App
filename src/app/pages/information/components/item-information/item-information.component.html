@@ -18,7 +18,12 @@
         </ion-card-title>
       <p>
        {{itemInfo.description}}
+       <br>
       </p>
+      
+      <div class="reference" *ngIf="itemInfo.reference">
+        <br>
+        <strong>Referencia:</strong> {{itemInfo.reference}}</div>
     </ion-card-content>
   </ion-card>
 
