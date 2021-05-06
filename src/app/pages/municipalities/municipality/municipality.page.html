@@ -14,12 +14,16 @@
       <ion-row> 
         <ion-col size="5" >
           <div style="display: block; margin: auto; max-width: 14rem;">
+            <ion-spinner *ngIf="mun==null"></ion-spinner>
             <img src={{mun.image}} width="800" height="600" style="height: 100px; border-radius: 7px;">
           </div>
         </ion-col>
         <ion-col size="7">
+          <ion-skeleton-text *ngIf="mun==null" animated style="width: 75%"></ion-skeleton-text>
           <div style="margin: 5px 15px;"><b>{{mun.name}}</b></div>
+          <ion-skeleton-text *ngIf="mun==null" animated style="width: 75%"></ion-skeleton-text>
           <div class="text-info"><b>Habitantes: </b> <i>{{mun.habitants}}</i></div>
+          <ion-skeleton-text *ngIf="mun==null" animated style="width: 75%"></ion-skeleton-text>
           <div class="text-info"><b>Clima: </b> <i>{{mun.weather}}</i> </div>
         </ion-col>
       </ion-row>
