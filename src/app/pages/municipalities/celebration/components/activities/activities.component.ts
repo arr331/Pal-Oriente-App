@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
 import { Celebration } from '../../../../../interfaces/celebration';
 import { Activity } from '../../../../../interfaces/activity';
 
