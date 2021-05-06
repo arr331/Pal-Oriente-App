@@ -10,21 +10,16 @@
 </ion-header>
 
 <ion-content>
-
-  <ion-card >
-    <img src="{{itemInfo.urlImage}}"/>
+  <ion-card>
+    <div style="text-align: center;">
+      <img src="{{itemInfo.urlImage}}" style="max-width: 25rem;" />
+    </div>
     <ion-card-content>
-      <ion-card-title>
-        </ion-card-title>
-      <p>
-       {{itemInfo.description}}
-       <br>
-      </p>
-      
+      <p> {{itemInfo.description}} <br> </p>
       <div class="reference" *ngIf="itemInfo.reference">
         <br>
-        <strong>Referencia:</strong> {{itemInfo.reference}}</div>
+        <strong>Referencia:</strong> {{itemInfo.reference}}
+      </div>
     </ion-card-content>
   </ion-card>
-
 </ion-content>

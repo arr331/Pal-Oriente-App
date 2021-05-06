@@ -13,7 +13,7 @@ dependencies {
     implementation project(':codetrix-studio-capacitor-google-auth')
 
 }
-
+apply from: "../../node_modules/com-sarriaroman-photoviewer/src/android/photoviewer.gradle"
 
 if (hasProperty('postBuildExtras')) {
   postBuildExtras()

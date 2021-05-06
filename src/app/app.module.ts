@@ -15,6 +15,7 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { IonicStorageModule } from '@ionic/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,7 +33,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    AngularFirestore
+    AngularFirestore,
+    PhotoViewer
   ],
   bootstrap: [AppComponent]
 })

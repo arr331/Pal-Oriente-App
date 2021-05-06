@@ -6,7 +6,9 @@
 
 <ion-content>
   <ion-card *ngFor="let item of noticeList" [routerLink]="['tabs/news/notice']" [state]=item>
-    <img src="{{item.image}}" />
+    <div style="text-align: center;">
+      <img src="{{item.image}}" style="max-width: 25rem;" />
+    </div>
     <ion-card-content>
       <ion-card-title> {{item.title}} </ion-card-title>
       <p> {{item.outline}} </p>

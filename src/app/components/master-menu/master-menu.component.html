@@ -7,9 +7,11 @@
   </ion-col>
 </ion-row>
 
-<div class="container" *ngFor="let item of itemList" routerLink="/tabs/{{route}}" [state]="item">
-  <img [src]="item.image" width="100%" style="margin-bottom: -4px;">
-  <div class="text-img">
-    <h4 class="text">{{item.name}}</h4>
+<ion-card-content class="item-menu" *ngFor="let item of itemList" routerLink="/tabs/{{route}}" [state]="item">
+  <div class="container" style="display: flex; justify-content: center;">
+    <div class="text-img border">
+      <h3 class="text">{{item.name}}</h3>
+    </div>
+    <img [src]="item.image" class="border">
   </div>
-</div>
+</ion-card-content>

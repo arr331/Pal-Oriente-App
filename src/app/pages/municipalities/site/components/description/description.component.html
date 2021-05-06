@@ -1,7 +1,9 @@
 <ion-card mode="ios">
   <ion-slides scrollbar="true" pager="true" [options]="slideOpts" #mySlider>
     <ion-slide>
-      <img src="{{sitio.image}}" />
+      <div style="text-align: center;">
+        <img src="{{sitio.image}}" style="max-width: 25rem;" />
+      </div>
     </ion-slide>
   </ion-slides>
   <ion-card-header>

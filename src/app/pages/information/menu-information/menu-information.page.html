@@ -6,7 +6,9 @@
 
 <ion-content>
   <ion-card *ngFor="let item of infoList" [routerLink]="['tabs/information/info']" [state]=item>
-    <img src="{{item.urlImage}}" />
+    <div style="text-align: center;">
+      <img src="{{item.urlImage}}" style="max-width: 25rem;" />
+    </div>
     <ion-card-content>
       <ion-card-title> <strong>{{item.name}}</strong> </ion-card-title>
     </ion-card-content>

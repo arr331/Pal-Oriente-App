@@ -11,11 +11,13 @@
 
 <ion-content>
   <ion-card style="border-radius: 10px;" *ngIf="municipality">
-    <img class="image" width="100%" [src]="municipality.image" alt="No se cargó la imagen">
+    <div style="text-align: center;">
+      <img class="image" style="max-width: 25rem;" [src]="municipality.image" alt="No se cargó la imagen">
+    </div>
     <ion-card-header>
       <ion-card-title class="name">{{municipality.name}}</ion-card-title>
       <div class="showMe">
-        <img class="handswipe" src="https://layerjs.org/img/swipeleft.svg"/>
+        <img class="handswipe" src="https://layerjs.org/img/swipeleft.svg" />
       </div>
     </ion-card-header>
     <ion-card-content>
@@ -24,16 +26,24 @@
           <div class="slide information">
             <div>{{municipality.description}}</div>
             <br>
-            <div><strong><ion-icon name="sunny"></ion-icon> Clima:</strong> {{municipality.weather}}</div>
+            <div><strong>
+                <ion-icon name="sunny"></ion-icon> Clima:
+              </strong> {{municipality.weather}}</div>
             <br>
-            <div><strong><ion-icon name="people-sharp"></ion-icon> Habitantes:</strong> {{municipality.habitants}}</div>
+            <div><strong>
+                <ion-icon name="people-sharp"></ion-icon> Habitantes:
+              </strong> {{municipality.habitants}}</div>
             <br>
-            <div><strong><ion-icon name="cash"></ion-icon> Economía:</strong> {{municipality.economy}}</div>
+            <div><strong>
+                <ion-icon name="cash"></ion-icon> Economía:
+              </strong> {{municipality.economy}}</div>
           </div>
         </ion-slide>
         <ion-slide>
           <div class="slide information">
-            <div><strong><ion-icon name="hourglass-sharp"></ion-icon> Historia:</strong> {{municipality.history}}</div>
+            <div><strong>
+                <ion-icon name="hourglass-sharp"></ion-icon> Historia:
+              </strong> {{municipality.history}}</div>
             <br>
             <div class="reference"><strong>Reference :</strong>{{municipality.reference}}</div>
           </div>

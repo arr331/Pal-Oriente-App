@@ -1,8 +1,10 @@
 <ion-content>
   <ion-card>
-    <ion-slides scrollbar= "true" pager="true" [options]="slideOpts" #mySlider>
+    <ion-slides scrollbar="true" pager="true" [options]="slideOpts" #mySlider>
       <ion-slide>
-        <img src="{{celebration.image}}" />
+        <div style="text-align: center;">
+          <img src="{{celebration.image}}" style="max-width: 25rem;" />
+        </div>
       </ion-slide>
     </ion-slides>
     <ion-card-header>
@@ -13,9 +15,9 @@
     <ion-card-content>
       {{celebration.description}}
       <div class="reference">
-        <br/>
+        <br />
         <strong>Reference:</strong> {{celebration.reference}}
-    </div>
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>

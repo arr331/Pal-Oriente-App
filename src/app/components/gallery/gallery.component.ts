@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { Storage } from '@ionic/storage';
 import { Site } from 'src/app/interfaces/site';
 import { GalleryService } from 'src/app/services/gallery.service';
@@ -14,7 +15,7 @@ export class GalleryComponent implements OnChanges {
   @Input() sitio: Site;
   @Input() celebration: Celebration;
 
-  constructor(private galleryService: GalleryService, private storage: Storage) { }
+  constructor(private galleryService: GalleryService, private storage: Storage, private photoViewer: PhotoViewer) { }
 
   ngOnChanges(): void {
     this.imageList = []
@@ -24,5 +25,9 @@ export class GalleryComponent implements OnChanges {
         result.items.forEach(itemRef => itemRef.getDownloadURL().then(url => this.imageList.push(url)));
       });
     });
+  }
+
+  showImage(image: string) {
+    this.photoViewer.show(image);
   }
 }

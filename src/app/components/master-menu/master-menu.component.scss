@@ -1,27 +1,25 @@
 .container {
     position: relative;
-    display: block;
-    margin: auto;
     text-align: center;
     color: white;
-    max-width: 35rem;
+    border-radius: 1rem;
 }
 .text-img {
     position: absolute;
-    bottom: 0;
-    height: 23%;
+    bottom: 0px;
     width: 100%;
-    background: rgba(0, 0, 0, 0.38);
-    
+    background: rgba(0, 0, 0, 0.45);
 }
 .text {
-    font-size: 20px;
+    font-size: 26px;
     margin: auto;
     padding: 9px;
 }
-.message {
-    margin: 2.2rem 1.5rem;
-    border: #c5c3c3 solid 1px;
-    border-radius: 1rem;
-    color: #9a9a9a;
+.border {
+    border-radius: 10px;
+}
+.item-menu {
+    max-width: 25rem;
+    display: block;
+    margin: 0 auto -18px auto;
 }
