@@ -10,6 +10,18 @@
 </ion-header>
 
 <ion-content *ngIf="municipality">
+  <h3 style="text-align: center;">Menú del municipio</h3>
+
+  <ion-card-content class="item-menu" routerLink="/tabs/informacion" [state] = "municipality">
+    <div class="container">
+      <div class="text-img border">
+        <h3 class="text">Información</h3>
+      </div>
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/palasquesea-e32c0.appspot.com/o/menu%2Finformation.jpg?alt=media&token=89b405dc-54f4-4dba-a9c3-73decf86d538"
+        height="130px" width="90%" class="border">
+    </div>
+  </ion-card-content>
   <ion-card-content class="item-menu" routerLink="/tabs/sitios" [state] = "municipality.sites">
     <div class="container">
       <div class="text-img border">
@@ -17,7 +29,7 @@
       </div>
       <img
         src="https://firebasestorage.googleapis.com/v0/b/palasquesea-e32c0.appspot.com/o/menu%2Fsites.jpg?alt=media&token=09203db5-61c1-4d59-b286-109285be42a0"
-        height="230px" width="100%" class="border">
+        height="130px" width="90%" class="border">
     </div>
   </ion-card-content>
   <ion-card-content class="item-menu" routerLink="/tabs/celebraciones" [state] = "municipality.celebrations">
@@ -27,17 +39,7 @@
       </div>
       <img
         src="https://firebasestorage.googleapis.com/v0/b/palasquesea-e32c0.appspot.com/o/menu%2Fcelebration.jpg?alt=media&token=0a555ccd-856d-4382-b16f-a0f360e720eb"
-        height="230px" width="100%" class="border">
-    </div>
-  </ion-card-content>
-  <ion-card-content class="item-menu" routerLink="/tabs/informacion" [state] = "municipality">
-    <div class="container">
-      <div class="text-img border">
-        <h3 class="text">Información</h3>
-      </div>
-      <img
-        src="https://firebasestorage.googleapis.com/v0/b/palasquesea-e32c0.appspot.com/o/menu%2Finformation.jpg?alt=media&token=89b405dc-54f4-4dba-a9c3-73decf86d538"
-        height="230px" width="100%" class="border">
+        height="130px" width="90%" class="border">
     </div>
   </ion-card-content>
 </ion-content>
