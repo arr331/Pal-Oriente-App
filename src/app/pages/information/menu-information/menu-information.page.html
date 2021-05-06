@@ -5,14 +5,10 @@
 </ion-header>
 
 <ion-content>
-
-  <ion-card *ngFor="let item of list" [routerLink]="['tabs/information/info']" [state] = item>
-    <img src="{{item.urlImage}}"/>
+  <ion-card *ngFor="let item of infoList" [routerLink]="['tabs/information/info']" [state]=item>
+    <img src="{{item.urlImage}}" />
     <ion-card-content>
-      <ion-card-title>
-        <strong>{{item.name}}</strong>
-        </ion-card-title>
+      <ion-card-title> <strong>{{item.name}}</strong> </ion-card-title>
     </ion-card-content>
   </ion-card>
-
 </ion-content>

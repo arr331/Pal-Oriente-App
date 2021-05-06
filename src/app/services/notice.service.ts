@@ -7,16 +7,9 @@ import { Notice } from '../interfaces/notice';
 })
 export class NoticeService {
 
-  noticeList = [];
-
   constructor(private db: AngularFireDatabase) { }
 
-  async getNotices(){
-   await this.db.list(`NEWS`).query.once('value').then(data => {
-      data.forEach(com => {
-        this.noticeList.push(com.val());
-      });
-   });
-  return this.noticeList;
+  getNotices() {
+    return this.db.list<Notice>(`NEWS`);
   }
 }

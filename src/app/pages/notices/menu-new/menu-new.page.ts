@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Notice } from 'src/app/interfaces/notice';
 import { NoticeService } from '../../../services/notice.service';
 
 @Component({
@@ -7,15 +8,12 @@ import { NoticeService } from '../../../services/notice.service';
   styleUrls: ['./menu-new.page.scss'],
 })
 export class MenuNewPage implements OnInit {
-
-  list = [];
+  noticeList: Notice[] = [];
 
   constructor(private noticeService: NoticeService) { }
 
   ngOnInit() {
-     this.noticeService.getNotices().then( res =>{
-       this.list = res;
-     });
+    this.noticeService.getNotices().valueChanges().subscribe(res => this.noticeList = res);
   }
 
 }

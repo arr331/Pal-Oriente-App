@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InfoItem } from 'src/app/interfaces/info-item';
 import { InformationService } from '../../../services/information.service';
 
 @Component({
@@ -7,15 +8,12 @@ import { InformationService } from '../../../services/information.service';
   styleUrls: ['./menu-information.page.scss'],
 })
 export class MenuInformationPage implements OnInit {
-
-  list = [];
+  infoList: InfoItem[] = [];
 
   constructor(private informationService: InformationService) { }
 
   ngOnInit() {
-    this.informationService.getInformation().then(res => {
-      this.list = res;
-    }, err => console.error(err));
+    this.informationService.getInformation().valueChanges().subscribe(res => this.infoList = res, err => console.error(err));
   }
 
 }
