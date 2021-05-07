@@ -10,6 +10,6 @@
 <ng-template #aca>
   <h3 style="text-align: center;">Imágenes de {{sitio?.name || celebration?.name}}</h3>
   <div *ngFor="let img of imageList" style="margin: 1rem; text-align: center;" (click)="showImage(img)">
-    <img style="border-radius: 10px;" style="max-width: 25rem;"  [src]="img">
+    <img style="border-radius: 10px;" width="100%" style="max-width: 25rem; border-radius: 10px;"  [src]="img">
   </div>
 </ng-template>

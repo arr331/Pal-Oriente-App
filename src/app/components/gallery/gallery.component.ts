@@ -28,6 +28,6 @@ export class GalleryComponent implements OnChanges {
   }
 
   showImage(image: string) {
-    this.photoViewer.show(image);
+    this.photoViewer.show('https://www.freakyjolly.com/wp-content/uploads/2017/08/cropped-fjlogo2.png');
   }
 }
