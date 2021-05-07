@@ -22,10 +22,10 @@ export class LocatedComponent implements OnInit {
 
   async loadMap(){
     const loading = await this.loadingCtrl.create();
-    const mapEle: HTMLElement = document.getElementById('map');
+    const mapEle: HTMLElement = document.getElementById('mapS');
     this.mapRef = new google.maps.Map(mapEle, {
       center: {lat: Number.parseFloat(this.sitio.x) , lng: Number.parseFloat(this.sitio.y)},
-      zoom: 12
+      zoom: 15
     });
     google.maps.event
     .addListenerOnce(this.mapRef, 'idle', () => {

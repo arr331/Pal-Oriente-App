@@ -15,7 +15,7 @@ export class GalleryComponent implements OnChanges {
   @Input() sitio: Site;
   @Input() celebration: Celebration;
 
-  constructor(private galleryService: GalleryService, private storage: Storage, private photoViewer: PhotoViewer) { }
+  constructor(private photoViewer: PhotoViewer, private galleryService: GalleryService, private storage: Storage) { }
 
   ngOnChanges(): void {
     this.imageList = []
@@ -28,6 +28,6 @@ export class GalleryComponent implements OnChanges {
   }
 
   showImage(image: string) {
-    this.photoViewer.show('https://www.freakyjolly.com/wp-content/uploads/2017/08/cropped-fjlogo2.png');
+    this.photoViewer.show(image,this.celebration?.name || this.sitio?.name,{share: true});
   }
 }

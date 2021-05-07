@@ -29,7 +29,7 @@ export class HomePage implements OnInit {
     PushNotifications.requestPermission().then(result => {
       if (result.granted) {
         // Register with Apple / Google to receive push via APNS/FCM
-        alert(result);
+        //alert(result);
         PushNotifications.register();
       } else {
         // Show some error
@@ -40,7 +40,7 @@ export class HomePage implements OnInit {
     PushNotifications.addListener(
       'registration',
       (token: PushNotificationToken) => {
-        alert('Push registration success, token: ' + token.value);
+        console.log('Push registration success, token: ' + token.value);
       },
     );
 
