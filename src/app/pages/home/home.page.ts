@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { LoadingController } from '@ionic/angular';
 
 import {
   Plugins,
@@ -16,9 +17,9 @@ const { PushNotifications } = Plugins;
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  regionList;
+  regionList: any;
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase, private loadingController: LoadingController) { }
 
   ngOnInit() {
     this.db.list(`HOME`).valueChanges().subscribe(ans => this.regionList = ans);
@@ -61,6 +62,20 @@ export class HomePage implements OnInit {
         alert('Push action performed: ' + JSON.stringify(notification));
       },
     );
+
+    this.presentLoading();
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Por favor espere...',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
   }
 
 }

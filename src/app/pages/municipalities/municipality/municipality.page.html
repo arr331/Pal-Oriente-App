@@ -19,15 +19,14 @@
           </div>
         </ion-col>
         <ion-col size="7">
-          <ion-skeleton-text *ngIf="mun==null" animated style="width: 75%"></ion-skeleton-text>
           <div style="margin: 5px 15px;"><b>{{mun.name}}</b></div>
-          <ion-skeleton-text *ngIf="mun==null" animated style="width: 75%"></ion-skeleton-text>
           <div class="text-info"><b>Habitantes: </b> <i>{{mun.habitants}}</i></div>
-          <ion-skeleton-text *ngIf="mun==null" animated style="width: 75%"></ion-skeleton-text>
           <div class="text-info"><b>Clima: </b> <i>{{mun.weather}}</i> </div>
         </ion-col>
       </ion-row>
     </ion-grid>
     <div style="border: 1px solid rgb(196, 196, 196);"></div>
   </ng-container>
+  <ion-skeleton-text *ngIf="municipalityList==null" animated style="width: 75%"></ion-skeleton-text>
+  <ion-skeleton-text *ngIf="municipalityList==null" animated style="width: 75%"></ion-skeleton-text>
 </ion-content>

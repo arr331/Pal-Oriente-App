@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { Site } from 'src/app/interfaces/site';
 import { GalleryService } from 'src/app/services/gallery.service';
 import { Celebration } from '../../interfaces/celebration';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-gallery',
@@ -15,7 +16,8 @@ export class GalleryComponent implements OnChanges {
   @Input() sitio: Site;
   @Input() celebration: Celebration;
 
-  constructor(private photoViewer: PhotoViewer, private galleryService: GalleryService, private storage: Storage) { }
+  constructor(private photoViewer: PhotoViewer, private galleryService: GalleryService, 
+              private storage: Storage, private loadingController: LoadingController) { }
 
   ngOnChanges(): void {
     this.imageList = []
@@ -25,9 +27,22 @@ export class GalleryComponent implements OnChanges {
         result.items.forEach(itemRef => itemRef.getDownloadURL().then(url => this.imageList.push(url)));
       });
     });
+    this.presentLoading();
   }
 
   showImage(image: string) {
     this.photoViewer.show(image,this.celebration?.name || this.sitio?.name,{share: true});
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Por favor espere...',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
   }
 }
