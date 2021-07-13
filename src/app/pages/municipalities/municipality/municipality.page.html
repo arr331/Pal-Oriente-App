@@ -1,11 +1,11 @@
 <ion-header mode="ios">
-  <ion-toolbar mode="ios">
+  <ion-toolbar mode="ios" color="primary">
     <ion-buttons slot="start">
       <ion-button color="light" (click)="navCtrl.back()">
         <ion-icon name="chevron-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title class="header">Municipios</ion-title>
+    <ion-title>Municipios</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -20,8 +20,8 @@
         </ion-col>
         <ion-col size="7">
           <div style="margin: 5px 15px;"><b>{{mun.name}}</b></div>
-          <div class="text-info"><b>Habitantes: </b> <i>{{mun.habitants}}</i></div>
-          <div class="text-info"><b>Clima: </b> <i>{{mun.weather}}</i> </div>
+          <div class="text-info" ><ion-text color="medium"><b>Habitantes: </b> <i>{{mun.habitants}}</i></ion-text></div>
+          <div class="text-info" ><ion-text color="medium"><b>Clima: </b> <i>{{mun.weather}}</i></ion-text></div>
         </ion-col>
       </ion-row>
     </ion-grid>

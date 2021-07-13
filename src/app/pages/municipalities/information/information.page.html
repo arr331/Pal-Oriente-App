@@ -1,11 +1,11 @@
 <ion-header mode="ios">
-  <ion-toolbar mode="ios">
+  <ion-toolbar mode="ios" color="primary">
     <ion-buttons slot="start">
       <ion-button color="light" (click)="navCtrl.back()">
         <ion-icon name="chevron-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title class="header">Información de {{municipality?.name}}</ion-title>
+    <ion-title>Información de {{municipality?.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -27,25 +27,25 @@
             <div>{{municipality.description}}</div>
             <br>
             <div><strong>
-                <ion-icon name="sunny"></ion-icon> Clima:
+              <ion-text color="dark"><ion-icon name="sunny"></ion-icon> Clima:</ion-text>
               </strong> {{municipality.weather}}</div>
             <br>
             <div><strong>
-                <ion-icon name="people-sharp"></ion-icon> Habitantes:
+              <ion-text color="dark"> <ion-icon name="people-sharp"></ion-icon> Habitantes:</ion-text>
               </strong> {{municipality.habitants}}</div>
             <br>
             <div><strong>
-                <ion-icon name="cash"></ion-icon> Economía:
+              <ion-text color="dark"> <ion-icon name="cash"></ion-icon> Economía:</ion-text>
               </strong> {{municipality.economy}}</div>
           </div>
         </ion-slide>
         <ion-slide>
           <div class="slide information">
             <div><strong>
-                <ion-icon name="hourglass-sharp"></ion-icon> Historia:
+              <ion-text color="dark"> <ion-icon name="hourglass-sharp"></ion-icon> Historia:</ion-text>
               </strong> {{municipality.history}}</div>
             <br>
-            <div class="reference"><strong>Reference :</strong>{{municipality.reference}}</div>
+            <div class="reference"><strong><ion-text color="dark">Reference :</ion-text></strong>{{municipality.reference}}</div>
           </div>
         </ion-slide>
       </ion-slides>
