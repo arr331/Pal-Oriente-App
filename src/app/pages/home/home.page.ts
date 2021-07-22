@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 import {
   Plugins,
@@ -19,7 +20,8 @@ const { PushNotifications } = Plugins;
 export class HomePage implements OnInit {
   regionList: any;
 
-  constructor(private db: AngularFireDatabase, private loadingController: LoadingController) { }
+  constructor(private db: AngularFireDatabase, private loadingController: LoadingController, 
+              private router: Router) { }
 
   ngOnInit() {
     this.db.list(`HOME`).valueChanges().subscribe(ans => this.regionList = ans);
@@ -76,6 +78,10 @@ export class HomePage implements OnInit {
 
     const { role, data } = await loading.onDidDismiss();
     console.log('Loading dismissed!');
+  }
+
+  public openProfile(){
+    this.router.navigate(['user-profile'])
   }
 
 }

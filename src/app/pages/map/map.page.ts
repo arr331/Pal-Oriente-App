@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { Coordinate } from 'src/app/interfaces/coordinate';
 import { MapService } from '../../services/map.service';
@@ -8,6 +8,7 @@ declare var google;
   selector: 'app-map',
   templateUrl: './map.page.html',
   styleUrls: ['./map.page.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class MapPage implements OnInit {
   coordinatesList: Coordinate[] = [];
@@ -41,6 +42,8 @@ export class MapPage implements OnInit {
       }
     });
   }
+
+  
 
   private addMaker(lat: number, lng: number, title: string) {
 

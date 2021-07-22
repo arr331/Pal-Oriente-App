@@ -17,11 +17,14 @@
     </div>
     <ion-card-content>
       <ion-card-title>
-        {{notice.title}}
+        <strong>{{notice.title}}</strong>
       </ion-card-title>
-      <p>
-        {{notice.text}}
-      </p>
+      <br>
+        <div class="text-paragraph">{{notice.text}}</div>
+        <div class="reference" *ngIf="notice.reference">
+          <br>
+          <strong><ion-text color="dark">Referencia:</ion-text></strong> {{notice.reference}}
+        </div>
     </ion-card-content>
   </ion-card>
 

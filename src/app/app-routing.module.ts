@@ -46,10 +46,14 @@ const routes: Routes = [
   {
     path: 'menu-information',
     loadChildren: () => import('./pages/information/menu-information/menu-information.module').then( m => m.MenuInformationPageModule)
-  },  {
+  },
+  {
     path: 'terms',
     loadChildren: () => import('./components/terms/terms.module').then( m => m.TermsPageModule)
-  }
+  },  {
+    path: 'user-profile',
+    loadChildren: () => import('./components/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
+  },
 
 
 ];

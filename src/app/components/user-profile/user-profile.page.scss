@@ -1,0 +1,22 @@
+.content{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: 20% 10%;
+    .image-profile{
+        width: 70%;
+        height: auto;
+        margin: auto;
+        img{
+            background-repeat: no-repeat;
+            background-position: 50%;
+            border-radius: 50%;
+            background-size: 100% auto;
+        }
+    }
+
+    &__button{
+        max-width: 25rem;
+        margin: auto;
+    }
+}

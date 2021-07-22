@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button color="light" (click)="navCtrl.back()">
+        <ion-icon name="chevron-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Perfil de usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  *ngIf="userData">
+
+  <div class="content">
+    <div class="image-profile">
+      <img src="{{userData.photoURL}}">
+    </div>
+    <h3>{{userData.displayName}}</h3>
+    <h5>{{userData.email}}</h5>
+
+    <div class="content__button">
+      <ion-button expand="block" (click)="presentAlertMultipleButtons()">Cerrar sesión</ion-button>
+    </div>
+    </div>
+</ion-content>

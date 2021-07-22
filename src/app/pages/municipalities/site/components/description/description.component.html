@@ -12,9 +12,9 @@
 
   <ion-card-content style="text-align: justify;">
     {{sitio.description}}
-    <div class="reference">
+    <div class="reference" *ngIf="sitio.reference">
       <br>
-      <strong><ion-text color="dark">Reference:</ion-text></strong> {{sitio.reference}}
+      <strong><ion-text color="dark">Referencia:</ion-text></strong> {{sitio.reference}}
     </div>
   </ion-card-content>
 </ion-card>
