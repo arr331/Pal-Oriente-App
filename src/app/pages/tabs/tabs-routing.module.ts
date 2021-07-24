@@ -38,7 +38,9 @@ const routes: Routes = [
         path: 'municipio/menu',
         children: [
           {
-            path: '', loadChildren: () => import('../municipalities/municipality-menu/municipality-menu.module').then(m => m.MunicipalityMenuPageModule)
+            path: '', loadChildren: () =>
+            import('../municipalities/municipality-menu/municipality-menu.module')
+            .then(m => m.MunicipalityMenuPageModule)
           }
         ]
       },
@@ -62,7 +64,9 @@ const routes: Routes = [
         path: 'celebraciones',
         children: [
           {
-            path: '', loadChildren: () => import('../municipalities/celebration-menu/celebration-menu.module').then(m => m.CelebrationMenuPageModule)
+            path: '', loadChildren: () =>
+            import('../municipalities/celebration-menu/celebration-menu.module')
+            .then(m => m.CelebrationMenuPageModule)
           }
         ]
       },

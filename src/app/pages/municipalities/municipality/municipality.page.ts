@@ -15,7 +15,7 @@ export class MunicipalityPage implements OnInit {
   region: string;
 
   constructor(private munService: MunicipalityService, private activatedroute: ActivatedRoute,
-    public navCtrl: NavController, private router: Router, private storage: Storage) { }
+              public navCtrl: NavController, private router: Router, private storage: Storage) { }
 
   ngOnInit() {
     this.region = this.activatedroute.snapshot.paramMap.get('region');
@@ -24,6 +24,6 @@ export class MunicipalityPage implements OnInit {
 
   async goTo(mun) {
     await this.storage.set('ids', {'region': this.region, 'idMun': mun.idMun});
-    this.router.navigate(["tabs/municipio/menu"]);
+    this.router.navigate(['tabs/municipio/menu']);
   }
 }

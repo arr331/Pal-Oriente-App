@@ -25,7 +25,6 @@ export class MapPage implements OnInit {
         this.loadMap();
       });
     });
-    
   }
 
   async loadMap() {
@@ -38,12 +37,10 @@ export class MapPage implements OnInit {
     google.maps.event.addListenerOnce(this.mapRef, 'idle', () => {
       loading.dismiss();
       for (let item of this.coordinatesList){
-        this.addMaker(parseFloat(item.x), parseFloat(item.y),item.name);
+        this.addMaker(parseFloat(item.x), parseFloat(item.y), item.name);
       }
     });
   }
-
-  
 
   private addMaker(lat: number, lng: number, title: string) {
 
@@ -57,7 +54,7 @@ export class MapPage implements OnInit {
     });
 
     // Add a click listener for each marker, and set up the info window.
-    marker.addListener("click", () => {
+    marker.addListener('click', () => {
       infoWindow.close();
       infoWindow.setContent(marker.getTitle());
       infoWindow.open(marker.getMap(), marker);

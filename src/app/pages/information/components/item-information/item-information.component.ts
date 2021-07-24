@@ -14,10 +14,10 @@ export class ItemInformationComponent implements OnInit {
 
   itemInfo: InfoItem;
 
-  constructor(public navCtrl: NavController, private router:Router) { }
+  constructor(public navCtrl: NavController, private router: Router) { }
 
   ngOnInit() {
-    this.itemInfo= this.router.getCurrentNavigation().extras.state as InfoItem;
+    this.itemInfo = this.router.getCurrentNavigation().extras.state as InfoItem;
   }
 
 }

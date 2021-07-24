@@ -10,11 +10,10 @@ declare var google;
   styleUrls: ['./located.component.scss'],
 })
 export class LocatedComponent implements OnInit {
-
   mapRef = null;
   @Input() sitio : Site;
 
-  constructor( private loadingCtrl: LoadingController) { }
+  constructor(private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     this.loadMap();
@@ -30,7 +29,7 @@ export class LocatedComponent implements OnInit {
     google.maps.event
     .addListenerOnce(this.mapRef, 'idle', () => {
       loading.dismiss();
-      this.addMaker(Number.parseFloat(this.sitio.x), Number.parseFloat(this.sitio.y),this.sitio.name);
+      this.addMaker(Number.parseFloat(this.sitio.x), Number.parseFloat(this.sitio.y), this.sitio.name);
     });
   }
 
@@ -42,12 +41,10 @@ export class LocatedComponent implements OnInit {
       map: this.mapRef,
       title: title
     });
-    
-      marker.addListener("click", () => {
-        infoWindow.close();
-        infoWindow.setContent(marker.getTitle());
-        infoWindow.open(marker.getMap(), marker);
-      });
+    marker.addListener('click', () => {
+      infoWindow.close();
+      infoWindow.setContent(marker.getTitle());
+      infoWindow.open(marker.getMap(), marker);
+    });
   }
-
 }

@@ -15,7 +15,7 @@ import { User } from 'src/app/interfaces/user';
 })
 export class CommentsComponent implements OnInit {
   region: string;
-  idMun: string
+  idMun: string;
   comentarios = [];
   comment: Commentary;
   user: User;
@@ -44,7 +44,7 @@ export class CommentsComponent implements OnInit {
       idOpinion: id,
       nameUser: this.user.displayName,
       numStars: commentary.numStars
-    }
+    };
     this.munService.saveCom(this.comment, this.sitio.idSite, this.region, this.idMun).then().catch(err => console.error(err));
   }
 

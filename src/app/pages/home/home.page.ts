@@ -23,8 +23,16 @@ export class HomePage implements OnInit {
   constructor(private db: AngularFireDatabase, private loadingController: LoadingController, 
               private router: Router) { }
 
-  ngOnInit() {
-    this.db.list(`HOME`).valueChanges().subscribe(ans => this.regionList = ans);
+  async ngOnInit(): Promise<void> {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Por favor espere...',
+    });
+    await loading.present();
+    this.db.list(`HOME`).valueChanges().subscribe(ans => {this.regionList = ans;
+    loading.dismiss();
+    });
+
 
     // Request permission to use push notifications
     // iOS will prompt user and return if they granted permission or not
@@ -32,7 +40,7 @@ export class HomePage implements OnInit {
     PushNotifications.requestPermission().then(result => {
       if (result.granted) {
         // Register with Apple / Google to receive push via APNS/FCM
-        //alert(result);
+        // alert(result);
         PushNotifications.register();
       } else {
         // Show some error
@@ -65,23 +73,10 @@ export class HomePage implements OnInit {
       },
     );
 
-    this.presentLoading();
-  }
-
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      cssClass: 'my-custom-class',
-      message: 'Por favor espere...',
-      duration: 2000
-    });
-    await loading.present();
-
-    const { role, data } = await loading.onDidDismiss();
-    console.log('Loading dismissed!');
   }
 
   public openProfile(){
-    this.router.navigate(['user-profile'])
+    this.router.navigate(['user-profile']);
   }
 
 }

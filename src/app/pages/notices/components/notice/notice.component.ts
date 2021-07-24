@@ -9,14 +9,13 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./notice.component.scss'],
 })
 export class NoticeComponent implements OnInit {
-
   notice: Notice;
   list =  [];
 
-  constructor(public navCtrl: NavController,private router: Router) { }
+  constructor(public navCtrl: NavController, private router: Router) { }
 
   ngOnInit() {
-    this.notice= this.router.getCurrentNavigation().extras.state as Notice;
+    this.notice = this.router.getCurrentNavigation().extras.state as Notice;
   }
 
 }

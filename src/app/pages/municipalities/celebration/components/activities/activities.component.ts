@@ -15,7 +15,7 @@ export class ActivitiesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.activities= Object.values(this.celebration.activities);
+    this.activities = Object.values(this.celebration.activities);
   }
 
 }

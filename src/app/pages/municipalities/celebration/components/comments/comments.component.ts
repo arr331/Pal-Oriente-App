@@ -14,16 +14,16 @@ import { ModalComponent } from '../../../shared/components/modal/modal.component
 export class CommentsComponent implements OnInit {
 
   @Input() celebration: Celebration;
-  idMun: string
+  idMun: string;
   comentarios = [];
-  rate: number = 2;
+  rate = 2;
   com: Commentary;
   region: string;
   user: any;
   activeAdd: boolean;
 
-  constructor(private alertCtrl: AlertController, private munService: MunicipalityService, private storage: Storage,
-    private modalController: ModalController) { }
+  constructor(private munService: MunicipalityService, private storage: Storage,
+              private modalController: ModalController) { }
 
   ngOnInit() {
     this.storage.get('ids').then(ids => {
@@ -45,7 +45,7 @@ export class CommentsComponent implements OnInit {
       idOpinion: id,
       nameUser: this.user.displayName,
       numStars: commentary.numStars
-    }
+    };
     this.munService.saveCom(this.com, this.celebration.idCelebration, this.region, this.idMun).then().catch(err => console.error(err));
   }
 
