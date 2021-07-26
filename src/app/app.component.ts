@@ -26,14 +26,7 @@ export class AppComponent {
       } else {
         this.statusBar.styleDefault();
       }
-      this.changeDarkMode();
     });
   }
 
-  changeDarkMode(){
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-    if (prefersDark.matches){
-      document.body.classList.toggle('dark');
-    }
-  }
 }
