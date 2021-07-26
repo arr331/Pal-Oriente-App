@@ -13,10 +13,19 @@ import { Storage } from '@ionic/storage';
 export class UserProfilePage implements OnInit {
 
   public userData: User;
+  darkMode: boolean = true;
 
-  constructor(private authService: AuthService, private router: Router, 
-              public alertController: AlertController, private storage: Storage,
-              public navCtrl: NavController) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router, 
+    public alertController: AlertController, 
+    private storage: Storage,
+    public navCtrl: NavController) 
+  { 
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    console.log(prefersDark);
+    this.darkMode = prefersDark.matches;
+  }
 
   async ngOnInit(): Promise<void> {
     this.userData = await this.storage.get('user');
@@ -46,6 +55,11 @@ export class UserProfilePage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  change() {
+    this.darkMode = !this.darkMode;
+    document.body.classList.toggle('dark');
   }
 
 }

@@ -17,7 +17,14 @@
     </div>
     <h3>{{userData.displayName}}</h3>
     <h5>{{userData.email}}</h5>
-
+    <ion-list>
+      <ion-item>
+        <ion-icon slot="start" name="moon"></ion-icon>
+        <ion-label>Modo oscuro</ion-label>
+        <ion-toggle slot="end" [ngModel]="darkMode" (ionChange)="change()"></ion-toggle>
+      </ion-item>
+    </ion-list>
+    <br>
     <div class="content__button">
       <ion-button expand="block" (click)="presentAlertMultipleButtons()">Cerrar sesión</ion-button>
     </div>
