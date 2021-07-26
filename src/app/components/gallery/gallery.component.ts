@@ -15,6 +15,7 @@ export class GalleryComponent implements OnChanges {
   imageList: string[];
   @Input() sitio: Site;
   @Input() celebration: Celebration;
+  display = 'grid'
 
   constructor(
     private photoViewer: PhotoViewer,
@@ -58,5 +59,9 @@ export class GalleryComponent implements OnChanges {
     await loading.present();
 
     const { role, data } = await loading.onDidDismiss();
+  }
+
+  changeSegment(ev) {
+    this.display = ev.detail.value;
   }
 }
