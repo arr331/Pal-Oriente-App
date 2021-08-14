@@ -5,11 +5,29 @@
         <ion-icon name="chevron-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Información de {{municipality?.name}}</ion-title>
+    <ion-title>{{municipality?.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="municipality">
+  <ion-tabs style="display: contents;">
+    <ion-tab-bar slot="top">
+      <ion-tab-button routerLink="/tabs/sitios" [state]="municipality.sites">
+        <ion-icon name="trail-sign"></ion-icon>
+        <ion-label>Sitios</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button routerLink="/tabs/celebraciones" [state]="municipality.celebrations">
+        <ion-icon name="glasses"></ion-icon>
+        <ion-label>Celebraciones</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button>
+        <ion-icon name="navigate-circle"></ion-icon>
+        <ion-label>Mapa</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
   <ion-card style="border-radius: 10px;" *ngIf="municipality">
     <div style="text-align: center;">
       <img class="image" style="max-width: 25rem;" [src]="municipality.image" alt="No se cargó la imagen">

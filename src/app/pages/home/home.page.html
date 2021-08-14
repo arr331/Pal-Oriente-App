@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content *ngIf="regionList">
-  <div class="container" *ngFor="let i of regionList" [routerLink]="['/tabs/home', i.name]">
+  <div class="container" *ngFor="let i of regionList" [routerLink]="['/tabs', i.name]">
     <img src={{i.urlImage}} height="200px" width="100%" style="margin-bottom: -4px;">
     <div class="text-img">
       <h4 class="text">{{i.name}}</h4>

@@ -1,23 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Municipality } from 'src/app/interfaces/municipality';
+import { MunicipalityService } from 'src/app/services/municipality.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-information',
   templateUrl: './information.page.html',
   styleUrls: ['./information.page.scss'],
 })
-export class InformationPage implements OnInit {
+export class InformationPage {
   municipality: Municipality;
 
-  constructor(public navCtrl: NavController, private router: Router, private route: ActivatedRoute) { }
+  constructor(public navCtrl: NavController, private municipalityService: MunicipalityService, private storage: Storage) { }
 
-  ngOnInit() {
-    this.route.queryParams.subscribe(() => {
-      if (this.router.getCurrentNavigation().extras.state) {
-        this.municipality = this.router.getCurrentNavigation().extras.state as Municipality;
-      }
-    });
+  ionViewWillEnter() {
+    this.storage.get('ids').then(ids =>
+      this.municipalityService.getMunicipality(ids.region, ids.idMun).valueChanges().subscribe(answer => this.municipality = answer)
+    );
   }
 }

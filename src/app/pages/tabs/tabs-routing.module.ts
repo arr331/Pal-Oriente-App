@@ -7,91 +7,50 @@ const routes: Routes = [
   {
     path: 'tabs', component: TabsPage,
     children: [
-      {
-        path: 'home', children: [{ path: '', component: HomePage }]
-      },
-      {
-        path: 'home/:region',
-        children: [
-          {
-            path: '', loadChildren: () => import('../municipalities/municipality/municipality.module').then(m => m.MunicipalityPageModule)
-          }
-        ]
-      },
+      { path: 'home', component: HomePage },
       {
         path: 'news',
-        children: [
-          {
-            path: '', loadChildren: () => import('../notices/menu-new/menu-new.module').then(m => m.MenuNewPageModule)
-          }
-        ]
+        loadChildren: () => import('../notices/menu-new/menu-new.module').then(m => m.MenuNewPageModule)
       },
       {
         path: 'map',
-        children: [
-          {
-            path: '', loadChildren: () => import('../map/map.module').then(m => m.MapPageModule)
-          }
-        ]
+        loadChildren: () => import('../map/map.module').then(m => m.MapPageModule)
       },
       {
         path: 'municipio/menu',
-        children: [
-          {
-            path: '', loadChildren: () =>
-            import('../municipalities/municipality-menu/municipality-menu.module')
-            .then(m => m.MunicipalityMenuPageModule)
-          }
-        ]
+        loadChildren: () => import('../municipalities/municipality-menu/municipality-menu.module')
+        .then(m => m.MunicipalityMenuPageModule)
       },
       {
         path: 'sitios',
-        children: [
-          {
-            path: '', loadChildren: () => import('../municipalities/site-menu/site-menu.module').then(m => m.SiteMenuPageModule)
-          }
-        ]
+        loadChildren: () => import('../municipalities/site-menu/site-menu.module').then(m => m.SiteMenuPageModule) 
       },
       {
         path: 'sitio',
-        children: [
-          {
-            path: '', loadChildren: () => import('../municipalities/site/site.module').then(m => m.SitePageModule)
-          }
-        ]
+        loadChildren: () => import('../municipalities/site/site.module').then(m => m.SitePageModule)  
       },
       {
         path: 'celebraciones',
-        children: [
-          {
-            path: '', loadChildren: () =>
-            import('../municipalities/celebration-menu/celebration-menu.module')
-            .then(m => m.CelebrationMenuPageModule)
-          }
-        ]
+        loadChildren: () => import('../municipalities/celebration-menu/celebration-menu.module')
+        .then(m => m.CelebrationMenuPageModule)
       },
       {
         path: 'celebracion',
-        children: [
-          {
-            path: '', loadChildren: () => import('../municipalities/celebration/celebration.module').then(m => m.CelebrationPageModule)
-          }
-        ]
+        loadChildren: () => import('../municipalities/celebration/celebration.module').then(m => m.CelebrationPageModule)
       },
       {
         path: 'informacion',
-        children: [
-          {
-            path: '', loadChildren: () => import('../municipalities/information/information.module').then(m => m.InformationPageModule)
-          }
-        ]
+        children:  [{path: '',
+        loadChildren: () => import('../municipalities/information/information.module').then(m => m.InformationPageModule)
+      }]
       },
       {
         path: 'information',
-        children: [
-          { path: '',
-          loadChildren: () => import('../information/menu-information/menu-information.module').then( m => m.MenuInformationPageModule) }
-        ]
+        loadChildren: () => import('../information/menu-information/menu-information.module').then( m => m.MenuInformationPageModule)  
+      },
+      {
+        path: ':region',
+        loadChildren: () => import('../municipalities/municipality/municipality.module').then(m => m.MunicipalityPageModule)  
       },
       { path: '', redirectTo: '/tabs/home' }
     ]
