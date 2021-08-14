@@ -8,7 +8,7 @@ export class GalleryService {
 
   constructor(private storage: AngularFireStorage) { }
 
-  getGallery(region: string, idMun: string, idSite: string, itemPath: string) {
+  public getGallery(region: string, idMun: string, idSite: string, itemPath: string) {
     return this.storage.storage.ref(`${region}/MUNICIPALITIES/${idMun}/${itemPath}/${idSite}/gallery`).listAll();
   }
 }

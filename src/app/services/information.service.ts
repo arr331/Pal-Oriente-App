@@ -9,7 +9,7 @@ export class InformationService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  getInformation() {
+  public getInformation() {
     return this.db.list<InfoItem>(`PLACEINFO`);
   }
 }

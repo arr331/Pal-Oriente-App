@@ -9,7 +9,7 @@ export class MapService {
 
   constructor(private db: AngularFireDatabase) {}
 
-  async getCordinates() {
+  public async getCordinates() {
     await this.db
       .list(`COORDINATES`)
       .query.once('value')

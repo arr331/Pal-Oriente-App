@@ -18,7 +18,7 @@ export class MunicipalityService {
 
   constructor(private db: AngularFireDatabase) {}
 
-  async getMunicipalitiesInfo(region: string) {
+  public async getMunicipalitiesInfo(region: string) {
     this.region = region;
     if (!this.municipalityList[region]) {
       this.municipalityList = { ...this.municipalityList, [region]: [] };
@@ -34,18 +34,18 @@ export class MunicipalityService {
     return this.municipalityList[region];
   }
 
-  getMunicipality(
+  public getMunicipality(
     region: string,
     idMun: string
   ): AngularFireObject<Municipality> {
     return this.db.object(`${region}/MUNICIPALITIES/${idMun}`);
   }
 
-  getMunicipalitiesById(idMun, region) {
+  public getMunicipalitiesById(idMun, region) {
     return this.municipalityList[region].filter((mun) => mun.idMun == idMun)[0];
   }
 
-  async getComentarios(sitio: string, municipio: string) {
+  public async getComentarios(sitio: string, municipio: string) {
     if (!this.comentarios[sitio]) {
       this.comentarios = { ...this.comentarios, [sitio]: [] };
       await this.db
@@ -60,18 +60,18 @@ export class MunicipalityService {
     return this.comentarios[sitio];
   }
 
-  getCom(sitio: string, municipio: string): AngularFireList<Commentary> {
+  public getCom(sitio: string, municipio: string): AngularFireList<Commentary> {
     return this.db.list(`${this.region}/COMMENTS/${municipio}/${sitio}`);
   }
 
-  saveCom(com: Commentary, idSitio: string, region: string, idMun: string) {
+  public saveCom(com: Commentary, idSitio: string, region: string, idMun: string) {
     com.idOpinion = com.idOpinion || this.db.createPushId();
     return this.db
       .list(`${region}/COMMENTS/${idMun}/${idSitio}`)
       .update(com.idOpinion, com);
   }
 
-  deleteCom(idOpinion: string, idSitio: string, region: string, idMun: string) {
+  public deleteCom(idOpinion: string, idSitio: string, region: string, idMun: string) {
     return this.db
       .list(`${region}/COMMENTS/${idMun}/${idSitio}`)
       .remove(idOpinion);

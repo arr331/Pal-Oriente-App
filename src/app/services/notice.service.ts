@@ -9,7 +9,7 @@ export class NoticeService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  getNotices() {
+  public getNotices() {
     return this.db.list<Notice>(`NEWS`);
   }
 }
