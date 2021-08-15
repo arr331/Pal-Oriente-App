@@ -17,11 +17,6 @@ const routes: Routes = [
         loadChildren: () => import('../map/map.module').then(m => m.MapPageModule)
       },
       {
-        path: 'municipio/menu',
-        loadChildren: () => import('../municipalities/municipality-menu/municipality-menu.module')
-        .then(m => m.MunicipalityMenuPageModule)
-      },
-      {
         path: 'sitios',
         loadChildren: () => import('../municipalities/site-menu/site-menu.module').then(m => m.SiteMenuPageModule) 
       },
