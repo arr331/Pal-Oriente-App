@@ -19,12 +19,11 @@ export class MunicipalityPage implements OnInit {
 
   ngOnInit() {
     this.region = this.activatedroute.snapshot.paramMap.get('region');
-    console.log(this.region);
     this.munService.getMunicipalitiesInfo(this.region).then(answer => this.municipalityList = answer);
   }
 
   async goTo(mun) {
-    await this.storage.set('ids', {'region': this.region, 'idMun': mun.idMun});
+    await this.storage.set('ids', {region: this.region, idMun: mun.idMun});
     this.router.navigate(['tabs/informacion']);
   }
 }

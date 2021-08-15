@@ -18,11 +18,11 @@ const routes: Routes = [
       },
       {
         path: 'sitios',
-        loadChildren: () => import('../municipalities/site-menu/site-menu.module').then(m => m.SiteMenuPageModule) 
+        loadChildren: () => import('../municipalities/site-menu/site-menu.module').then(m => m.SiteMenuPageModule)
       },
       {
         path: 'sitio',
-        loadChildren: () => import('../municipalities/site/site.module').then(m => m.SitePageModule)  
+        loadChildren: () => import('../municipalities/site/site.module').then(m => m.SitePageModule)
       },
       {
         path: 'celebraciones',
@@ -41,11 +41,11 @@ const routes: Routes = [
       },
       {
         path: 'information',
-        loadChildren: () => import('../information/menu-information/menu-information.module').then( m => m.MenuInformationPageModule)  
+        loadChildren: () => import('../information/menu-information/menu-information.module').then( m => m.MenuInformationPageModule)
       },
       {
         path: ':region',
-        loadChildren: () => import('../municipalities/municipality/municipality.module').then(m => m.MunicipalityPageModule)  
+        loadChildren: () => import('../municipalities/municipality/municipality.module').then(m => m.MunicipalityPageModule)
       },
       { path: '', redirectTo: '/tabs/home' }
     ]

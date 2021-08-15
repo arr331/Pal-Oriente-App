@@ -14,14 +14,18 @@ import { TermsPage } from 'src/app/components/terms/terms.page';
 })
 export class LoginPage implements OnInit {
 
-  constructor(public authService: AuthService, public router: Router, public storage: Storage,
-    public modalController: ModalController) { }
+  constructor(
+    public authService: AuthService,
+    public router: Router,
+    public storage: Storage,
+    public modalController: ModalController
+  ) { }
 
   ngOnInit() { }
 
   async googleSignup() {
     const googleUser = await Plugins.GoogleAuth.signIn(null) as any;
-    this.authService.GoogleAuth(googleUser.authentication.idToken)
+    this.authService.GoogleAuth(googleUser.authentication.idToken);
   }
 
   async openModal() {

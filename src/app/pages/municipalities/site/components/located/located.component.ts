@@ -11,7 +11,7 @@ declare var google;
 })
 export class LocatedComponent implements OnInit {
   mapRef = null;
-  @Input() sitio : Site;
+  @Input() sitio: Site;
 
   constructor(private loadingCtrl: LoadingController) { }
 
@@ -39,7 +39,7 @@ export class LocatedComponent implements OnInit {
     const marker = new google.maps.Marker({
       position: { lat, lng },
       map: this.mapRef,
-      title: title
+      title
     });
     marker.addListener('click', () => {
       infoWindow.close();

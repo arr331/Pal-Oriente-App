@@ -3,14 +3,14 @@
     <ion-avatar slot="start">
       <img src="{{comentario.imageUser}}">
     </ion-avatar>
-    <div class="comentario-contenido">
-      <h3>{{comentario.nameUser}}</h3>
-      <ion-col *ngFor="let s of [1,2,3,4,5]">
-        <ion-icon style="font-size: 2rem;" name="star{{s > comentario.numStars ? '-outline' : ''}}" color="primary">
+    <ion-label>
+      <h2>{{comentario.nameUser}}</h2>
+      <ion-col *ngFor="let s of [1,2,3,4,5]; let first = first;" [ngClass]="{ 'padding-left' : first }">
+        <ion-icon name="star" color="{{s > comentario.numStars ? 'grey' : 'star'}}">
         </ion-icon>
       </ion-col>
       <p>{{comentario.commentary}}</p>
-    </div>
+    </ion-label>
   </ion-item>
 </ion-list>
 

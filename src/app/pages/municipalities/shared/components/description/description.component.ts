@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
+import { Celebration } from 'src/app/interfaces/celebration';
+import { Site } from 'src/app/interfaces/site';
 
 @Component({
   selector: 'app-description',
@@ -10,7 +12,7 @@ export class DescriptionComponent implements OnInit {
 
   @ViewChild('mySlider')  slides: IonSlides;
 
-  @Input() sitio : any;
+  @Input() object: Site | Celebration;
 
   slideOpts = {
     initialSlide: 1,

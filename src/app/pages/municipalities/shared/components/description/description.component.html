@@ -2,19 +2,19 @@
   <ion-slides scrollbar="true" pager="true" [options]="slideOpts" #mySlider>
     <ion-slide>
       <div style="text-align: center;">
-        <img src="{{sitio.image}}" style="max-width: 25rem;" />
+        <img src="{{object.image}}" style="max-width: 25rem;" />
       </div>
     </ion-slide>
   </ion-slides>
   <ion-card-header>
-    <ion-card-title style="text-align: center;">{{sitio.name}}</ion-card-title>
+    <ion-card-title style="text-align: center;">{{object.name}}</ion-card-title>
   </ion-card-header>
 
   <ion-card-content style="text-align: justify;">
-    {{sitio.description}}
-    <div class="reference" *ngIf="sitio.reference">
+    {{object.description}}
+    <div class="reference" *ngIf="object.reference">
       <br>
-      <strong><ion-text color="dark">Referencia:</ion-text></strong> {{sitio.reference}}
+      <strong><ion-text color="dark">Referencia:</ion-text></strong> {{object.reference}}
     </div>
   </ion-card-content>
 </ion-card>

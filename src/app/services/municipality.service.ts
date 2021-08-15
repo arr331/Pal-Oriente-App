@@ -42,7 +42,7 @@ export class MunicipalityService {
   }
 
   public getMunicipalitiesById(idMun, region) {
-    return this.municipalityList[region].filter((mun) => mun.idMun == idMun)[0];
+    return this.municipalityList[region].filter((mun) => mun.idMun === idMun)[0];
   }
 
   public async getComentarios(sitio: string, municipio: string) {

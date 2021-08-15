@@ -37,7 +37,7 @@
   </ion-tabs>
 
   <ng-container [ngSwitch]="item">
-    <app-description *ngSwitchCase="'description'" [sitio]="sitio"></app-description>
+    <app-description *ngSwitchCase="'description'" [object]="sitio"></app-description>
     <app-located *ngSwitchCase="'map'" [sitio]="sitio"></app-located>
     <app-comments *ngSwitchCase="'comments'" [sitio]="sitio"></app-comments>
     <app-gallery *ngSwitchCase="'gallery'" [sitio]="sitio"></app-gallery>

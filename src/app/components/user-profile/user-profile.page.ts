@@ -13,17 +13,16 @@ import { Storage } from '@ionic/storage';
 export class UserProfilePage implements OnInit {
 
   public userData: User;
-  darkMode: boolean = true;
+  darkMode = true;
 
   constructor(
     private authService: AuthService,
-    private router: Router, 
-    public alertController: AlertController, 
+    private router: Router,
+    public alertController: AlertController,
     private storage: Storage,
-    public navCtrl: NavController) 
-  { 
+    public navCtrl: NavController
+  ) {
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-    console.log(prefersDark);
     this.darkMode = prefersDark.matches;
   }
 

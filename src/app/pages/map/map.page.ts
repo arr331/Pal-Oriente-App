@@ -16,12 +16,11 @@ export class MapPage implements OnInit {
 
   constructor(private loadingCtrl: LoadingController, private mapService: MapService) { }
 
-
   ngOnInit() {
     this.mapService.getCordinates().then(data => {
       data.forEach(mun => {
         const coordinates = Object.keys(mun).map(coor => mun[coor]);
-        this.coordinatesList.push(...coordinates); 
+        this.coordinatesList.push(...coordinates);
         this.loadMap();
       });
     });
@@ -36,23 +35,19 @@ export class MapPage implements OnInit {
     });
     google.maps.event.addListenerOnce(this.mapRef, 'idle', () => {
       loading.dismiss();
-      for (let item of this.coordinatesList){
+      for (const item of this.coordinatesList){
         this.addMaker(parseFloat(item.x), parseFloat(item.y), item.name);
       }
     });
   }
 
   private addMaker(lat: number, lng: number, title: string) {
-
     const infoWindow = new google.maps.InfoWindow();
-
     const marker = new google.maps.Marker({
       position: { lat, lng },
       map: this.mapRef,
-      title: title,
-      
+      title,
     });
-
     // Add a click listener for each marker, and set up the info window.
     marker.addListener('click', () => {
       infoWindow.close();
@@ -60,5 +55,4 @@ export class MapPage implements OnInit {
       infoWindow.open(marker.getMap(), marker);
     });
   }
-
 }

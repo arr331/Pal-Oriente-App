@@ -15,7 +15,7 @@ export class GalleryComponent implements OnChanges {
   imageList: string[];
   @Input() sitio: Site;
   @Input() celebration: Celebration;
-  display = 'grid'
+  display = 'grid';
 
   constructor(
     private photoViewer: PhotoViewer,

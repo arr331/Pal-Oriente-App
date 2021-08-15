@@ -10,12 +10,11 @@ import { Activity } from '../../../../../interfaces/activity';
 export class ActivitiesComponent implements OnInit {
 
   @Input() celebration: Celebration;
+  activities: Activity[];
 
-  activities : Activity[];
   constructor() { }
 
   ngOnInit() {
     this.activities = Object.values(this.celebration.activities);
   }
-
 }

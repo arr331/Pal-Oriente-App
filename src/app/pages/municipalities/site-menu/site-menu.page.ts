@@ -11,7 +11,7 @@ export class SiteMenuPage implements OnInit {
 
   constructor(public navCtrl: NavController, private loadingController: LoadingController) { }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.presentLoading();
   }
 

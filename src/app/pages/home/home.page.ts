@@ -20,8 +20,11 @@ const { PushNotifications } = Plugins;
 export class HomePage implements OnInit {
   regionList: any;
 
-  constructor(private db: AngularFireDatabase, private loadingController: LoadingController, 
-              private router: Router) { }
+  constructor(
+    private db: AngularFireDatabase,
+    private loadingController: LoadingController,
+    private router: Router
+  ) { }
 
   async ngOnInit(): Promise<void> {
     const loading = await this.loadingController.create({
@@ -29,8 +32,9 @@ export class HomePage implements OnInit {
       message: 'Por favor espere...',
     });
     await loading.present();
-    this.db.list(`HOME`).valueChanges().subscribe(ans => {this.regionList = ans;
-    loading.dismiss();
+    this.db.list(`HOME`).valueChanges().subscribe(ans => {
+      this.regionList = ans;
+      loading.dismiss();
     });
 
 

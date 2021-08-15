@@ -4,8 +4,9 @@ import { Storage } from '@ionic/storage';
 import { Site } from '../../../../../interfaces/site';
 import { Commentary } from '../../../../../interfaces/comment';
 import { ModalController } from '@ionic/angular';
-import { ModalComponent } from '../../../shared/components/modal/modal.component';
+import { ModalComponent } from '../modal/modal.component';
 import { User } from 'src/app/interfaces/user';
+import { Celebration } from 'src/app/interfaces/celebration';
 
 @Component({
   selector: 'app-comments',
@@ -21,6 +22,7 @@ export class CommentsComponent implements OnInit {
   user: User;
   activeAdd: boolean;
   @Input() sitio: Site;
+  @Input() celebration: Celebration;
 
   constructor(private munService: MunicipalityService, private storage: Storage, private modalController: ModalController) { }
 
@@ -28,7 +30,7 @@ export class CommentsComponent implements OnInit {
     this.storage.get('ids').then(ids => {
       this.region = ids.region;
       this.idMun = ids.idMun;
-      this.munService.getCom(this.sitio.idSite, this.idMun).valueChanges().subscribe(async res => {
+      this.munService.getCom(this.getCurrentId(), this.idMun).valueChanges().subscribe(async res => {
         this.comentarios = res;
         this.user = await this.storage.get('user');
         this.activeAdd = !this.comentarios.some(com => com.uid === this.user.uid);
@@ -45,7 +47,7 @@ export class CommentsComponent implements OnInit {
       nameUser: this.user.displayName,
       numStars: commentary.numStars
     };
-    this.munService.saveCom(this.comment, this.sitio.idSite, this.region, this.idMun).then().catch(err => console.error(err));
+    this.munService.saveCom(this.comment, this.getCurrentId(), this.region, this.idMun).then().catch(err => console.error(err));
   }
 
   update(commentary: Commentary) {
@@ -53,7 +55,7 @@ export class CommentsComponent implements OnInit {
   }
 
   delete(idOpinion: string) {
-    this.munService.deleteCom(idOpinion, this.sitio.idSite, this.region, this.idMun).then().catch(err => console.error(err));
+    this.munService.deleteCom(idOpinion, this.getCurrentId(), this.region, this.idMun).then().catch(err => console.error(err));
   }
 
   async presentModal(input?: Commentary) {
@@ -70,5 +72,9 @@ export class CommentsComponent implements OnInit {
       }
     });
     return await modal.present();
+  }
+
+  private getCurrentId() {
+    return this.sitio ? this.sitio.idSite : this.celebration ? this.celebration.idCelebration : undefined;
   }
 }
