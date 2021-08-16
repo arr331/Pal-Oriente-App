@@ -1,17 +1,23 @@
+<ion-list lines="full"></ion-list>
 <ion-row class="message" *ngIf="itemList.length === 0">
-  <ion-col size="2">
-    <ion-icon style=" font-size: 3rem;" name="sad-outline"></ion-icon>
+  <ion-col size="2" style="display: flex; justify-content: center;
+    align-items: center;">
+    <ion-icon style="font-size: 3rem;" name="sad-outline"></ion-icon>
   </ion-col>
-  <ion-col>
+  <ion-col style="margin: 10px;">
     <span style=" font-size: 1.3rem;"> Lo sentimos, todavía no hay información disponible.</span>
   </ion-col>
 </ion-row>
 
-<ion-card-content class="item-menu" *ngFor="let item of itemList" routerLink="/tabs/{{route}}" [state]="item">
-  <div class="container" style="display: flex; justify-content: center;">
-    <div class="text-img border">
-      <h3 class="text">{{item.name}}</h3>
-    </div>
-    <img [src]="item.image" class="border">
-  </div>
-</ion-card-content>
+<ion-list lines="full">
+  <ion-item button *ngFor="let item of itemList" routerLink="/tabs/{{route}}" [state]="item">
+    <ion-thumbnail slot="start">
+      <img [src]="item.image">
+    </ion-thumbnail>
+    <ion-label class="ion-text-wrap">
+      <h2>{{item.name}}</h2>
+      <p>{{item.description}}</p>
+    </ion-label>
+    <ion-button fill="outline" slot="end">más</ion-button>
+  </ion-item>
+</ion-list>

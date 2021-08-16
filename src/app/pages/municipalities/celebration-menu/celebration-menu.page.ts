@@ -9,23 +9,7 @@ import { NavController, LoadingController } from '@ionic/angular';
 export class CelebrationMenuPage implements OnInit {
   route = 'celebracion';
 
-  constructor(public navCtrl: NavController, private loadingController: LoadingController) { }
+  constructor(public navCtrl: NavController) { }
 
-  ngOnInit() {
-    this.presentLoading();
-  }
-
-  async presentLoading(): Promise<void> {
-    const loading = await this.loadingController.create({
-      cssClass: 'my-custom-class',
-      message: 'Por favor espere...',
-      duration: 2000
-    });
-    await loading.present();
-
-    const { role, data } = await loading.onDidDismiss();
-    console.log('Loading dismissed!');
-  }
-
-
+  ngOnInit() { }
 }

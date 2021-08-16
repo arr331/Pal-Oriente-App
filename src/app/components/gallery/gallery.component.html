@@ -1,13 +1,14 @@
-<ion-row class="message" *ngIf="imageList.length === 0; else aca">
-  <ion-col size="2">
-    <ion-icon style=" font-size: 3rem;" name="sad-outline"></ion-icon>
+<ion-row class="message" *ngIf="imageList.length === 0; else gallery">
+  <ion-col size="2" style="display: flex; justify-content: center;
+    align-items: center;">
+    <ion-icon style="font-size: 3rem;" name="sad-outline"></ion-icon>
   </ion-col>
-  <ion-col>
+  <ion-col style="margin: 10px;">
     <span style=" font-size: 1.3rem;"> Lo sentimos, todavía no hay información disponible.</span>
   </ion-col>
 </ion-row>
 
-<ng-template #aca>
+<ng-template #gallery>
   <h3 style="text-align: center;">{{sitio?.name || celebration?.name}}</h3>
   <ion-segment (ionChange)="changeSegment($event)" value="grid">
     <ion-segment-button value="grid">
