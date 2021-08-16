@@ -1,5 +1,16 @@
-<ion-list>
-  <ion-item *ngFor="let comentario of comentarios" (click)="update(comentario)">
+<ion-list *ngIf="user">
+  <ion-list-header>
+    <ion-row style="align-items: center;">
+      <span>({{getProm()}})</span> 
+      <ion-col>
+        <ion-icon *ngFor="let s of [1,2,3,4,5]" name="star" color="{{s > getProm() ? 'grey' : 'star'}}">
+        </ion-icon>
+      </ion-col>
+      <span style="display: flex; align-items: center;">({{comentarios.length}}) <ion-icon style="margin-left: 5px;" name="people-circle-outline"></ion-icon></span> 
+    </ion-row>
+
+  </ion-list-header>
+  <ion-item *ngFor="let comentario of comentarios">
     <ion-avatar slot="start">
       <img src="{{comentario.imageUser}}">
     </ion-avatar>
@@ -11,6 +22,8 @@
       </ion-col>
       <p>{{comentario.commentary}}</p>
     </ion-label>
+    <ion-icon *ngIf="comentario.uid === user.uid" slot="end" name="eye-outline" (click)="update(comentario)"></ion-icon>
+    <ion-icon *ngIf="comentario.uid === user.uid" slot="end" color="danger" name="trash-sharp" (click)="delete(comentario.idOpinion)"></ion-icon>
   </ion-item>
 </ion-list>
 

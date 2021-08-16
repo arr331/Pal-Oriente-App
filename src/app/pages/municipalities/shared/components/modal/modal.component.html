@@ -3,9 +3,10 @@
     <h3>Calificar</h3>
     <ion-grid style="font-size: 2rem;">
       <ion-row>
-        <ion-col *ngFor="let s of [1,2,3,4,5]">
-          <ion-icon name="star{{s > numStarField ? '-outline' : ''}}" color="primary" (click)="numStarField = s">
+        <ion-col >
+          <ion-icon *ngFor="let s of [1,2,3,4,5]" name="star" color="{{s > numStarField ? 'grey' : 'star'}}" (click)="numStarField = s">
           </ion-icon>
+          <span *ngIf="numStarField > 0">({{numStarField}})</span> 
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -13,10 +14,14 @@
       <ion-textarea formControlName="commentary"
         placeholder="Déjanos un comentario para saber como te pareció el lugar"></ion-textarea>
     </ion-item>
-    <ion-button (click)="save()">Guardar</ion-button>
-    <ion-button (click)="close('cancel')">Cancelar</ion-button>
-    <ion-button (click)="close('delete')" color="danger">
-      <ion-icon name="trash-sharp"></ion-icon>
-    </ion-button>
+    <ion-grid>
+      <ion-row>
+        <ion-button mode="ios" (click)="close('cancel')" color="grey">Cancelar</ion-button>
+        <ion-button mode="ios" (click)="save()">Guardar</ion-button>
+        <ion-button mode="ios" (click)="close('delete')" color="danger">
+          <ion-icon name="trash-sharp"></ion-icon>
+        </ion-button>
+      </ion-row>
+    </ion-grid>
   </form>
 </div>

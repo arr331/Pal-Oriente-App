@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { Commentary } from '../../../../../interfaces/comment';
@@ -36,4 +36,5 @@ export class ModalComponent implements OnInit {
 
   get numStarField() { return this.commentForm.get('numStars').value; }
   set numStarField(value: number) { this.commentForm.get('numStars').setValue(value); }
+
 }

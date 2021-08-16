@@ -77,4 +77,12 @@ export class CommentsComponent implements OnInit {
   private getCurrentId() {
     return this.sitio ? this.sitio.idSite : this.celebration ? this.celebration.idCelebration : undefined;
   }
+
+  getProm() {
+    let promedio = 0;
+    this.comentarios.forEach(c => {
+      promedio = promedio + c.numStars;
+    });
+    return (promedio / this.comentarios.length).toFixed(1);
+  }
 }
