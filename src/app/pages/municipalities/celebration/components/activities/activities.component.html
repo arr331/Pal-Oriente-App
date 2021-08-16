@@ -1,13 +1,14 @@
 <ion-content *ngIf="activities">
   <div class="content-cards">
-    <ion-card *ngFor="let item of activities">
-      <img src="{{item.image}}"/>
-      <ion-card-content>
-        <ion-card-title>
-          <strong>{{item.name}}</strong>
-          </ion-card-title>
-      </ion-card-content>
-    </ion-card>
+    <div *ngFor="let item of activities">
+      <ion-card *ngIf="item.state">
+        <img src="{{item.image}}"/>
+        <ion-card-content>
+          <ion-card-title>
+            <strong>{{item.name}}</strong>
+            </ion-card-title>
+        </ion-card-content>
+      </ion-card>
+    </div>
   </div>
-
 </ion-content>

@@ -8,7 +8,7 @@
 </ion-row>
 
 <ion-card-content class="item-menu" *ngFor="let item of itemList" routerLink="/tabs/{{route}}" [state]="item">
-  <div class="container" style="display: flex; justify-content: center;">
+  <div class="container" *ngIf="item.state" style="display: flex; justify-content: center;">
     <div class="text-img border">
       <h3 class="text">{{item.name}}</h3>
     </div>
