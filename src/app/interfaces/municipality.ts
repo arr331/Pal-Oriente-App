@@ -14,4 +14,6 @@ export interface Municipality {
   sites: Site[];
   state: boolean;
   weather: string;
+  x: string;
+  y: string;
 }

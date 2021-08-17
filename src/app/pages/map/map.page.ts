@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
-import { Coordinate } from 'src/app/interfaces/coordinate';
-import { MapService } from '../../services/map.service';
+import { Municipality } from 'src/app/interfaces/municipality';
+import { MunicipalityService } from 'src/app/services/municipality.service';
+import { Storage } from '@ionic/storage';
 declare var google;
 
 @Component({
@@ -11,18 +12,15 @@ declare var google;
   encapsulation: ViewEncapsulation.None,
 })
 export class MapPage implements OnInit {
-  coordinatesList: Coordinate[] = [];
+  municipalityList: Municipality[] = [];
   mapRef = null;
 
-  constructor(private loadingCtrl: LoadingController, private mapService: MapService) { }
+  constructor(private loadingCtrl: LoadingController, private storage: Storage, private municipalityService: MunicipalityService) { }
 
-  ngOnInit() {
-    this.mapService.getCordinates().then(data => {
-      data.forEach(mun => {
-        const coordinates = Object.keys(mun).map(coor => mun[coor]);
-        this.coordinatesList.push(...coordinates);
-        this.loadMap();
-      });
+  ngOnInit(): void {
+    this.municipalityService.getMunicipalitiesInfo('ALTIPLANO').then(answer => {
+      this.municipalityList = answer;
+      this.loadMap();
     });
   }
 
@@ -35,24 +33,28 @@ export class MapPage implements OnInit {
     });
     google.maps.event.addListenerOnce(this.mapRef, 'idle', () => {
       loading.dismiss();
-      for (const item of this.coordinatesList){
-        this.addMaker(parseFloat(item.x), parseFloat(item.y), item.name);
-      }
+      this.municipalityList.forEach((mun, index) => this.addMaker(parseFloat(mun.x), parseFloat(mun.y), mun.name, mun.idMun));
     });
   }
 
-  private addMaker(lat: number, lng: number, title: string) {
-    const infoWindow = new google.maps.InfoWindow();
+  private addMaker(lat: number, lng: number, title: string, index: string) {
+    const z = `<div id="xw">    <h4 >${title}</h4>  <a href="/tabs/informacion">ver mas</a>    </div>`;
+
+    const infoWindow = new google.maps.InfoWindow({
+      content: z
+    });
     const marker = new google.maps.Marker({
       position: { lat, lng },
       map: this.mapRef,
       title,
+      index
     });
-    // Add a click listener for each marker, and set up the info window.
-    marker.addListener('click', () => {
-      infoWindow.close();
-      infoWindow.setContent(marker.getTitle());
-      infoWindow.open(marker.getMap(), marker);
+    marker.addListener('click', async () => {
+      infoWindow.open(
+        marker.getMap(),
+        marker,
+      );
+      await this.storage.set('ids', {region: 'ALTIPLANO', idMun: marker.index});
     });
   }
 }
