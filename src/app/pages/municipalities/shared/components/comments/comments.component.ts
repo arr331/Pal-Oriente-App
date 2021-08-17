@@ -27,10 +27,12 @@ export class CommentsComponent implements OnInit {
   constructor(private munService: MunicipalityService, private storage: Storage, private modalController: ModalController) { }
 
   ngOnInit() {
+
     this.storage.get('ids').then(ids => {
       this.region = ids.region;
       this.idMun = ids.idMun;
-      this.munService.getCom(this.getCurrentId(), this.idMun).valueChanges().subscribe(async res => {
+      const idSite = this.getCurrentId();
+      this.munService.getAll(this.region, this.idMun, idSite).valueChanges().subscribe(async res => {
         this.comentarios = res;
         this.user = await this.storage.get('user');
         this.activeAdd = !this.comentarios.some(com => com.uid === this.user.uid);
@@ -38,7 +40,7 @@ export class CommentsComponent implements OnInit {
     });
   }
 
-  save(commentary, id: string) {
+  save(commentary, id: string): void {
     this.comment = {
       uid: this.user.uid,
       imageUser: this.user.photoURL,

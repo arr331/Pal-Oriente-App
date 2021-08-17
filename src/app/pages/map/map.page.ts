@@ -24,7 +24,7 @@ export class MapPage implements OnInit {
     });
   }
 
-  public async loadMap() {
+  public async loadMap(): Promise<void> {
     const loading = await this.loadingCtrl.create({
       message : 'Espere por favor'
     });
@@ -36,28 +36,28 @@ export class MapPage implements OnInit {
     });
     google.maps.event.addListenerOnce(this.mapRef, 'idle', () => {
       loading.dismiss();
-      this.municipalityList.forEach((mun, index) => this.addMaker(parseFloat(mun.x), parseFloat(mun.y), mun.name, mun.idMun));
+      this.municipalityList.forEach(mun => this.addMaker(parseFloat(mun.x), parseFloat(mun.y), mun.name, mun.image, mun.idMun));
     });
   }
 
-  private addMaker(lat: number, lng: number, title: string, index: string) {
-    const z = `<div id="xw">    <h4 >${title}</h4>  <a href="/tabs/informacion">ver mas</a>    </div>`;
+  private addMaker(lat: number, lng: number, title: string, image: string, idMun: string): void {
+    const html = `<div class="content"> <h3>${title}</h3> <img style="padding-bottom: 10px; max-width: 100%;" src="${image}"/> <br> <a href="/tabs/informacion" class="link">Ver más...</a> </div>`;
 
     const infoWindow = new google.maps.InfoWindow({
-      content: z
+      content: html
     });
     const marker = new google.maps.Marker({
       position: { lat, lng },
       map: this.mapRef,
       title,
-      index
+      idMun
     });
     marker.addListener('click', async () => {
       infoWindow.open(
         marker.getMap(),
         marker,
       );
-      await this.storage.set('ids', {region: 'ALTIPLANO', idMun: marker.index});
+      await this.storage.set('ids', {region: 'ALTIPLANO', idMun: marker.idMun});
     });
   }
 }

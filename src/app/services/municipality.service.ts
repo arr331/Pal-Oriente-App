@@ -45,23 +45,8 @@ export class MunicipalityService {
     return this.municipalityList[region].filter((mun) => mun.idMun === idMun)[0];
   }
 
-  public async getComentarios(sitio: string, municipio: string) {
-    if (!this.comentarios[sitio]) {
-      this.comentarios = { ...this.comentarios, [sitio]: [] };
-      await this.db
-        .list(`${this.region}/COMMENTS/${municipio}/${sitio}`)
-        .query.once('value')
-        .then((data) => {
-          data.forEach((com) => {
-            this.comentarios[sitio].push(com.val());
-          });
-        });
-    }
-    return this.comentarios[sitio];
-  }
-
-  public getCom(sitio: string, municipio: string): AngularFireList<Commentary> {
-    return this.db.list(`${this.region}/COMMENTS/${municipio}/${sitio}`);
+  public getAll(region: string, municipality: string, site: string): AngularFireList<Commentary> {
+    return this.db.list(`${region}/COMMENTS/${municipality}/${site}`);
   }
 
   public saveCom(com: Commentary, idSitio: string, region: string, idMun: string) {
