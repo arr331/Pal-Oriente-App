@@ -73,7 +73,7 @@ export class MapPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Mensaje informativo',
-      message: 'El mapa no pudo ser cargado, intentelo más tarde',
+      message: 'El mapa no pudo ser cargado, inténtelo más tarde',
       buttons: ['OK']
     });
 

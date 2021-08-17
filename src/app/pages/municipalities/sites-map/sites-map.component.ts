@@ -41,7 +41,7 @@ export class SitesMapComponent implements OnInit {
       this.presentAlert();
     };
     google.maps.event.addListenerOnce(this.mapRef, 'idle', () => {
-      this.sites.forEach((mun, index) => this.addMaker(parseFloat(mun.x), parseFloat(mun.y), mun.name, mun.image, mun.idSite));
+      this.sites.forEach((mun, index) => this.addMaker(parseFloat(mun.x), parseFloat(mun.y), mun.name, mun.image, mun.idSite, mun));
       loading.dismiss();
     }), error =>{
       console.error(error);
@@ -49,8 +49,8 @@ export class SitesMapComponent implements OnInit {
     };
   }
 
-  private addMaker(lat: number, lng: number, title: string, image: string, idMun: string): void {
-    const html = `<div class="content"> <h3>${title}</h3> <img style="padding-bottom: 10px; max-width: 100%;" src="${image}"/> <br> <a href="/tabs/informacion" class="link">Ver más...</a> </div>`;
+  private addMaker(lat: number, lng: number, title: string, image: string, idMun: string, site): void {
+    const html = `<div class="content"> <h3>${title}</h3> <img style="padding-bottom: 10px; max-width: 100%;" src="${image}"/> <br> <a href="/tabs/sitio"  class="link">Ver más...</a> </div>`;
 
     const infoWindow = new google.maps.InfoWindow({
       content: html
@@ -66,7 +66,7 @@ export class SitesMapComponent implements OnInit {
         marker.getMap(),
         marker,
       );
-      await this.storage.set('ids', {region: 'ALTIPLANO', idMun: marker.idMun});
+      await this.storage.set('site', site);
     });
   }
 
@@ -74,7 +74,7 @@ export class SitesMapComponent implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Mensaje informativo',
-      message: 'El mapa no pudo ser cargado, intentelo más tarde',
+      message: 'El mapa no pudo ser cargado, inténtelo más tarde',
       buttons: ['OK']
     });
 
