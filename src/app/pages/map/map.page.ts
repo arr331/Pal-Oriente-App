@@ -24,8 +24,11 @@ export class MapPage implements OnInit {
     });
   }
 
-  async loadMap() {
-    const loading = await this.loadingCtrl.create();
+  public async loadMap() {
+    const loading = await this.loadingCtrl.create({
+      message : 'Espere por favor'
+    });
+    await loading.present();
     const mapEle: HTMLElement = document.getElementById('map');
     this.mapRef = new google.maps.Map(mapEle, {
       center: { lat: 6.1383542, lng: -75.2729218 },

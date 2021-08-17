@@ -7,9 +7,11 @@ import { Notice } from '../interfaces/notice';
 })
 export class NoticeService {
 
+  noticesList = {};
+
   constructor(private db: AngularFireDatabase) { }
 
-  public getNotices() {
-    return this.db.list<Notice>(`NEWS`);
+  public getNotices(): AngularFireList<Notice> {
+    return this.db.list<Notice>(`NEWS`, ref => ref.orderByChild('text').equalTo(true));
   }
 }
