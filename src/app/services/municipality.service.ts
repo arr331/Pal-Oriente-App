@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
-import {
-  AngularFireDatabase,
-  AngularFireList,
-  AngularFireObject,
-} from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireObject, } from 'angularfire2/database';
 import { Municipality } from '../interfaces/municipality';
-import { Commentary } from '../interfaces/comment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +11,7 @@ export class MunicipalityService {
   region: string;
   idMun: string;
 
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private db: AngularFireDatabase) { }
 
   public async getMunicipalitiesInfo(region: string) {
     this.region = region;
@@ -43,22 +38,5 @@ export class MunicipalityService {
 
   public getMunicipalitiesById(idMun, region) {
     return this.municipalityList[region].filter((mun) => mun.idMun === idMun)[0];
-  }
-
-  public getAll(region: string, municipality: string, site: string): AngularFireList<Commentary> {
-    return this.db.list(`${region}/COMMENTS/${municipality}/${site}`);
-  }
-
-  public saveCom(com: Commentary, idSitio: string, region: string, idMun: string) {
-    com.idOpinion = com.idOpinion || this.db.createPushId();
-    return this.db
-      .list(`${region}/COMMENTS/${idMun}/${idSitio}`)
-      .update(com.idOpinion, com);
-  }
-
-  public deleteCom(idOpinion: string, idSitio: string, region: string, idMun: string) {
-    return this.db
-      .list(`${region}/COMMENTS/${idMun}/${idSitio}`)
-      .remove(idOpinion);
   }
 }

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MunicipalityService } from '../../../../../services/municipality.service';
 import { Storage } from '@ionic/storage';
 import { Site } from '../../../../../interfaces/site';
 import { Commentary } from '../../../../../interfaces/comment';
@@ -7,6 +6,7 @@ import { ModalController } from '@ionic/angular';
 import { ModalComponent } from '../modal/modal.component';
 import { User } from 'src/app/interfaces/user';
 import { Celebration } from 'src/app/interfaces/celebration';
+import { CommentService } from 'src/app/services/comment.service';
 
 @Component({
   selector: 'app-comments',
@@ -17,22 +17,21 @@ import { Celebration } from 'src/app/interfaces/celebration';
 export class CommentsComponent implements OnInit {
   region: string;
   idMun: string;
-  comentarios = [];
+  comentarios: Commentary[] = [];
   comment: Commentary;
   user: User;
   activeAdd: boolean;
   @Input() sitio: Site;
   @Input() celebration: Celebration;
 
-  constructor(private munService: MunicipalityService, private storage: Storage, private modalController: ModalController) { }
+  constructor(private storage: Storage, private modalController: ModalController, private commentService: CommentService) { }
 
-  ngOnInit() {
-
+  ngOnInit(): void {
     this.storage.get('ids').then(ids => {
       this.region = ids.region;
       this.idMun = ids.idMun;
       const idSite = this.getCurrentId();
-      this.munService.getAll(this.region, this.idMun, idSite).valueChanges().subscribe(async res => {
+      this.commentService.getAll(this.region, this.idMun, idSite).valueChanges().subscribe(async res => {
         this.comentarios = res;
         this.user = await this.storage.get('user');
         this.activeAdd = !this.comentarios.some(com => com.uid === this.user.uid);
@@ -49,18 +48,18 @@ export class CommentsComponent implements OnInit {
       nameUser: this.user.displayName,
       numStars: commentary.numStars
     };
-    this.munService.saveCom(this.comment, this.getCurrentId(), this.region, this.idMun).then().catch(err => console.error(err));
+    this.commentService.save(this.comment, this.getCurrentId(), this.region, this.idMun).then().catch(err => console.error(err));
   }
 
-  update(commentary: Commentary) {
+  update(commentary: Commentary): void {
     if (commentary.uid === this.user.uid) { this.presentModal(commentary); }
   }
 
-  delete(idOpinion: string) {
-    this.munService.deleteCom(idOpinion, this.getCurrentId(), this.region, this.idMun).then().catch(err => console.error(err));
+  delete(idOpinion: string): void {
+    this.commentService.delete(idOpinion, this.getCurrentId(), this.region, this.idMun).then().catch(err => console.error(err));
   }
 
-  async presentModal(input?: Commentary) {
+  async presentModal(input?: Commentary): Promise<void> {
     const modal = await this.modalController.create({
       component: ModalComponent,
       cssClass: 'my-custom-class',
@@ -76,11 +75,11 @@ export class CommentsComponent implements OnInit {
     return await modal.present();
   }
 
-  private getCurrentId() {
+  private getCurrentId(): string {
     return this.sitio ? this.sitio.idSite : this.celebration ? this.celebration.idCelebration : undefined;
   }
 
-  getProm() {
+  getProm(): string {
     let promedio = 0;
     this.comentarios.forEach(c => {
       promedio = promedio + c.numStars;
