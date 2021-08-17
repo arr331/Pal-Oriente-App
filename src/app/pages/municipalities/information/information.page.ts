@@ -11,6 +11,7 @@ import { Storage } from '@ionic/storage';
 })
 export class InformationPage {
   municipality: Municipality;
+  information = true;
 
   constructor(public navCtrl: NavController, private municipalityService: MunicipalityService, private storage: Storage) { }
 

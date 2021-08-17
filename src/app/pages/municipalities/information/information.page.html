@@ -12,6 +12,10 @@
 <ion-content *ngIf="municipality">
   <ion-tabs style="display: contents;">
     <ion-tab-bar slot="top">
+      <ion-tab-button (click) = "information = true">
+        <ion-icon name="information-circle-outline"></ion-icon>
+        <ion-label>Información</ion-label>
+      </ion-tab-button>
       <ion-tab-button routerLink="/tabs/sitios" [state]="municipality.sites">
         <ion-icon name="trail-sign"></ion-icon>
         <ion-label>Sitios</ion-label>
@@ -22,13 +26,14 @@
         <ion-label>Celebraciones</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button>
+      <ion-tab-button (click) = "information = false">
         <ion-icon name="navigate-circle"></ion-icon>
         <ion-label>Mapa</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
-  <ion-card style="border-radius: 10px;" *ngIf="municipality">
+
+  <ion-card style="border-radius: 10px;" *ngIf="municipality && information">
     <div style="text-align: center;">
       <img class="image" style="max-width: 25rem;" [src]="municipality.image" alt="No se cargó la imagen">
     </div>
@@ -69,5 +74,7 @@
       </ion-slides>
     </ion-card-content>
   </ion-card>
+
+  <app-sites-map *ngIf="!information" [sites]="municipality.sites"></app-sites-map>
 
 </ion-content>

@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { InformationPageRoutingModule } from './information-routing.module';
 
 import { InformationPage } from './information.page';
+import { SitesMapComponent } from '../sites-map/sites-map.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { InformationPage } from './information.page';
     IonicModule,
     InformationPageRoutingModule
   ],
-  declarations: [InformationPage]
+  declarations: [InformationPage, SitesMapComponent]
 })
 export class InformationPageModule {}
