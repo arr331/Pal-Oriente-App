@@ -11,7 +11,6 @@
 
 <ion-list lines="full">
   <ion-item button *ngFor="let item of itemList" routerLink="/tabs/{{route}}" [state]="item">
-    <div *ngIf="item.state">
       <ion-thumbnail slot="start">
         <img [src]="item.image">
       </ion-thumbnail>
@@ -20,6 +19,5 @@
         <p>{{item.description}}</p>
       </ion-label>
       <ion-button fill="outline" slot="end">más</ion-button>
-    </div>
   </ion-item>
 </ion-list>
