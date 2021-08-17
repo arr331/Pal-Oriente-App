@@ -12,6 +12,6 @@ export class NoticeService {
   constructor(private db: AngularFireDatabase) { }
 
   public getNotices(): AngularFireList<Notice> {
-    return this.db.list<Notice>(`NEWS`, ref => ref.orderByChild('text').equalTo(true));
+    return this.db.list<Notice>(`NEWS`, ref => ref.orderByChild('state').equalTo(true));
   }
 }

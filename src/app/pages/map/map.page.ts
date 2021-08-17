@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, AlertController } from '@ionic/angular';
 import { Municipality } from 'src/app/interfaces/municipality';
 import { MunicipalityService } from 'src/app/services/municipality.service';
 import { Storage } from '@ionic/storage';
@@ -15,7 +15,8 @@ export class MapPage implements OnInit {
   municipalityList: Municipality[] = [];
   mapRef = null;
 
-  constructor(private loadingCtrl: LoadingController, private storage: Storage, private municipalityService: MunicipalityService) { }
+  constructor(private loadingCtrl: LoadingController, private storage: Storage, 
+              private municipalityService: MunicipalityService, public alertController: AlertController) { }
 
   ngOnInit(): void {
     this.municipalityService.getMunicipalitiesInfo('ALTIPLANO').then(answer => {
@@ -26,18 +27,25 @@ export class MapPage implements OnInit {
 
   public async loadMap() {
     const loading = await this.loadingCtrl.create({
-      message : 'Espere por favor'
+      message : 'Espere por favor',
+      duration : 10000,
     });
     await loading.present();
     const mapEle: HTMLElement = document.getElementById('map');
     this.mapRef = new google.maps.Map(mapEle, {
       center: { lat: 6.1383542, lng: -75.2729218 },
       zoom: 10
-    });
+    }), error =>{
+      console.error(error);
+      this.presentAlert();
+    };
     google.maps.event.addListenerOnce(this.mapRef, 'idle', () => {
-      loading.dismiss();
       this.municipalityList.forEach((mun, index) => this.addMaker(parseFloat(mun.x), parseFloat(mun.y), mun.name, mun.idMun));
-    });
+      loading.dismiss();
+    }), error =>{
+      console.error(error);
+      this.presentAlert();
+    };
   }
 
   private addMaker(lat: number, lng: number, title: string, index: string) {
@@ -59,5 +67,19 @@ export class MapPage implements OnInit {
       );
       await this.storage.set('ids', {region: 'ALTIPLANO', idMun: marker.index});
     });
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje informativo',
+      message: 'El mapa no pudo ser cargado, intentelo más tarde',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
   }
 }
