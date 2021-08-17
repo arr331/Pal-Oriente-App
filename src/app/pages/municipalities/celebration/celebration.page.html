@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="celebration">
   <ion-tabs style="display: contents;">
     <ion-tab-bar slot="top">
       <ion-tab-button (click)="item='description'">

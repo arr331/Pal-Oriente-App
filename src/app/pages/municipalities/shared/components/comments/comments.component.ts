@@ -21,7 +21,7 @@ export class CommentsComponent implements OnInit {
   comment: Commentary;
   user: User;
   activeAdd: boolean;
-  @Input() sitio: Site;
+  @Input() site: Site;
   @Input() celebration: Celebration;
 
   constructor(private storage: Storage, private modalController: ModalController, private commentService: CommentService) { }
@@ -76,7 +76,7 @@ export class CommentsComponent implements OnInit {
   }
 
   private getCurrentId(): string {
-    return this.sitio ? this.sitio.idSite : this.celebration ? this.celebration.idCelebration : undefined;
+    return this.site ? this.site.idSite : this.celebration ? this.celebration.idCelebration : undefined;
   }
 
   getProm(): string {

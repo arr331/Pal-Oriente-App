@@ -13,16 +13,16 @@ export class CommentService {
     return this.db.list(`${region}/COMMENTS/${municipality}/${site}`);
   }
 
-  public save(com: Commentary, idSitio: string, region: string, idMun: string): Promise<void> {
+  public save(com: Commentary, idSite: string, region: string, idMun: string): Promise<void> {
     com.idOpinion = com.idOpinion || this.db.createPushId();
     return this.db
-      .list(`${region}/COMMENTS/${idMun}/${idSitio}`)
+      .list(`${region}/COMMENTS/${idMun}/${idSite}`)
       .update(com.idOpinion, com);
   }
 
-  public delete(idOpinion: string, idSitio: string, region: string, idMun: string): Promise<void> {
+  public delete(idOpinion: string, idSite: string, region: string, idMun: string): Promise<void> {
     return this.db
-      .list(`${region}/COMMENTS/${idMun}/${idSitio}`)
+      .list(`${region}/COMMENTS/${idMun}/${idSite}`)
       .remove(idOpinion);
   }
 }

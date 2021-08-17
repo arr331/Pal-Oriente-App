@@ -10,7 +10,7 @@
 </ion-header>
 
 
-<ion-content *ngIf="sitio">
+<ion-content *ngIf="site">
 
   <ion-tabs style="display: contents;">
     <ion-tab-bar slot="top">
@@ -37,10 +37,10 @@
   </ion-tabs>
 
   <ng-container [ngSwitch]="item">
-    <app-description *ngSwitchCase="'description'" [object]="sitio"></app-description>
-    <app-located *ngSwitchCase="'map'" [sitio]="sitio"></app-located>
-    <app-comments *ngSwitchCase="'comments'" [sitio]="sitio"></app-comments>
-    <app-gallery *ngSwitchCase="'gallery'" [sitio]="sitio"></app-gallery>
+    <app-description *ngSwitchCase="'description'" [object]="site"></app-description>
+    <app-located *ngSwitchCase="'map'" [site]="site"></app-located>
+    <app-comments *ngSwitchCase="'comments'" [site]="site"></app-comments>
+    <app-gallery *ngSwitchCase="'gallery'" [site]="site"></app-gallery>
   </ng-container>
 
 </ion-content>

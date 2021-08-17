@@ -16,12 +16,12 @@
         <ion-icon name="information-circle-outline"></ion-icon>
         <ion-label>Información</ion-label>
       </ion-tab-button>
-      <ion-tab-button routerLink="/tabs/sitios" [state]="municipality.sites">
+      <ion-tab-button (click)="goTo('siteList', 'sitios', municipality.sites)">
         <ion-icon name="trail-sign"></ion-icon>
         <ion-label>Sitios</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button routerLink="/tabs/celebraciones" [state]="municipality.celebrations">
+      <ion-tab-button (click)="goTo('celebrationList', 'celebraciones', municipality.celebrations)">
         <ion-icon name="glasses"></ion-icon>
         <ion-label>Celebraciones</ion-label>
       </ion-tab-button>

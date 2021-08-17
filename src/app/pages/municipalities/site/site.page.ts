@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { Site } from 'src/app/interfaces/site';
@@ -11,25 +10,16 @@ import { Site } from 'src/app/interfaces/site';
 })
 export class SitePage implements OnInit {
   item = 'description';
-  sitio: Site;
-  idMun: string;
-  comentarios: Comment[];
+  site: Site;
 
   constructor(
-    private routeRoute: ActivatedRoute,
     public navCtrl: NavController,
-    private router: Router,
     private storage: Storage
   ) {}
 
   ngOnInit() {
     this.storage.get('site').then(site =>
-      this.sitio = site
+      this.site = site
     );
-    this.routeRoute.queryParams.subscribe(() => {
-      if (this.router.getCurrentNavigation().extras.state) {
-        this.sitio = this.router.getCurrentNavigation().extras.state as Site;
-      }
-    });
   }
 }

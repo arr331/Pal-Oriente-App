@@ -11,7 +11,7 @@ declare var google;
 })
 export class LocatedComponent implements OnInit {
   mapRef = null;
-  @Input() sitio: Site;
+  @Input() site: Site;
 
   constructor(private loadingCtrl: LoadingController) { }
 
@@ -23,13 +23,13 @@ export class LocatedComponent implements OnInit {
     const loading = await this.loadingCtrl.create();
     const mapEle: HTMLElement = document.getElementById('mapS');
     this.mapRef = new google.maps.Map(mapEle, {
-      center: {lat: Number.parseFloat(this.sitio.x) , lng: Number.parseFloat(this.sitio.y)},
+      center: {lat: Number.parseFloat(this.site.x) , lng: Number.parseFloat(this.site.y)},
       zoom: 15
     });
     google.maps.event
     .addListenerOnce(this.mapRef, 'idle', () => {
       loading.dismiss();
-      this.addMaker(Number.parseFloat(this.sitio.x), Number.parseFloat(this.sitio.y), this.sitio.name);
+      this.addMaker(Number.parseFloat(this.site.x), Number.parseFloat(this.site.y), this.site.name);
     });
   }
 
@@ -37,7 +37,7 @@ export class LocatedComponent implements OnInit {
     const infoWindow = new google.maps.InfoWindow();
 
     const marker = new google.maps.Marker({
-      position: { lat, lng },
+      positen: { lat, lng },
       map: this.mapRef,
       title
     });

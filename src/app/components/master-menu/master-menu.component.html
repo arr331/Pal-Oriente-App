@@ -10,7 +10,7 @@
 </ion-row>
 
 <ion-list lines="full">
-  <ion-item button *ngFor="let item of itemList" routerLink="/tabs/{{route}}" [state]="item">
+  <ion-item button *ngFor="let item of itemList" (click) = "goTo(item)">
       <ion-thumbnail slot="start">
         <img [src]="item.image">
       </ion-thumbnail>

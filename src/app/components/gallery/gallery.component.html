@@ -9,7 +9,7 @@
 </ion-row>
 
 <ng-template #gallery>
-  <h3 style="text-align: center;">{{sitio?.name || celebration?.name}}</h3>
+  <h3 style="text-align: center;">{{site?.name || celebration?.name}}</h3>
   <ion-segment (ionChange)="changeSegment($event)" value="grid">
     <ion-segment-button value="grid">
       <ion-icon name="grid-outline"></ion-icon>

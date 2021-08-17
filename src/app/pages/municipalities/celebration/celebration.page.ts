@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 import { Celebration } from 'src/app/interfaces/celebration';
 
 @Component({
@@ -9,16 +9,17 @@ import { Celebration } from 'src/app/interfaces/celebration';
   styleUrls: ['./celebration.page.scss'],
 })
 export class CelebrationPage implements OnInit {
-  celebration: Celebration;
   item = 'description';
+  celebration: Celebration;
 
-  constructor(private router: Router, public navCtrl: NavController, private route: ActivatedRoute) { }
+  constructor(
+    public navCtrl: NavController,
+    private storage: Storage
+  ) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe(() => {
-      if (this.router.getCurrentNavigation().extras.state) {
-        this.celebration = this.router.getCurrentNavigation().extras.state as Celebration;
-      }
-    });
+    this.storage.get('celebration').then(celebration =>
+      this.celebration = celebration
+    );
   }
 }

@@ -13,7 +13,7 @@ import { LoadingController } from '@ionic/angular';
 })
 export class GalleryComponent implements OnChanges {
   imageList: string[];
-  @Input() sitio: Site;
+  @Input() site: Site;
   @Input() celebration: Celebration;
   display = 'grid';
 
@@ -27,12 +27,12 @@ export class GalleryComponent implements OnChanges {
   ngOnChanges(): void {
     this.imageList = [];
     this.storage.get('ids').then((ids) => {
-      const itemPath = this.sitio ? 'SITES' : 'CELEBRATIONS';
+      const itemPath = this.site ? 'SITES' : 'CELEBRATIONS';
       this.galleryService
         .getGallery(
           ids.region,
           ids.idMun,
-          this.sitio?.idSite || this.celebration?.idCelebration,
+          this.site?.idSite || this.celebration?.idCelebration,
           itemPath
         )
         .then((result) => {
@@ -45,7 +45,7 @@ export class GalleryComponent implements OnChanges {
   }
 
   showImage(image: string) {
-    this.photoViewer.show(image, this.celebration?.name || this.sitio?.name, {
+    this.photoViewer.show(image, this.celebration?.name || this.site?.name, {
       share: true,
     });
   }
