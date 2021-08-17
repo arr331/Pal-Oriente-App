@@ -34,14 +34,14 @@ export class SitesMapComponent implements OnInit {
     await loading.present();
     const mapEle: HTMLElement = document.getElementById('site-map');
     this.mapRef = new google.maps.Map(mapEle, {
-      center: { lat: 6.1383542, lng: -75.2729218 },
-      zoom: 10
+      center: { lat: parseFloat(this.sites[0].x), lng: parseFloat(this.sites[0].y) },
+      zoom: 14
     }), error =>{
       console.error(error);
       this.presentAlert();
     };
     google.maps.event.addListenerOnce(this.mapRef, 'idle', () => {
-      this.sites.forEach((mun, index) => this.addMaker(parseFloat(mun.x), parseFloat(mun.y), mun.name, mun.image, mun.idSite, mun));
+      this.sites.forEach(site => this.addMaker(parseFloat(site.x), parseFloat(site.y), site.name, site.image, site.idSite, site));
       loading.dismiss();
     }), error =>{
       console.error(error);
