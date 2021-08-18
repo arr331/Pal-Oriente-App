@@ -13,7 +13,14 @@ export class MenuNewPage implements OnInit {
   constructor(private noticeService: NoticeService) { }
 
   ngOnInit() {
-    this.noticeService.getNotices().valueChanges().subscribe(res => this.noticeList = res);
+    this.noticeService.getNotices().valueChanges().subscribe(res => {
+      this.noticeList = res;
+      this.noticeList.sort((a,b) => this.compareDates(a.date, b.date)).reverse();
+    });
+  }
+
+  compareDates(a,b): number{
+    return a-b;
   }
 
 }
