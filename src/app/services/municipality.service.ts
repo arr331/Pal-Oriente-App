@@ -7,13 +7,11 @@ import { Municipality } from '../interfaces/municipality';
 })
 export class MunicipalityService {
   municipalityList = {};
-  comentarios = {};
   region: string;
-  idMun: string;
 
   constructor(private db: AngularFireDatabase) { }
 
-  public async getMunicipalitiesInfo(region: string) {
+  public async getMunicipalitiesInfo(region: string): Promise<any> {
     this.region = region;
     if (!this.municipalityList[region]) {
       this.municipalityList = { ...this.municipalityList, [region]: [] };
@@ -22,6 +20,7 @@ export class MunicipalityService {
         .query.once('value')
         .then((data) => {
           data.forEach((mun) => {
+            if (mun.val().state)
             this.municipalityList[region].push(mun.val());
           });
         });
@@ -36,7 +35,4 @@ export class MunicipalityService {
     return this.db.object(`${region}/MUNICIPALITIES/${idMun}`);
   }
 
-  public getMunicipalitiesById(idMun, region) {
-    return this.municipalityList[region].filter((mun) => mun.idMun === idMun)[0];
-  }
 }

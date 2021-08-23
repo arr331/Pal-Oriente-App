@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
@@ -9,6 +8,7 @@ import {
   PushNotificationToken,
   PushNotificationActionPerformed,
 } from '@capacitor/core';
+import { RegionService } from 'src/app/services/region.service';
 
 const { PushNotifications } = Plugins;
 
@@ -21,7 +21,7 @@ export class HomePage implements OnInit {
   regionList: any;
 
   constructor(
-    private db: AngularFireDatabase,
+    private regionService: RegionService,
     private loadingController: LoadingController,
     private router: Router
   ) { }
@@ -32,11 +32,10 @@ export class HomePage implements OnInit {
       message: 'Por favor espere...',
     });
     await loading.present();
-    this.db.list(`HOME`).valueChanges().subscribe(ans => {
+    this.regionService.getAll().valueChanges().subscribe(ans => {
       this.regionList = ans;
       loading.dismiss();
     });
-
 
     // Request permission to use push notifications
     // iOS will prompt user and return if they granted permission or not
@@ -79,7 +78,7 @@ export class HomePage implements OnInit {
 
   }
 
-  public openProfile(){
+  public openProfile(): void {
     this.router.navigate(['user-profile']);
   }
 

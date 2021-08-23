@@ -11,18 +11,18 @@ import { MunicipalityService } from 'src/app/services/municipality.service';
   styleUrls: ['./municipality.page.scss'],
 })
 export class MunicipalityPage implements OnInit {
-  municipalityList: Array<Municipality> = [];
+  municipalityList: Municipality[] = [];
   region: string;
 
   constructor(private munService: MunicipalityService, private activatedroute: ActivatedRoute,
               public navCtrl: NavController, private router: Router, private storage: Storage) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.region = this.activatedroute.snapshot.paramMap.get('region');
     this.munService.getMunicipalitiesInfo(this.region).then(answer => this.municipalityList = answer);
   }
 
-  async goTo(mun) {
+  async goTo(mun): Promise<void> {
     await this.storage.set('ids', {region: this.region, idMun: mun.idMun});
     this.router.navigate(['tabs/informacion']);
   }

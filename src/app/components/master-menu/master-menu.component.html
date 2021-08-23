@@ -10,7 +10,8 @@
 </ion-row>
 
 <ion-list lines="full">
-  <ion-item button *ngFor="let item of itemList" (click) = "goTo(item)">
+  <ion-item button *ngFor="let item of itemList" (click)="goTo(item)">
+    <ng-container *ngIf="item.state">
       <ion-thumbnail slot="start">
         <img [src]="item.image">
       </ion-thumbnail>
@@ -19,5 +20,6 @@
         <p>{{item.description}}</p>
       </ion-label>
       <ion-button fill="outline" slot="end">más</ion-button>
+    </ng-container>
   </ion-item>
 </ion-list>

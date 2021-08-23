@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { Notice } from '../interfaces/notice';
+import { Region } from '../interfaces/region';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NoticeService {
+export class RegionService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  public getNotices(): AngularFireList<Notice> {
-    return this.db.list<Notice>(`NEWS`, ref => ref.orderByChild('state').equalTo(true));
+  public getAll(): AngularFireList<Region> {
+    return this.db.list<Region>(`HOME`, ref => ref.orderByChild('state').equalTo(true));
   }
 }

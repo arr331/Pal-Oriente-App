@@ -69,7 +69,7 @@ export class MapPage implements OnInit {
     });
   }
 
-  async presentAlert() {
+  async presentAlert(): Promise<void> {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Mensaje informativo',
