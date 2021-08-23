@@ -4,4 +4,5 @@ export interface Notice {
   text: string;
   title: string;
   reference?: string;
+  date: string;
 }

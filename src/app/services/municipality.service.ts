@@ -25,7 +25,7 @@ export class MunicipalityService {
           });
         });
     }
-    return this.municipalityList[region];
+    return this.municipalityList[region].filter((mun) => mun.state);
   }
 
   public getMunicipality(
