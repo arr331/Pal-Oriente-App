@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Site } from '../../../../../interfaces/site';
 import { Commentary } from '../../../../../interfaces/comment';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { ModalComponent } from '../modal/modal.component';
 import { User } from 'src/app/interfaces/user';
 import { Celebration } from 'src/app/interfaces/celebration';
@@ -24,7 +24,12 @@ export class CommentsComponent implements OnInit {
   @Input() site: Site;
   @Input() celebration: Celebration;
 
-  constructor(private storage: Storage, private modalController: ModalController, private commentService: CommentService) { }
+  constructor(
+    private storage: Storage,
+    private modalController: ModalController,
+    private commentService: CommentService,
+    public alertController: AlertController
+  ) { }
 
   ngOnInit(): void {
     this.storage.get('ids').then(ids => {
@@ -55,8 +60,29 @@ export class CommentsComponent implements OnInit {
     if (commentary.uid === this.user.uid) { this.presentModal(commentary); }
   }
 
-  delete(idOpinion: string): void {
-    this.commentService.delete(idOpinion, this.getCurrentId(), this.region, this.idMun).then().catch(err => console.error(err));
+  async delete(idOpinion: string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Confirma',
+      message: '¿Seguro que desea <strong>eliminar</strong> la valoración?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Si, Eliminar',
+          handler: () => {
+            this.commentService.delete(idOpinion, this.getCurrentId(), this.region, this.idMun).then().catch(err => console.error(err));
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   async presentModal(input?: Commentary): Promise<void> {

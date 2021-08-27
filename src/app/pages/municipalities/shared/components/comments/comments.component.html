@@ -1,5 +1,5 @@
 <ion-list *ngIf="user">
-  <ion-list-header>
+  <ion-list-header *ngIf="comentarios && comentarios.length > 0">
     <ion-row style="align-items: center;">
       <span>({{getProm()}})</span> 
       <ion-col>
@@ -8,7 +8,9 @@
       </ion-col>
       <span style="display: flex; align-items: center;">({{comentarios.length}}) <ion-icon style="margin-left: 5px;" name="people-circle-outline"></ion-icon></span> 
     </ion-row>
-
+  </ion-list-header>
+  <ion-list-header *ngIf="!comentarios || comentarios.length == 0">
+    ¡Se el primero en dejar un comentario y valoración!
   </ion-list-header>
   <ion-item *ngFor="let comentario of comentarios">
     <ion-avatar slot="start">

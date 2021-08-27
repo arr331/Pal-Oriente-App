@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { Commentary } from '../../../../../interfaces/comment';
 
 @Component({
@@ -12,7 +12,11 @@ export class ModalComponent implements OnInit {
   commentForm: FormGroup;
   @Input() comentario: Commentary;
 
-  constructor(private modalCtrl: ModalController, private formBuilder: FormBuilder) { }
+  constructor(
+    private modalCtrl: ModalController,
+    private formBuilder: FormBuilder,
+    public alertController: AlertController
+  ) { }
 
   ngOnInit() {
     this.buildForm();
@@ -31,7 +35,27 @@ export class ModalComponent implements OnInit {
   }
 
   save() {
-    if (this.commentForm.valid) { this.modalCtrl.dismiss(this.commentForm.value); }
+    if (this.commentForm.valid) { 
+      this.modalCtrl.dismiss(this.commentForm.value); 
+    } else { 
+      if(this.commentForm.get('commentary').invalid) {
+        this.presentAlert('el comentario');
+      }
+    } 
+  }
+
+  async presentAlert(field: string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Valoración',
+      subHeader: 'Por favor ingrese ' + field,
+      buttons: ['Entendido']
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
   }
 
   get numStarField() { return this.commentForm.get('numStars').value; }
