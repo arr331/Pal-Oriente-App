@@ -3,6 +3,8 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { Municipality } from 'src/app/interfaces/municipality';
 import { MunicipalityService } from 'src/app/services/municipality.service';
 import { Storage } from '@ionic/storage';
+import { Region } from 'src/app/interfaces/region';
+import { RegionService } from 'src/app/services/region.service';
 declare var google;
 
 @Component({
@@ -12,60 +14,77 @@ declare var google;
   encapsulation: ViewEncapsulation.None,
 })
 export class MapPage implements OnInit {
+  regionList: Region[];
   municipalityList: Municipality[] = [];
   mapRef = null;
 
-  constructor(private loadingCtrl: LoadingController, private storage: Storage, 
-              private municipalityService: MunicipalityService, public alertController: AlertController) { }
+  constructor(private loadingCtrl: LoadingController, private storage: Storage, private regionService: RegionService,
+    private municipalityService: MunicipalityService, public alertController: AlertController) { }
 
   ngOnInit(): void {
-    this.municipalityService.getMunicipalitiesInfo('ALTIPLANO').then(answer => {
-      this.municipalityList = answer;
+    this.regionService.getAll().valueChanges().subscribe(async regions => {
+      this.regionList = regions;
+      await Promise.all(
+        regions.map(async region => await this.setMunicipality(region.id))
+      );
       this.loadMap();
-    });
+    })
+
+  }
+
+  async setMunicipality(idRegion: string): Promise<void> {
+    const list: Municipality[] = await this.municipalityService.getMunicipalitiesInfo(idRegion);
+    list.forEach(municipality => municipality.idRegion = idRegion);
+    this.municipalityList = [...this.municipalityList, ...list];
   }
 
   public async loadMap(): Promise<void> {
     const loading = await this.loadingCtrl.create({
-      message : 'Espere por favor',
-      duration : 10000,
+      message: 'Espere por favor',
+      duration: 10000,
     });
     await loading.present();
     const mapEle: HTMLElement = document.getElementById('map');
     this.mapRef = new google.maps.Map(mapEle, {
-      center: { lat: 6.1383542, lng: -75.2729218 },
+      center: { lat: this.average('x'), lng: this.average('y')  },
       zoom: 10
-    }), error =>{
+    }), error => {
       console.error(error);
       this.presentAlert();
     };
     google.maps.event.addListenerOnce(this.mapRef, 'idle', () => {
-      this.municipalityList.forEach((mun, index) => this.addMaker(parseFloat(mun.x), parseFloat(mun.y), mun.name, mun.image, mun.idMun));
+      this.municipalityList.forEach(mun => this.addMaker(mun));
       loading.dismiss();
-    }), error =>{
+    }), error => {
       console.error(error);
       this.presentAlert();
     };
   }
 
-  private addMaker(lat: number, lng: number, title: string, image: string, idMun: string): void {
-    const html = `<div class="content"> <h3>${title}</h3> <img style="padding-bottom: 10px; max-width: 100%;" src="${image}"/> <br> <a href="/tabs/informacion" class="link">Ver más...</a> </div>`;
+  private average(position: string): number {
+    let average = 0;
+    this.municipalityList.forEach(mun => average += parseFloat(mun[position]));
+    return average = average / this.municipalityList.length;
+  }
+
+  private addMaker(municipality: Municipality): void {
+    const html = `<div class="content"> <h3>${municipality.name}</h3> <img style="padding-bottom: 10px; max-width: 100%;" src="${municipality.image}"/> <br> <a href="/tabs/informacion" class="link">Ver más...</a> </div>`;
 
     const infoWindow = new google.maps.InfoWindow({
       content: html
     });
     const marker = new google.maps.Marker({
-      position: { lat, lng },
+      position: { lat: parseFloat(municipality.x), lng: parseFloat(municipality.y) },
       map: this.mapRef,
-      title,
-      idMun
+      title: municipality.name,
+      idMun: municipality.idMun
     });
     marker.addListener('click', async () => {
       infoWindow.open(
         marker.getMap(),
         marker,
       );
-      await this.storage.set('ids', {region: 'ALTIPLANO', idMun: marker.idMun});
+      await this.storage.set('ids', { region: municipality.idRegion, idMun: marker.idMun });
     });
   }
 

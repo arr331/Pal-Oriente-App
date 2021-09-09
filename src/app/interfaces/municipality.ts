@@ -9,6 +9,7 @@ export interface Municipality {
   reference: string;
   history: string;
   idMun: string;
+  idRegion?: string;
   image: string;
   name: string;
   sites: Site[];
