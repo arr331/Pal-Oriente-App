@@ -23,8 +23,6 @@ export class MasterMenuComponent implements OnChanges {
   }
 
   async ngOnChanges() {
-    console.log('Si cambie ', this.name);
-    
     this.itemList = null;
     this.storage.get(`${this.name}List`).then(items => {
       this.itemList = [];

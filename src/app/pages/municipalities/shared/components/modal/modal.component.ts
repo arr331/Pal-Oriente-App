@@ -53,9 +53,7 @@ export class ModalComponent implements OnInit {
     });
 
     await alert.present();
-
-    const { role } = await alert.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
+    alert.onDidDismiss();
   }
 
   get numStarField() { return this.commentForm.get('numStars').value; }

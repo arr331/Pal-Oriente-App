@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { Component, Input, OnChanges } from '@angular/core';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { Site } from '../../../../../interfaces/site';
 
 declare var google;
@@ -9,42 +9,68 @@ declare var google;
   templateUrl: './located.component.html',
   styleUrls: ['./located.component.scss'],
 })
-export class LocatedComponent implements OnInit {
+export class LocatedComponent implements OnChanges {
   mapRef = null;
   @Input() site: Site;
 
-  constructor(private loadingCtrl: LoadingController) { }
+  constructor(private loadingCtrl: LoadingController, public alertController: AlertController) { }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.loadMap();
   }
 
-  async loadMap(){
-    const loading = await this.loadingCtrl.create();
+  async loadMap() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Espere por favor',
+      duration: 10000,
+    });
+    await loading.present();
     const mapEle: HTMLElement = document.getElementById('mapS');
     this.mapRef = new google.maps.Map(mapEle, {
-      center: {lat: Number.parseFloat(this.site.x) , lng: Number.parseFloat(this.site.y)},
+      center: { lat: Number.parseFloat(this.site.x), lng: Number.parseFloat(this.site.y) },
       zoom: 15
-    });
-    google.maps.event
-    .addListenerOnce(this.mapRef, 'idle', () => {
+    }), error => {
+      console.error(error);
+      this.presentAlert();
+    };
+    google.maps.event.addListenerOnce(this.mapRef, 'idle', () => {
+      this.addMaker(Number.parseFloat(this.site.x), Number.parseFloat(this.site.y), this.site.name, this.site.image);
       loading.dismiss();
-      this.addMaker(Number.parseFloat(this.site.x), Number.parseFloat(this.site.y), this.site.name);
+    }), error => {
+      console.error(error);
+      this.presentAlert();
+    };
+  }
+
+  private addMaker(lat: number, lng: number, title: string, image: string) {
+    const html = `<h3>${title}</h3> <img style="padding-bottom: 10px; max-width: 100%;" src="${image}"/>`;
+
+    const infoWindow = new google.maps.InfoWindow({
+      content: html
+    });
+
+    const marker = new google.maps.Marker({
+      position: { lat, lng },
+      map: this.mapRef
+    });
+    marker.addListener('click', () => {
+      infoWindow.open(
+        marker.getMap(),
+        marker,
+      );
     });
   }
 
-  private addMaker(lat: number, lng: number, title: string) {
-    const infoWindow = new google.maps.InfoWindow();
+  async presentAlert(): Promise<void> {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje informativo',
+      message: 'El mapa no pudo ser cargado, inténtelo más tarde',
+      buttons: ['OK']
+    });
 
-    const marker = new google.maps.Marker({
-      positen: { lat, lng },
-      map: this.mapRef,
-      title
-    });
-    marker.addListener('click', () => {
-      infoWindow.close();
-      infoWindow.setContent(marker.getTitle());
-      infoWindow.open(marker.getMap(), marker);
-    });
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
   }
 }
