@@ -16,6 +16,7 @@ export class GalleryComponent implements OnChanges {
   @Input() site: Site;
   @Input() celebration: Celebration;
   display = 'grid';
+  showMessageImages: boolean;
 
   constructor(
     private photoViewer: PhotoViewer,
@@ -36,6 +37,7 @@ export class GalleryComponent implements OnChanges {
           itemPath
         )
         .then((result) => {
+          this.showMessageImages = result.items.length === 0 ? true : false;
           result.items.forEach((itemRef) =>
             itemRef.getDownloadURL().then((url) => this.imageList.push(url))
           );

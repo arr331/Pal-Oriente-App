@@ -11,7 +11,7 @@ import { MunicipalityService } from 'src/app/services/municipality.service';
   styleUrls: ['./municipality.page.scss'],
 })
 export class MunicipalityPage implements OnInit {
-  municipalityList: Municipality[] = [];
+  municipalityList: Municipality[];
   region: string;
 
   constructor(private munService: MunicipalityService, private activatedroute: ActivatedRoute,

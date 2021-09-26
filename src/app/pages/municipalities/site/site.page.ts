@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { Component } from '@angular/core';
+import { NavController, ViewWillEnter } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { Site } from 'src/app/interfaces/site';
 
@@ -8,7 +8,7 @@ import { Site } from 'src/app/interfaces/site';
   templateUrl: './site.page.html',
   styleUrls: ['./site.page.scss'],
 })
-export class SitePage implements OnInit {
+export class SitePage implements ViewWillEnter {
   item = 'description';
   site: Site;
 
@@ -17,7 +17,7 @@ export class SitePage implements OnInit {
     private storage: Storage
   ) {}
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.storage.get('site').then(site =>
       this.site = site
     );

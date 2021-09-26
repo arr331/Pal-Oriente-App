@@ -9,9 +9,10 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./master-menu.component.scss'],
 })
 export class MasterMenuComponent implements OnChanges {
-  itemList = [];
+  itemList: any[];
   @Input() route: any;
   @Input() name: any;
+  @Input() change: boolean;
 
   constructor(
     private router: Router,
@@ -22,8 +23,11 @@ export class MasterMenuComponent implements OnChanges {
   }
 
   async ngOnChanges() {
-    this.itemList = [];
+    console.log('Si cambie ', this.name);
+    
+    this.itemList = null;
     this.storage.get(`${this.name}List`).then(items => {
+      this.itemList = [];
         this.itemList = items ? Object.keys(items).map(item => items[item].state ? items[item] : undefined) : [];
         this.itemList = this.itemList.filter(Boolean);
       }

@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, LoadingController } from '@ionic/angular';
+import { NavController, LoadingController, ViewWillEnter } from '@ionic/angular';
 
 @Component({
   selector: 'app-site-menu',
   templateUrl: './site-menu.page.html',
   styleUrls: ['./site-menu.page.scss'],
 })
-export class SiteMenuPage implements OnInit {
+export class SiteMenuPage implements  ViewWillEnter{
   route = 'sitio';
+  change: boolean;
 
   constructor(public navCtrl: NavController) { }
 
-  ngOnInit() { }
-
+  ionViewWillEnter() {
+    this.change = !this.change;
+  }
 }
