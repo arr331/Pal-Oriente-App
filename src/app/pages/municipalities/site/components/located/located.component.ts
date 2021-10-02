@@ -29,17 +29,17 @@ export class LocatedComponent implements OnChanges {
     this.mapRef = new google.maps.Map(mapEle, {
       center: { lat: Number.parseFloat(this.site.x), lng: Number.parseFloat(this.site.y) },
       zoom: 15
-    }), error => {
+    }, error => {
       console.error(error);
       this.presentAlert();
-    };
+    });
     google.maps.event.addListenerOnce(this.mapRef, 'idle', () => {
       this.addMaker(Number.parseFloat(this.site.x), Number.parseFloat(this.site.y), this.site.name, this.site.image);
       loading.dismiss();
-    }), error => {
+    }, error => {
       console.error(error);
       this.presentAlert();
-    };
+    });
   }
 
   private addMaker(lat: number, lng: number, title: string, image: string) {

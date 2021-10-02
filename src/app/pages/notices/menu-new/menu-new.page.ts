@@ -15,12 +15,12 @@ export class MenuNewPage implements OnInit {
   ngOnInit() {
     this.noticeService.getNotices().valueChanges().subscribe(res => {
       this.noticeList = res;
-      this.noticeList.sort((a,b) => this.compareDates(a.date, b.date)).reverse();
+      this.noticeList.sort((a, b) => this.compareDates(a.date, b.date)).reverse();
     });
   }
 
-  compareDates(a,b): number{
-    return a-b;
+  compareDates(a, b): number{
+    return a - b;
   }
 
 }

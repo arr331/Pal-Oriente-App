@@ -13,8 +13,11 @@ export class SitesMapComponent implements OnInit {
   @Input() sites: Site[];
   mapRef = null;
 
-  constructor(private loadingCtrl: LoadingController, private storage: Storage,
-    public alertController: AlertController) { }
+  constructor(
+    private loadingCtrl: LoadingController,
+    private storage: Storage,
+    public alertController: AlertController
+  ) { }
 
   ngOnInit(): void {
     if (this.sites) {
@@ -34,17 +37,17 @@ export class SitesMapComponent implements OnInit {
     this.mapRef = new google.maps.Map(mapEle, {
       center: { lat: this.average('x'), lng: this.average('y') },
       zoom: 13.6
-    }), error => {
+    }, error => {
       console.error(error);
       this.presentAlert();
-    };
+    });
     google.maps.event.addListenerOnce(this.mapRef, 'idle', () => {
       this.sites.forEach(site => this.addMaker(site));
       loading.dismiss();
-    }), error => {
+    }, error => {
       console.error(error);
       this.presentAlert();
-    };
+    });
   }
 
   private average(position: string): number {

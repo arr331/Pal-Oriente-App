@@ -18,8 +18,13 @@ export class MapPage implements OnInit {
   municipalityList: Municipality[] = [];
   mapRef = null;
 
-  constructor(private loadingCtrl: LoadingController, private storage: Storage, private regionService: RegionService,
-    private municipalityService: MunicipalityService, public alertController: AlertController) { }
+  constructor(
+    private loadingCtrl: LoadingController,
+    private storage: Storage,
+    private regionService: RegionService,
+    private municipalityService: MunicipalityService,
+    public alertController: AlertController
+  ) { }
 
   ngOnInit(): void {
     this.regionService.getAll().valueChanges().subscribe(async regions => {
@@ -28,8 +33,7 @@ export class MapPage implements OnInit {
         regions.map(async region => await this.setMunicipality(region.id))
       );
       this.loadMap();
-    })
-
+    });
   }
 
   async setMunicipality(idRegion: string): Promise<void> {
@@ -46,19 +50,19 @@ export class MapPage implements OnInit {
     await loading.present();
     const mapEle: HTMLElement = document.getElementById('map');
     this.mapRef = new google.maps.Map(mapEle, {
-      center: { lat: this.average('x'), lng: this.average('y')  },
+      center: { lat: this.average('x'), lng: this.average('y') },
       zoom: 10
-    }), error => {
+    }, error => {
       console.error(error);
       this.presentAlert();
-    };
+    });
     google.maps.event.addListenerOnce(this.mapRef, 'idle', () => {
       this.municipalityList.forEach(mun => this.addMaker(mun));
       loading.dismiss();
-    }), error => {
+    }, error => {
       console.error(error);
       this.presentAlert();
-    };
+    });
   }
 
   private average(position: string): number {

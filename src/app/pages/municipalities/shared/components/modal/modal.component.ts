@@ -35,13 +35,13 @@ export class ModalComponent implements OnInit {
   }
 
   save() {
-    if (this.commentForm.valid) { 
-      this.modalCtrl.dismiss(this.commentForm.value); 
-    } else { 
-      if(this.commentForm.get('commentary').invalid) {
+    if (this.commentForm.valid) {
+      this.modalCtrl.dismiss(this.commentForm.value);
+    } else {
+      if (this.commentForm.get('commentary').invalid) {
         this.presentAlert('el comentario');
       }
-    } 
+    }
   }
 
   async presentAlert(field: string) {

@@ -20,8 +20,9 @@ export class MunicipalityService {
         .query.once('value')
         .then((data) => {
           data.forEach((mun) => {
-            if (mun.val().state)
-            this.municipalityList[region].push(mun.val());
+            if (mun.val().state) {
+              this.municipalityList[region].push(mun.val());
+            }
           });
         });
     }
